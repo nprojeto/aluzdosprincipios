@@ -420,6 +420,7 @@ p .lab{margin-right:4px}
           <li>Retórica eleitoral contra o adversário não entra no índice. Entram as propostas e o modo como o plano descreve o uso da força do Estado.</li>
           <li>Conquistas passadas citadas no plano só contam quando o plano promete mantê-las ou ampliá-las.</li>
           <li>Personagem sem posição determinável: índice 50 e confiança baixa.</li>
+          <li>Silêncio de um plano sobre um tema não é tratado como oposição. Uma declaração de princípio sem medidas recebe crédito, mas menos do que medidas concretas.</li>
           <li>Os índices passaram por uma revisão independente, feita por um revisor que não os atribuiu, em busca de assimetrias entre A e B; as correções foram incorporadas.</li>
         </ul>
       </div>
@@ -439,7 +440,7 @@ p .lab{margin-right:4px}
       </div>
       <div class="sheet"><h3>Os temas escolhidos e os deixados de fora</h3>
         <p>Foram escolhidos temas em que os dois planos divergem de fato em abordagem, prioridade ou princípio, e sobre os quais os perfis dos três personagens oferecem alguma base.</p>
-        <p class="muted" style="font-size:.88rem">Ficaram de fora: saúde (convergência ampla entre os planos), integridade e contas públicas e reforma do Judiciário (pouca base nos perfis dos personagens), migração e refúgio (só o Plano A trata), liberdade religiosa (o Plano B a declara como valor, mas nenhum dos dois traz medidas), e apostas e drogas (convergência parcial).</p>
+        <p class="muted" style="font-size:.88rem">Os temas são tratados em nível geral, pela abordagem de cada plano, e não por detalhes isolados. Ficaram de fora: saúde (convergência ampla entre os planos), migração e refúgio (só o Plano A trata), apostas e drogas (convergência parcial) e reforma do Judiciário (pouca base nos perfis). Prisões e finalidade da pena, e trabalho, jornada e sindicatos, constavam de uma versão anterior e foram retirados em revisão editorial; nesses dois temas, João Paulo II e Martin Luther King Jr. têm posições documentadas mais próximas do Plano A.</p>
       </div>
     </div>
     <div class="tablewrap"><table id="themeIndex"><thead><tr><th>Nº</th><th>Tema</th><th>Questão central</th></tr></thead><tbody></tbody></table></div>
@@ -607,6 +608,9 @@ const QUOTES = {
   jp_peace:  { fig: "jp2", text: "No peace without justice, no justice without forgiveness", pt: "Não há paz sem justiça, não há justiça sem perdão", ref: "Mensagem para o Dia Mundial da Paz", year: "2002", url: "https://www.vatican.va/content/john-paul-ii/en/messages/peace/documents/hf_jp-ii_mes_20011211_xxxv-world-day-for-peace.html" },
   jp_ethics: { fig: "jp2", text: "the priority of ethics over technology, in the primacy of the person over things", pt: "a prioridade da ética sobre a técnica, a primazia da pessoa sobre as coisas", ref: "Encíclica Redemptor Hominis, §16", year: "1979", url: "https://www.vatican.va/content/john-paul-ii/en/encyclicals/documents/hf_jp-ii_enc_04031979_redemptor-hominis.html" },
 
+  jp_market:{ fig: "jp2", text: "the fundamental and positive role of business, the market, private property", pt: "o papel fundamental e positivo da empresa, do mercado e da propriedade privada (quando reconhecido dentro de uma moldura jurídica forte)", ref: "Encíclica Centesimus Annus, §42", year: "1991", url: "https://www.vatican.va/content/john-paul-ii/en/encyclicals/documents/hf_jp-ii_enc_01051991_centesimus-annus.html" },
+  jp_democ: { fig: "jp2", text: "a democracy without values easily turns into open or thinly disguised totalitarianism.", pt: "uma democracia sem valores converte-se facilmente num totalitarismo aberto ou dissimulado.", ref: "Encíclica Centesimus Annus, §46", year: "1991", url: "https://www.vatican.va/content/john-paul-ii/en/encyclicals/documents/hf_jp-ii_enc_01051991_centesimus-annus.html" },
+
   bg_injust: { fig: "bg", text: "It's true that terrible social injustices need to be righted, but this is not the whole problem", pt: "É verdade que terríveis injustiças sociais precisam ser corrigidas, mas esse não é todo o problema", ref: "Programa de rádio Hour of Decision", year: "1967", url: "https://www.billygraham.ca/stories/billy-graham-on-social-injustice/" },
   bg_build:  { fig: "bg", text: "Let's dedicate ourselves to building rather than burning", pt: "Dediquemo-nos a construir, e não a incendiar", ref: "Discurso no Honor America Day, Lincoln Memorial", year: "1970", url: "https://www.baptistpress.com/resource-library/news/billy-grahams-july-4-1970-words-the-unfinished-dream/print/" },
   bg_kingdom:{ fig: "bg", text: "But the kingdom of God is not the same as America", pt: "Mas o Reino de Deus não é a mesma coisa que os Estados Unidos", ref: "Entrevista à revista Sojourners", year: "1979", url: "https://mail.sojo.net/magazine/august-1979/change-heart" },
@@ -637,696 +641,1545 @@ const QUOTES = {
    OS 15 TEMAS
    ------------------------------------------------------------------- */
 const THEMES = [
-/* ===================== 01 ===================== */
-{
-  id: 1, title: "Segurança pública e uso da força", short: "Segurança",
-  question: "Como o Estado deve enfrentar facções e crime organizado: com que meios, com que limites e com que controle sobre a própria polícia?",
-  A: {
-    proposal: "Sistema Único de Segurança Pública integrado, asfixia financeira das facções, inteligência e “repressão qualificada”, com prevenção e presença do Estado nas periferias.",
-    goal: "Desarticular a economia do crime e reduzir a violência sem sair dos marcos do Estado Democrático de Direito.",
-    items: ["Lei Antifacção e Programa Brasil Contra o Crime Organizado, com R$ 10 bi para estados e municípios (p. 27–28)", "Ministério da Segurança Pública após a PEC da Segurança (p. 29–30)", "Policiamento de proximidade, câmeras corporais e controle interno e externo da polícia (p. 30)", "Urbanização de favelas e serviços públicos para retomar territórios (p. 28)", "Controle de armas e munições; manutenção da revogação dos decretos de flexibilização (p. 28)", "Forças Armadas nas fronteiras amazônicas; radares, drones e centros de comando (p. 29)"],
-    consequence: "Ênfase em investigação e prevenção tende a produzir efeitos de médio prazo; críticos apontam risco de resposta lenta à violência imediata.",
-    positives: ["Ataca o financiamento do crime", "Prevê controle sobre o uso da força policial"],
-    tensions: ["Pouca ênfase na responsabilização moral individual", "Resultados dependem de aprovação de PEC"],
-    pages: "p. 26–30"
+ {
+  "id": 1,
+  "title": "Segurança pública",
+  "short": "Segurança",
+  "question": "Qual é a abordagem geral de cada plano para reduzir o crime e a violência?",
+  "A": {
+   "proposal": "Segurança como política integrada entre União, estados e municípios: inteligência, asfixia financeira do crime organizado e “repressão qualificada”, combinadas com prevenção, presença do Estado nas periferias, controle de armas e controle sobre a atividade policial.",
+   "goal": "Reduzir a violência “nos marcos da Constituição e do Estado Democrático de Direito”.",
+   "items": [
+    "Sistema Único de Segurança Pública e Ministério da Segurança Pública após a PEC (p. 27–30)",
+    "Asfixia financeira de facções e milícias; Lei Antifacção (p. 27–28)",
+    "Prevenção, urbanização de periferias e policiamento de proximidade (p. 28–30)",
+    "Controle de armas e munições (p. 28)"
+   ],
+   "consequence": "Aposta em resultados de médio prazo; críticos apontam resposta lenta à violência imediata.",
+   "positives": [
+    "Combina repressão e prevenção",
+    "Prevê controle do uso da força"
+   ],
+   "tensions": [
+    "Pouca ênfase na responsabilização individual",
+    "Depende de mudança constitucional"
+   ],
+   "pages": "p. 26–30"
   },
-  B: {
-    proposal: "“Guerra ao crime organizado”: facções declaradas narcoterroristas, tropas nas fronteiras, portos e aeroportos, e autorização explícita de força letal contra criminosos armados.",
-    goal: "Restabelecer a autoridade da lei e devolver territórios ao cidadão “desde o primeiro dia”.",
-    items: ["PCC, CV e milícias declarados organizações narcoterroristas (p. 13)", "“Bandido armado com fuzil na mão vai ser abatido pelas forças de segurança” (p. 13)", "Traficante que resistir “vai ser preso ou vai virar pó” (p. 15)", "Tropa de elite das Forças Armadas nas fronteiras; Marinha e Aeronáutica nos portos (p. 13–15)", "Dobrar o investimento federal em segurança; 1 milhão de câmeras com reconhecimento facial (p. 15)", "Bloqueio de ativos e combate à lavagem de dinheiro (p. 13)", "Retomada de territórios “alinhada a políticas públicas estruturantes” e valorização do policial (p. 13)"],
-    consequence: "Promete resposta rápida e visível; especialistas costumam alertar que políticas de confronto aumentam a letalidade policial e a vigilância em massa.",
-    positives: ["Prioriza o direito da população de viver sem medo", "Também prevê seguir o dinheiro do crime"],
-    tensions: ["Linguagem de eliminação física do criminoso", "Reconhecimento facial em massa sem salvaguardas descritas"],
-    pages: "p. 13–15"
+  "B": {
+   "proposal": "Segurança como primeira prioridade do governo, com endurecimento e confronto: facções declaradas organizações narcoterroristas, Forças Armadas nas fronteiras, portos e aeroportos, investimento federal dobrado, tecnologia de vigilância e uso de força contra criminosos armados.",
+   "goal": "Que “quem volte a mandar no Brasil seja a lei”, devolvendo territórios ao cidadão.",
+   "items": [
+    "Facções como organizações narcoterroristas; bloqueio de ativos (p. 13)",
+    "Forças Armadas nas fronteiras, portos e aeroportos (p. 13–15)",
+    "Dobrar o investimento federal em segurança; reconhecimento facial (p. 15)",
+    "Força contra criminosos armados que enfrentem o Estado (p. 13, 15)"
+   ],
+   "consequence": "Promete resposta rápida e visível; especialistas costumam alertar para aumento da letalidade policial.",
+   "positives": [
+    "Prioriza o direito de viver sem medo",
+    "Mais recursos para a segurança"
+   ],
+   "tensions": [
+    "Ênfase no confronto armado",
+    "Pouca menção a controle da força policial"
+   ],
+   "pages": "p. 13–16"
   },
-  fig: {
-    jp2: {
-      principles: "Dignidade inviolável de toda pessoa, inclusive do culpado; dever do Estado de proteger os inocentes; defesa legítima proporcional; “estruturas de pecado” que alimentam a violência.",
-      basis: "Evangelium Vitae §56 (1995): a punição extrema só em casos de absoluta necessidade; Mensagem para o Dia Mundial da Paz de 2002: o direito de defesa existe, mas é limitado. Não há declaração sobre política de segurança brasileira.",
-      cit: "jp_respect",
-      A: { agree: "Combina repressão ao crime com prevenção e com controle sobre a força policial, o que corresponde à ideia de autoridade legítima limitada pela dignidade.", tension: "O plano fala pouco da formação moral e familiar como fator de prevenção, tema caro a ele.", concl: "Alinhamento alto com o equilíbrio entre ordem e dignidade que ele defendia.", idx: 72, conf: "Média" },
-      B: { agree: "Afirma o dever do Estado de proteger o cidadão inocente e de enfrentar organizações criminosas, o que ele reconhecia como legítimo.", tension: "Expressões como “vai ser abatido” e “vai virar pó” tratam a morte do criminoso como objetivo, o que contraria a exigência de proporcionalidade e a dignidade até do culpado.", concl: "Alinhamento parcial-baixo: concorda com o fim (proteger), diverge dos meios anunciados.", idx: 40, conf: "Média" }
+  "fig": {
+   "jp2": {
+    "principles": "Dever do Estado de proteger os inocentes e a ordem pública como parte do bem comum; dignidade até do culpado; defesa legítima e proporcional.",
+    "basis": "Evangelium Vitae §56 (punição extrema só em absoluta necessidade); Mensagem para o Dia Mundial da Paz de 2002 (o direito de defesa existe, mas é limitado). Sem declaração sobre o Brasil.",
+    "cit": "jp_peace",
+    "A": {
+     "agree": "Combina proteção da população com limites ao uso da força, o equilíbrio entre ordem e dignidade que ele defendia.",
+     "tension": "Pouca atenção à família e à formação moral como prevenção.",
+     "concl": "Alinhamento alto-moderado.",
+     "idx": 66,
+     "conf": "Média"
     },
-    bg: {
-      principles: "O crime nasce do coração pecador; respeito à lei e à autoridade (Romanos 13); “lei e ordem” no fim dos anos 1960; ao mesmo tempo, redenção possível para qualquer criminoso.",
-      basis: "Defendeu a ordem pública e criticou os tumultos (1965–1970). A resposta institucional da BGEA diz que o problema de fundo dos crimes capitais é o coração pecador. Não há posição sobre força letal policial.",
-      cit: "bg_build",
-      A: { agree: "Reconhece a autoridade do Estado e combate o crime organizado com firmeza legal; ele também via injustiças sociais como parte do problema.", tension: "A ênfase em causas sociais e estruturais é maior do que a ênfase dele na conversão e na responsabilidade pessoal.", concl: "Alinhamento parcial.", idx: 56, conf: "Média" },
-      B: { agree: "A ênfase em ordem, autoridade e proteção do cidadão comum está próxima do Graham de “lei e ordem”.", tension: "A retórica de eliminação física destoa do tom pastoral e da crença de que qualquer criminoso pode ser redimido.", concl: "Alinhamento alto-moderado no objetivo de ordem, com reservas sobre o tom.", idx: 62, conf: "Média" }
-    },
-    mlk: {
-      principles: "Não violência como princípio; oposição à brutalidade policial; violência urbana entendida a partir de suas causas sociais; pedido de proteção federal, não ausência de polícia.",
-      basis: "Denunciou a brutalidade policial no “I Have a Dream” (1963) e explicou motins pelas condições que os produzem, sempre condenando-os. Pediu proteção de forças federais em Selma. Nunca defendeu “abolir a polícia”.",
-      cit: "mlk_riot",
-      A: { agree: "Câmeras corporais, controle externo, policiamento de proximidade e prevenção voltada à juventude negra correspondem à sua luta contra a brutalidade e por proteção igual.", tension: "Ele provavelmente exigiria metas de redução da letalidade policial mais explícitas.", concl: "Alinhamento alto.", idx: 82, conf: "Média" },
-      B: { agree: "Reconhece que a população pobre sofre com a violência e o medo, o que ele também denunciava.", tension: "Anunciar como política o abate de criminosos armados e usar tropas militares em portos e fronteiras contraria frontalmente a não violência e sua luta contra a violência do Estado sobre os pobres.", concl: "Alinhamento muito baixo.", idx: 18, conf: "Média" }
+    "B": {
+     "agree": "Dá prioridade máxima ao dever de proteger o cidadão inocente, que ele reconhecia.",
+     "tension": "A ênfase no confronto armado tensiona a exigência de proporcionalidade.",
+     "concl": "Alinhamento parcial.",
+     "idx": 52,
+     "conf": "Média"
     }
-  }
-},
-/* ===================== 02 ===================== */
-{
-  id: 2, title: "Prisões e finalidade da pena", short: "Prisões",
-  question: "A prisão deve servir principalmente para punir e isolar, ou também para recuperar e reinserir?",
-  A: {
-    proposal: "Cumprir o Plano Pena Justa, criar um Pacto Nacional de Execução Penal, reduzir a reincidência e garantir direitos, isolando as lideranças criminosas no sistema federal.",
-    goal: "Retirar do crime organizado o controle das prisões e reduzir a reincidência.",
-    items: ["Plano Pena Justa e Pacto Nacional de Execução Penal (p. 28)", "Ampliação do sistema penitenciário federal para isolar lideranças (p. 28)", "Protocolo nacional de classificação de presos de alta periculosidade (p. 28)", "Mediação comunitária e justiça restaurativa (p. 29)"],
-    consequence: "Mantém a lógica de execução penal com garantias; o plano não quantifica novas vagas.",
-    positives: ["Fala explicitamente em reduzir a reincidência", "Isola chefes de facção"],
-    tensions: ["Não detalha apoio às vítimas", "Não enfrenta o déficit de vagas com metas"],
-    pages: "p. 28–29"
-  },
-  B: {
-    proposal: "Endurecimento penal: cinco presídios de segurança máxima no modelo de El Salvador (complexo “TREVA”), 500 mil novas vagas, fim da progressão para crimes hediondos e castração química para estupradores e abusadores de crianças.",
-    goal: "Tirar criminosos perigosos de circulação e fazer da prisão uma “punição” que dissuada.",
-    items: ["Complexo Federal de Segurança Máxima “TREVA”, sem celular e sem visita íntima (p. 14)", "500 mil novas vagas em 4 anos para zerar o déficit (p. 14)", "Castração química de condenados por estupro e abuso de crianças (p. 14)", "Fim da progressão de regime em crimes hediondos e cumprimento integral para feminicidas (p. 14–16)", "Pena inicial quadruplicada para quem furta ou revende celular roubado (p. 16)", "Recursos hoje destinados a famílias de detentos redirecionados às famílias das vítimas (p. 15)"],
-    consequence: "Tende a aumentar a população carcerária; a eficácia da castração química e do modelo salvadorenho é debatida.",
-    positives: ["Coloca a vítima em primeiro plano", "Monitora agressores de mulheres com tornozeleira"],
-    tensions: ["A prisão é descrita só como punição (“vão mofar na prisão”)", "Medidas corporais sobre o condenado"],
-    pages: "p. 14–16"
-  },
-  fig: {
-    jp2: {
-      principles: "A pena deve ser justa e também medicinal; a prisão deve ser lugar de redenção; misericórdia sem negar a justiça; oposição prática à pena de morte.",
-      basis: "Na Mensagem para o Jubileu nos Cárceres (24 jun. 2000) pediu que a prisão não fosse “mero ato de vingança da sociedade”, pediu reforma do sistema e uma redução, ainda que modesta, das penas. Visitou o próprio agressor na prisão (1983).",
-      cit: "jp_prison",
-      A: { agree: "Redução da reincidência, garantias de direitos e justiça restaurativa coincidem com o que ele pediu em 2000.", tension: "Silencia sobre a reparação às vítimas e sobre a dimensão espiritual da reabilitação.", concl: "Alinhamento alto.", idx: 78, conf: "Alta" },
-      B: { agree: "O cuidado com as vítimas e a proteção de crianças e mulheres são valores que ele defendia.", tension: "Prisão descrita apenas como castigo, fim da progressão e intervenções corporais vão na direção oposta ao seu pedido de clemência e de prisão como lugar de redenção.", concl: "Alinhamento baixo.", idx: 28, conf: "Alta" }
+   },
+   "bg": {
+    "principles": "Respeito à lei e à autoridade (Romanos 13); “lei e ordem” no fim dos anos 1960; o crime nasce do coração; redenção possível para todos.",
+    "basis": "Declarações de 1965–1970 sobre ordem pública; resposta institucional da BGEA sobre crime. Inferência para políticas atuais.",
+    "cit": "bg_build",
+    "A": {
+     "agree": "Combate firme ao crime organizado dentro da lei.",
+     "tension": "Ênfase em causas sociais maior que a dele na responsabilidade pessoal.",
+     "concl": "Alinhamento parcial.",
+     "idx": 55,
+     "conf": "Média"
     },
-    bg: {
-      principles: "Justiça e punição legítimas, mas a redenção é possível para todos; ministério nas prisões; arrependimento público quando errava.",
-      basis: "Em 1973 sugeriu castrar estupradores condenados e depois se desculpou pela declaração (documentado). A BGEA trata a pena de morte com ambivalência. Valorizou conversões de criminosos.",
-      cit: "bg_injust",
-      A: { agree: "A reabilitação e a redução da reincidência são compatíveis com sua convicção de que qualquer pessoa pode mudar.", tension: "O plano não tem a linguagem de responsabilidade moral que ele usava.", concl: "Alinhamento parcial.", idx: 56, conf: "Média" },
-      B: { agree: "A defesa firme da vítima e a punição severa a crimes contra crianças combinam com sua ênfase em justiça.", tension: "A castração química retoma justamente a ideia de que ele se retratou publicamente na década de 1970.", concl: "Alinhamento parcial-baixo.", idx: 42, conf: "Média" }
-    },
-    mlk: {
-      principles: "Contra penas cruéis e desiguais; punição atinge desproporcionalmente pobres e negros; amor redentor também para o adversário.",
-      basis: "Contra a pena de morte (Ebony, 1957). No caso Jeremiah Reeves (1958) denunciou a severidade e a desigualdade da pena. Não deixou programa sistemático sobre prisões.",
-      cit: "mlk_dp",
-      A: { agree: "Reduzir reincidência, classificar presos por critérios objetivos e apostar em justiça restaurativa está de acordo com sua crítica a penas severas e desiguais.", tension: "Ele provavelmente pediria atenção explícita ao viés racial do encarceramento.", concl: "Alinhamento alto.", idx: 74, conf: "Média" },
-      B: { agree: "Coincide na proteção às vítimas de violência sexual e doméstica.", tension: "Endurecimento geral, penas quadruplicadas e castração química vão contra sua oposição a penas severas e à desigualdade punitiva.", concl: "Alinhamento muito baixo.", idx: 15, conf: "Média" }
+    "B": {
+     "agree": "Prioridade à ordem e à autoridade da lei está próxima do Graham de “lei e ordem”.",
+     "tension": "O plano anuncia como política o abate de criminosos armados (p. 13, 15), o que destoa de sua ênfase na redenção.",
+     "concl": "Alinhamento alto-moderado.",
+     "idx": 66,
+     "conf": "Média"
     }
-  }
-},
-/* ===================== 03 ===================== */
-{
-  id: 3, title: "Adolescentes e responsabilidade penal", short: "Maioridade penal",
-  question: "Adolescentes que cometem crimes graves devem ser julgados como adultos, ou a resposta deve priorizar prevenção e medidas próprias à idade?",
-  A: {
-    proposal: "O plano não trata da maioridade penal. Propõe prevenção da violência com foco na juventude negra, mediação comunitária, justiça restaurativa e programas de permanência escolar.",
-    goal: "Reduzir o recrutamento de jovens pelo crime por meio de oportunidades e presença do Estado.",
-    items: ["Prevenção da violência com foco na juventude negra (p. 29)", "Mediação comunitária e justiça restaurativa (p. 29)", "Pé-de-Meia contra a evasão escolar (p. 32)", "Políticas de saúde mental e cultura para jovens (p. 25)"],
-    consequence: "Mantém o regime atual do ECA por omissão; o plano não diz o que fazer com adolescentes autores de crimes graves.",
-    positives: ["Ataca as causas", "Mantém o jovem como sujeito a ser protegido"],
-    tensions: ["Silêncio sobre crimes graves cometidos por adolescentes"],
-    pages: "p. 25, 29, 32"
-  },
-  B: {
-    proposal: "Apoiar e sancionar a redução da maioridade penal de 18 para 16 anos e punir maiores de 14 anos por crimes graves.",
-    goal: "“Quem comete crime como gente grande vai ser punido como gente grande.”",
-    items: ["Maioridade penal reduzida para 16 anos (p. 13)", "Punição de maiores de 14 anos por estupro, tráfico, tortura e assassinato (p. 13)", "Programa Escola de Campeões, contraturno esportivo contra a evasão (p. 40)"],
-    consequence: "Adolescentes passariam ao sistema prisional adulto; o tema é cláusula de debate constitucional.",
-    positives: ["Responde à percepção de impunidade", "Também propõe esporte escolar como prevenção"],
-    tensions: ["Coloca adolescentes no sistema de adultos"],
-    pages: "p. 13, 40"
-  },
-  fig: {
-    jp2: {
-      principles: "Proteção especial da criança e do jovem; família e educação como primeiros espaços de formação; pena com finalidade de correção.",
-      basis: "Não há declaração dele sobre maioridade penal. A inferência parte da insistência na educação dos jovens e na finalidade corretiva da pena (Jubileu nos Cárceres, 2000).",
-      cit: "jp_prison",
-      A: { agree: "Educação e prevenção correspondem à sua prioridade na formação dos jovens.", tension: "O plano não fala do papel da família nem da responsabilidade moral do jovem.", concl: "Alinhamento moderado-alto, por inferência.", idx: 64, conf: "Baixa" },
-      B: { agree: "Leva a sério o dano às vítimas e a responsabilidade pessoal.", tension: "Levar adolescentes de 14 a 16 anos ao sistema adulto contraria a proteção especial que ele atribuía à juventude e a função corretiva da pena.", concl: "Alinhamento baixo, por inferência.", idx: 35, conf: "Baixa" }
+   },
+   "mlk": {
+    "principles": "Não violência; oposição à brutalidade policial; violência explicada também por suas causas sociais; pedido de proteção do Estado, não ausência de polícia.",
+    "basis": "“I Have a Dream” (1963), entrevista à CBS (1966), Selma (1965). Documentado nos princípios.",
+    "cit": "mlk_riot",
+    "A": {
+     "agree": "Prevenção, presença do Estado e controle da força policial correspondem à sua luta contra a brutalidade e por proteção igual.",
+     "tension": "Ele pediria metas explícitas de redução da letalidade policial.",
+     "concl": "Alinhamento alto.",
+     "idx": 78,
+     "conf": "Média"
     },
-    bg: {
-      principles: "Responsabilidade pessoal diante do pecado; juventude como campo prioritário de evangelização (Youth for Christ); confiança na conversão.",
-      basis: "Sem declaração sobre idade penal. Fez da juventude o centro de seu ministério inicial.",
-      cit: null,
-      A: { agree: "Oportunidades e prevenção para jovens dialogam com seu esforço de alcançar a juventude.", tension: "Falta a dimensão de responsabilidade individual.", concl: "Alinhamento parcial, por inferência.", idx: 50, conf: "Baixa" },
-      B: { agree: "A ideia de responsabilidade pessoal pelo crime é próxima de sua pregação.", tension: "Endurecer a punição de adolescentes reduz o espaço para a redenção que ele pregava.", concl: "Alinhamento parcial, por inferência.", idx: 52, conf: "Baixa" }
-    },
-    mlk: {
-      principles: "Violência juvenil vista a partir da pobreza, da segregação e da falta de oportunidade; jovens treinados para a não violência nas campanhas.",
-      basis: "Sem declaração sobre idade penal. Explicou a violência urbana pelas condições sociais (1966–68) e trabalhou com jovens nas campanhas.",
-      cit: null,
-      A: { agree: "Prevenção com foco na juventude negra e justiça restaurativa estão em linha com sua leitura estrutural da violência.", tension: "Nenhuma relevante para seus princípios.", concl: "Alinhamento alto, por inferência.", idx: 76, conf: "Baixa" },
-      B: { agree: "Reconhece a dor das vítimas.", tension: "Punir adolescentes como adultos, num país onde a maioria dos jovens presos é pobre e negra, contraria sua crítica à desigualdade punitiva.", concl: "Alinhamento baixo, por inferência.", idx: 25, conf: "Baixa" }
+    "B": {
+     "agree": "Reconhece que os pobres são os que mais sofrem com o crime.",
+     "tension": "Uma política centrada no confronto armado contraria a não violência.",
+     "concl": "Alinhamento baixo.",
+     "idx": 25,
+     "conf": "Média"
     }
+   }
   }
-},
-/* ===================== 04 ===================== */
-{
-  id: 4, title: "Vida desde a concepção e saúde reprodutiva", short: "Vida e reprodução",
-  question: "O Estado deve afirmar a proteção da vida desde a concepção, ou garantir “direitos sexuais e reprodutivos” e ampliar a oferta de contraceptivos?",
-  A: {
-    proposal: "Garantir “os direitos sexuais e reprodutivos” das mulheres, ampliar o planejamento reprodutivo com contraceptivos de longa duração gratuitos (como o Implanon) e reduzir a mortalidade materna.",
-    goal: "Saúde integral da mulher e autonomia reprodutiva.",
-    items: ["“Garantir os direitos sexuais e reprodutivos” (p. 21)", "Contraceptivos modernos e de longa duração gratuitos no SUS (p. 38)", "39 maternidades e 27 Centros de Parto Normal; redução da mortalidade materna, com atenção às mulheres negras (p. 38–39)"],
-    consequence: "O plano não menciona o aborto; o termo “direitos reprodutivos” é disputado e pode ser lido de modos diferentes.",
-    positives: ["Forte investimento em maternidade segura", "Atenção à mortalidade de mulheres negras"],
-    tensions: ["Não define o alcance de “direitos reprodutivos”"],
-    pages: "p. 21, 38–39"
+ },
+ {
+  "id": 2,
+  "title": "Maioridade penal",
+  "short": "Maioridade penal",
+  "question": "A partir de que idade alguém deve responder criminalmente como adulto?",
+  "A": {
+   "proposal": "O plano não trata da maioridade penal; na prática, mantém a regra atual (18 anos). Para jovens, propõe prevenção da violência, permanência na escola e justiça restaurativa.",
+   "goal": "Reduzir o recrutamento de jovens pelo crime.",
+   "items": [
+    "Nenhuma proposta sobre a idade penal",
+    "Prevenção com foco na juventude negra; justiça restaurativa (p. 29)",
+    "Pé-de-Meia contra a evasão escolar (p. 32)"
+   ],
+   "consequence": "Mantém o regime do Estatuto da Criança e do Adolescente por omissão.",
+   "positives": [
+    "Ataca causas"
+   ],
+   "tensions": [
+    "Não responde à questão de crimes graves cometidos por adolescentes"
+   ],
+   "pages": "p. 29, 32"
   },
-  B: {
-    proposal: "Declara como valor inegociável “a vida desde a concepção”, ao lado de liberdade, família e propriedade; propõe saúde preventiva da mulher, inclusive na gestação.",
-    goal: "Afirmar a proteção da vida intrauterina como princípio de governo.",
-    items: ["“O respeito […] à vida desde a concepção” entre os valores inegociáveis (p. 9)", "Saúde para Elas: prevenção, gestação, menopausa, unidades móveis (p. 21)", "Vida, liberdade, família, propriedade, democracia e fé como valores na conclusão (p. 74)"],
-    consequence: "O princípio é afirmado, mas o plano não apresenta medidas específicas de apoio à gestante em dificuldade nem mudanças legais.",
-    positives: ["Afirma explicitamente a dignidade do nascituro"],
-    tensions: ["Princípio sem política correspondente"],
-    pages: "p. 9, 21, 74"
+  "B": {
+   "proposal": "Apoiar e sancionar a redução da maioridade penal de 18 para 16 anos e punir maiores de 14 anos por crimes graves.",
+   "goal": "“Quem comete crime como gente grande vai ser punido como gente grande.”",
+   "items": [
+    "Maioridade penal aos 16 anos (p. 13)",
+    "Punição de maiores de 14 anos por estupro, tráfico, tortura e assassinato (p. 13)"
+   ],
+   "consequence": "Adolescentes passariam ao sistema penal de adultos; exige mudança constitucional.",
+   "positives": [
+    "Responde à percepção de impunidade"
+   ],
+   "tensions": [
+    "Adolescentes no sistema de adultos"
+   ],
+   "pages": "p. 13"
   },
-  fig: {
-    jp2: {
-      principles: "Inviolabilidade da vida humana da concepção à morte natural; ilicitude da contracepção artificial; oposição à agenda de “saúde reprodutiva” nas conferências da ONU.",
-      basis: "Evangelium Vitae (1995); Familiaris Consortio §32 (1981); atuação da Santa Sé no Cairo (1994) e em Pequim (1995) contra formulações que incluíssem o aborto. Posição diretamente documentada.",
-      cit: "jp_respect",
-      A: { agree: "A maternidade segura e a redução da mortalidade materna são bens que ele também defendia.", tension: "Distribuição gratuita de contraceptivos e a fórmula “direitos sexuais e reprodutivos” são exatamente o que ele contestou de forma documentada.", concl: "Alinhamento baixo.", idx: 28, conf: "Alta" },
-      B: { agree: "A afirmação da vida desde a concepção reproduz um princípio central do seu magistério.", tension: "Ele pediria medidas concretas de apoio à mãe e à criança, que o plano não detalha.", concl: "Alinhamento alto no princípio, sem política correspondente.", idx: 80, conf: "Alta" }
+  "fig": {
+   "jp2": {
+    "principles": "Proteção especial da criança e do jovem; família e educação como primeiros espaços de formação; pena com finalidade corretiva.",
+    "basis": "Não há declaração dele sobre idade penal. Inferência a partir da Familiaris Consortio e da Mensagem para o Jubileu nos Cárceres (2000).",
+    "cit": null,
+    "A": {
+     "agree": "Manter a proteção da idade e priorizar educação está próximo de sua ênfase na formação dos jovens.",
+     "tension": "Não trata da responsabilidade moral do jovem.",
+     "concl": "Alinhamento moderado, por inferência.",
+     "idx": 58,
+     "conf": "Baixa"
     },
-    bg: {
-      principles: "Vida humana sagrada; aborto sob demanda é errado; perdão para a mulher que abortou; contracepção no casamento sem condenação documentada.",
-      basis: "Respostas da BGEA sobre aborto (institucionais). Não condenou a contracepção; a aceitação é inferência moderada.",
-      cit: "bg_life",
-      A: { agree: "Saúde materna e acesso a contraceptivos não entram em choque com o que ele defendia.", tension: "A fórmula “direitos reprodutivos” pode abrigar o aborto, que ele considerava errado.", concl: "Alinhamento parcial.", idx: 48, conf: "Média" },
-      B: { agree: "A defesa da vida desde a concepção coincide com sua posição documentada.", tension: "Ele tratava o tema com ênfase pastoral, não como bandeira de campanha (exceto nos anúncios de 2012, de autoria incerta).", concl: "Alinhamento alto.", idx: 78, conf: "Média" }
-    },
-    mlk: {
-      principles: "Planejamento familiar como questão de justiça para os pobres; sacralidade da pessoa; não deixou posição sobre o aborto.",
-      basis: "Defendeu o planejamento familiar ao aceitar o prêmio Margaret Sanger (1966, discurso lido por Coretta). Sobre o aborto, a posição é IMPOSSÍVEL DE DETERMINAR.",
-      cit: null,
-      A: { agree: "Planejamento reprodutivo gratuito e redução da mortalidade de mulheres negras estão em linha com sua defesa documentada do planejamento familiar.", tension: "Se “direitos reprodutivos” incluir o aborto, não há base para dizer o que ele pensaria.", concl: "Alinhamento alto na parte documentada (contracepção).", idx: 72, conf: "Média" },
-      B: { agree: "—", tension: "Sua posição sobre a vida intrauterina não pode ser determinada.", concl: "Impossível determinar: índice neutro.", idx: 50, conf: "Baixa" }
+    "B": {
+     "agree": "Leva a sério a responsabilidade pessoal e o dano às vítimas.",
+     "tension": "Tratar adolescentes como adultos reduz a proteção especial que ele atribuía à juventude.",
+     "concl": "Alinhamento parcial-baixo, por inferência.",
+     "idx": 42,
+     "conf": "Baixa"
     }
-  }
-},
-/* ===================== 05 ===================== */
-{
-  id: 5, title: "Gênero, sexualidade e diversidade", short: "Gênero e diversidade",
-  question: "O Estado deve formular políticas específicas para pessoas LGBTQIAP+ e considerar a identidade de gênero, ou ancorar regras no sexo biológico?",
-  A: {
-    proposal: "Planejar políticas considerando gênero, identidade e orientação sexual, atender pessoas LGBTQIAP+ “em todas as suas especificidades” e combater a violência e a discriminação contra elas.",
-    goal: "Proteção e inclusão da população LGBTQIAP+.",
-    items: ["Políticas que levam em conta “gênero, identidade, orientação sexual” (p. 23)", "Combate a crimes de ódio e à violência contra pessoas LGBTQIAP+ (p. 29)", "Combate à discriminação LGBTQIAP+ no acesso ao trabalho (p. 75)"],
-    consequence: "Amplia a proteção legal e administrativa; não detalha medidas.",
-    positives: ["Proteção contra violência"],
-    tensions: ["Adota a categoria “identidade de gênero” sem definição"],
-    pages: "p. 23, 26, 29, 75"
-  },
-  B: {
-    proposal: "Reservar a categoria feminina no esporte, da base ao alto rendimento, a atletas do sexo feminino; afirma respeitar “todos os arranjos familiares”.",
-    goal: "Proteger a competição feminina de “agendas ideológicas”.",
-    items: ["Categoria feminina disputada por atletas do sexo feminino (p. 40–41)", "“Este Plano respeita todos os arranjos familiares” (p. 17)", "Nenhuma política específica para a população LGBTQIAP+"],
-    consequence: "Exclui atletas trans da categoria feminina; não há medidas de proteção contra violência anti-LGBT.",
-    positives: ["Critério claro para o esporte feminino", "Reconhece arranjos familiares diversos"],
-    tensions: ["Silêncio sobre violência contra pessoas LGBTQIAP+"],
-    pages: "p. 17, 40–41"
-  },
-  fig: {
-    jp2: {
-      principles: "Diferença sexual corporal como dado da pessoa (Teologia do Corpo); respeito e rejeição da violência contra pessoas homossexuais, com juízo moral negativo sobre os atos; oposição ao casamento entre pessoas do mesmo sexo.",
-      basis: "Teologia do Corpo (1979–84); documentos da Congregação para a Doutrina da Fé aprovados por ele (1986, 2003). “Identidade de gênero” como política pública é tema posterior: inferência forte na doutrina, moderada nas políticas.",
-      cit: null,
-      A: { agree: "Combater violência e malícia contra pessoas homossexuais é algo que o documento de 1986, aprovado por ele, também pede.", tension: "Tomar a identidade de gênero como critério de política pública contraria sua antropologia da diferença sexual.", concl: "Alinhamento baixo.", idx: 35, conf: "Média" },
-      B: { agree: "Ancorar a categoria feminina no sexo corresponde à sua visão da diferença sexual como dado do corpo.", tension: "O plano não tem uma palavra contra a violência sofrida por pessoas LGBTQIAP+, que ele também condenava.", concl: "Alinhamento alto.", idx: 72, conf: "Média" }
+   },
+   "bg": {
+    "principles": "Responsabilidade pessoal diante do pecado; juventude como centro do seu ministério inicial (Youth for Christ).",
+    "basis": "Sem declaração sobre idade penal. Inferência fraca.",
+    "cit": null,
+    "A": {
+     "agree": "Oportunidades para jovens dialogam com seu esforço de alcançar a juventude.",
+     "tension": "Falta a dimensão de responsabilidade individual.",
+     "concl": "Alinhamento parcial, por inferência.",
+     "idx": 50,
+     "conf": "Baixa"
     },
-    bg: {
-      principles: "Homossexualidade como pecado, mas não “o” pecado; amor às pessoas; recusa crescente de transformar o tema em bandeira (2005).",
-      basis: "Declarações dos anos 1990 e 2005 (documentadas). Sobre identidade de gênero não há posição: inferência fraca.",
-      cit: "bg_hot",
-      A: { agree: "Proteção contra violência é compatível com sua insistência no amor às pessoas.", tension: "Políticas baseadas em identidade de gênero divergem da antropologia bíblica tradicional que ele mantinha.", concl: "Alinhamento parcial-baixo.", idx: 40, conf: "Baixa" },
-      B: { agree: "O critério do sexo biológico está mais próximo de sua visão tradicional.", tension: "Ele evitava fazer desses temas instrumento de mobilização política.", concl: "Alinhamento moderado-alto.", idx: 62, conf: "Baixa" }
-    },
-    mlk: {
-      principles: "Dignidade universal e igualdade civil; em 1958, porém, tratou a homossexualidade como “problema” a ser tratado por psiquiatra.",
-      basis: "Coluna da Ebony (jan. 1958). Sobre identidade de gênero: IMPOSSÍVEL DETERMINAR. Sobre antidiscriminação: inferência moderada a partir do seu universalismo.",
-      cit: "mlk_injust",
-      A: { agree: "Combater discriminação e violência aplica o princípio de igualdade que ele defendeu para outros grupos.", tension: "Sua visão de 1958 sobre homossexualidade não era a do plano; não se sabe como ela teria evoluído.", concl: "Alinhamento moderado, com incerteza alta.", idx: 58, conf: "Baixa" },
-      B: { agree: "Nenhum elemento documentado permite afirmar acordo.", tension: "A ausência de proteção contra discriminação contrasta com seu universalismo.", concl: "Alinhamento parcial-baixo, com incerteza alta.", idx: 45, conf: "Baixa" }
+    "B": {
+     "agree": "A responsabilidade pessoal pelo crime é próxima de sua pregação.",
+     "tension": "Endurecer a punição de adolescentes reduz o espaço para a redenção que ele pregava.",
+     "concl": "Alinhamento parcial-moderado, por inferência.",
+     "idx": 58,
+     "conf": "Baixa"
     }
-  }
-},
-/* ===================== 06 ===================== */
-{
-  id: 6, title: "Família e cuidado: Estado ou família?", short: "Família e cuidado",
-  question: "Quem deve carregar o cuidado de crianças, idosos e pessoas com deficiência: o Estado como garantidor universal, ou a família apoiada pelo Estado?",
-  A: {
-    proposal: "Política Nacional de Cuidados: o cuidado como “direito universal […] a ser garantido pelo Estado, por meio da corresponsabilização social e entre homens e mulheres”, com Cuidotecas, lavanderias e cozinhas públicas e atendimento domiciliar a idosos.",
-    goal: "Redistribuir o trabalho de cuidado que hoje recai sobre as mulheres.",
-    items: ["Cuidado como direito universal garantido pelo Estado (p. 25–26)", "Cuidotecas para crianças de 3 a 12 anos; lavanderias públicas, cozinhas solidárias (p. 26)", "Programa de Atenção Domiciliar ao Idoso em escala nacional (p. 22)", "Creches e educação infantil pelo Novo PAC (p. 31)"],
-    consequence: "Amplia muito a rede pública de cuidado; exige financiamento contínuo.",
-    positives: ["Reconhece o peso do cuidado não pago", "Apoio concreto a idosos dependentes"],
-    tensions: ["O Estado aparece como garantidor central do cuidado"],
-    pages: "p. 22, 25–26, 31"
-  },
-  B: {
-    proposal: "“O Estado não pode assumir esse cuidado no lugar da família, mas pode dividi-lo com ela”: creche com voucher para a rede privada credenciada, Rede Nacional de Cuidado em parcerias, apoio à moradia acessível para idosos.",
-    goal: "Apoiar a família sem substituí-la e respeitar a escolha da mulher entre o lar e o mercado de trabalho.",
-    items: ["Frase-chave sobre o papel subsidiário do Estado (p. 38)", "Voucher-creche onde faltar vaga pública (p. 21)", "Rede Nacional de Cuidado com centros-dia, em PPPs com estados, municípios e organizações sociais (p. 21)", "Casa Segura para Envelhecer e aplicativo de companhia para idosos (p. 39)", "Liberdade da mulher decidir “seja no cuidado do lar, seja no mercado de trabalho” (p. 17)"],
-    consequence: "Mantém a família no centro e usa parcerias privadas e sociais; a qualidade depende da regulação dos credenciados.",
-    positives: ["Princípio explícito de subsidiariedade", "Reconhece o cuidado no lar como escolha legítima"],
-    tensions: ["Menor ênfase em redistribuir o cuidado entre homens e mulheres"],
-    pages: "p. 17, 21, 38–39"
-  },
-  fig: {
-    jp2: {
-      principles: "Família como primeira célula da sociedade; subsidiariedade (o Estado ajuda, não substitui); valorização do trabalho materno no lar e salário familiar; igual dignidade da mulher.",
-      basis: "Familiaris Consortio (1981), Carta às Famílias (1994), Laborem Exercens §19 (a sociedade deve tornar possível à mãe dedicar-se aos filhos sem ser penalizada). Posição diretamente documentada nos princípios.",
-      cit: "jp_family",
-      A: { agree: "Apoio público a famílias com idosos e crianças e a corresponsabilidade do pai no cuidado são compatíveis com sua defesa da família.", tension: "Mesmo com a corresponsabilização social, definir o cuidado como direito garantido pelo Estado tende a deslocar a família do centro, contra a subsidiariedade.", concl: "Alinhamento parcial.", idx: 55, conf: "Média" },
-      B: { agree: "A frase “o Estado não pode assumir esse cuidado no lugar da família” traduz quase literalmente o princípio de subsidiariedade, e reconhece o trabalho no lar como escolha.", tension: "Vouchers e PPPs são instrumentos; ele exigiria também salário familiar e proteção da mãe trabalhadora.", concl: "Alinhamento alto.", idx: 78, conf: "Média" }
+   },
+   "mlk": {
+    "principles": "Violência juvenil vista a partir da pobreza e da falta de oportunidade; crítica à desigualdade punitiva.",
+    "basis": "Sem declaração sobre idade penal. Inferência a partir de 1966–68 e do caso Jeremiah Reeves (1958).",
+    "cit": null,
+    "A": {
+     "agree": "Prevenção e permanência escolar estão em linha com sua leitura estrutural da violência.",
+     "tension": "Nenhuma relevante.",
+     "concl": "Alinhamento moderado-alto, por inferência.",
+     "idx": 68,
+     "conf": "Baixa"
     },
-    bg: {
-      principles: "Lar cristão, casamento vitalício e papel dos pais; caridade da igreja e da comunidade.",
-      basis: "Pregação constante sobre família; admitiu ter estado ausente dos filhos. Sem posição sobre políticas de cuidado: inferência.",
-      cit: null,
-      A: { agree: "Apoio a idosos e crianças vulneráveis é compatível com sua compaixão.", tension: "Uma política que coloca o Estado como provedor central do cuidado está longe de sua ênfase no lar.", concl: "Alinhamento parcial.", idx: 50, conf: "Baixa" },
-      B: { agree: "Colocar a família no centro e o Estado como apoio está mais próximo de sua visão.", tension: "Nenhuma relevante.", concl: "Alinhamento alto-moderado.", idx: 68, conf: "Baixa" }
-    },
-    mlk: {
-      principles: "Estabilidade familiar depende de justiça econômica; renda garantida e emprego para sustentar as famílias pobres.",
-      basis: "Ligou a pobreza à desestruturação familiar e defendeu programas federais amplos (1964–68). Sem posição sobre creches ou cuidado: inferência.",
-      cit: "mlk_mutual",
-      A: { agree: "Uma rede pública de cuidado para famílias pobres é coerente com sua defesa de programas sociais amplos.", tension: "Nenhuma relevante.", concl: "Alinhamento alto-moderado.", idx: 70, conf: "Baixa" },
-      B: { agree: "Vouchers e rede de cuidado também ampliam o acesso das famílias pobres.", tension: "A dependência de credenciados privados pode reproduzir desigualdades de qualidade.", concl: "Alinhamento parcial.", idx: 55, conf: "Baixa" }
+    "B": {
+     "agree": "Reconhece a dor das vítimas.",
+     "tension": "Punir adolescentes como adultos pesa sobre jovens pobres e negros, o que contraria sua crítica à desigualdade punitiva.",
+     "concl": "Alinhamento baixo, por inferência.",
+     "idx": 32,
+     "conf": "Baixa"
     }
+   }
   }
-},
-/* ===================== MULHERES ===================== */
-{
-  id: 7, title: "Proteção às mulheres e autonomia feminina", short: "Mulheres",
-  question: "Como proteger as mulheres da violência e ampliar sua autonomia: combatendo o machismo e a desigualdade salarial como estruturas, ou com proteção, renda e patrimônio em nome da mulher dentro da família?",
-  A: {
-    proposal: "Pacto de Enfrentamento ao Feminicídio como guia central, rede de proteção ampliada (Casas da Mulher Brasileira, Salas Lilás, monitoramento de agressores), combate ao “machismo, sexismo e feminicídio” e igualdade salarial com planos de ação obrigatórios nas empresas.",
-    goal: "Reduzir a violência e promover a igualdade de oportunidades entre mulheres e homens, inclusive mudando padrões culturais.",
-    items: ["Pacto contra o Feminicídio; medidas protetivas em 3 dias (p. 21)", "30 Casas da Mulher Brasileira, 15 Centros de Referência, Salas Lilás, kits de monitoramento de agressores (p. 21)", "Combate ao “machismo, o sexismo e o feminicídio” e mudança cultural no respeito às meninas e mulheres (p. 21)", "Lei de Igualdade Salarial com planos de ação obrigatórios nas empresas (p. 75)", "Crédito e qualificação para mulheres; Cuidotecas para liberar tempo (p. 21–22, 26)"],
-    consequence: "Fortalece a rede pública de proteção e impõe obrigações às empresas.",
-    positives: ["Rede de proteção já em execução", "Igualdade salarial com metas"],
-    tensions: ["A família quase não aparece como espaço de proteção"],
-    pages: "p. 21–22, 26, 75"
+ },
+ {
+  "id": 3,
+  "title": "Vida desde a concepção",
+  "short": "Vida",
+  "question": "O plano afirma a proteção da vida humana desde a concepção?",
+  "A": {
+   "proposal": "O plano não menciona a vida desde a concepção nem o aborto. Fala em “garantir os direitos sexuais e reprodutivos” e em maternidade segura.",
+   "goal": "Saúde integral da mulher.",
+   "items": [
+    "“Garantir os direitos sexuais e reprodutivos” (p. 21)",
+    "Maternidade segura e redução da mortalidade materna (p. 38–39)",
+    "Nenhuma referência à proteção do nascituro"
+   ],
+   "consequence": "O termo “direitos reprodutivos” não é definido e é lido de modos diferentes; o plano não diz se inclui o aborto.",
+   "positives": [
+    "Cuidado com a gestante e a mãe"
+   ],
+   "tensions": [
+    "Silêncio sobre o nascituro"
+   ],
+   "pages": "p. 21, 38–39"
   },
-  B: {
-    proposal: "“Brasil por Elas”: Central da Mulher física e em aplicativo, assistente virtual ClarIA, internet gratuita, denúncia com avaliação de risco, tornozeleira para agressores, orientação financeira, crédito, escritura da casa no nome da mulher e creche; respeita “a liberdade de cada mulher decidir o próprio caminho, seja no cuidado do lar, seja no mercado de trabalho”.",
-    goal: "“Fortalecer as mulheres é fortalecer a família”: proteção, renda e patrimônio próprios.",
-    items: ["Central da Mulher e aplicativo com acolhimento, orientação jurídica e psicológica (p. 17–18)", "Tornozeleira para agressores sob medida protetiva e avaliação nacional de risco (p. 14, 18–19)", "Orientação financeira e crédito para independência da mulher (p. 19–20)", "Escritura da casa própria no nome da mulher; mais casas de acolhimento (p. 20)", "Escola Brasil por Elas: capacitação gratuita (p. 20)", "Liberdade de escolher entre o lar e o mercado de trabalho (p. 17)"],
-    consequence: "Programa amplo, centrado em autonomia econômica e tecnologia; depende de execução em parceria com estados e municípios.",
-    positives: ["Autonomia econômica e patrimonial da mulher", "Monitoramento de agressores"],
-    tensions: ["Nada sobre desigualdade salarial entre homens e mulheres"],
-    pages: "p. 14, 17–22"
+  "B": {
+   "proposal": "Declara como valor inegociável “o respeito […] à vida desde a concepção”, ao lado de liberdade, família, propriedade e liberdade religiosa.",
+   "goal": "Afirmar a proteção da vida intrauterina como princípio de governo.",
+   "items": [
+    "Vida desde a concepção entre os valores inegociáveis (p. 9)",
+    "Vida, liberdade, família, propriedade, democracia e fé na conclusão (p. 74)",
+    "Saúde preventiva da mulher, inclusive na gestação (p. 21)"
+   ],
+   "consequence": "O princípio é afirmado; o plano não detalha medidas legais nem de apoio à gestante em dificuldade.",
+   "positives": [
+    "Afirma explicitamente a dignidade do nascituro"
+   ],
+   "tensions": [
+    "Princípio sem política correspondente"
+   ],
+   "pages": "p. 9, 21, 74"
   },
-  fig: {
-    jp2: {
-      principles: "Igual dignidade da mulher; igual salário e acesso à vida pública; condenação da violência sexual; valorização da maternidade e do trabalho no lar, sem penalizar a mulher que se dedica aos filhos.",
-      basis: "Carta às Mulheres (1995), Mulieris Dignitatem (1988), Familiaris Consortio §23 e Laborem Exercens §19. Diretamente documentado nos princípios.",
-      cit: null,
-      A: { agree: "Proteção contra a violência e igualdade salarial correspondem ao que ele pediu na Carta às Mulheres.", tension: "A linguagem de mudança cultural contra o “machismo” não valoriza a maternidade e o trabalho no lar, que ele também defendia.", concl: "Alinhamento alto-moderado.", idx: 72, conf: "Média" },
-      B: { agree: "Proteção, patrimônio da mulher e reconhecimento explícito da escolha pelo cuidado do lar unem igual dignidade e valorização da família.", tension: "Não trata da igualdade salarial, que ele defendeu.", concl: "Alinhamento alto.", idx: 76, conf: "Média" }
+  "fig": {
+   "jp2": {
+    "principles": "Inviolabilidade da vida humana da concepção à morte natural; oposição à fórmula de “saúde reprodutiva” quando inclui o aborto.",
+    "basis": "Evangelium Vitae (1995); atuação da Santa Sé no Cairo (1994) e em Pequim (1995). Posição diretamente documentada.",
+    "cit": "jp_respect",
+    "A": {
+     "agree": "O cuidado com a gestante é um bem que ele também defendia.",
+     "tension": "Não protege o nascituro e adota a fórmula “direitos sexuais e reprodutivos”, que ele contestou.",
+     "concl": "Alinhamento baixo.",
+     "idx": 30,
+     "conf": "Média"
     },
-    bg: {
-      principles: "Fidelidade e casamento vitalício, mas sem obrigação de permanecer em relação abusiva; abertura prática a mulheres pregando (sua filha Anne).",
-      basis: "Coluna da BGEA sobre divórcio com exceção explícita de abuso (documentada como institucional); declarações de 1997 sobre Anne Graham Lotz. Inferência para políticas.",
-      cit: null,
-      A: { agree: "Rede de proteção e casas de acolhimento respondem à sua posição de que ninguém deve ficar em situação de risco de vida.", tension: "O enquadramento cultural de combate ao machismo é estranho ao seu vocabulário.", concl: "Alinhamento moderado.", idx: 62, conf: "Baixa" },
-      B: { agree: "Proteção da mulher dentro de uma visão que valoriza a família é próxima de sua pregação.", tension: "Nenhuma relevante documentada.", concl: "Alinhamento moderado-alto.", idx: 68, conf: "Baixa" }
-    },
-    mlk: {
-      principles: "Dignidade universal e justiça econômica; sua própria prática foi criticada por sexismo dentro do movimento (Ella Baker).",
-      basis: "Quase sem declarações específicas sobre direitos das mulheres; inferência a partir do universalismo e da agenda econômica. Registrado o limite histórico de sua prática.",
-      cit: null,
-      A: { agree: "Igualdade salarial imposta às empresas segue sua lógica de enfrentar desigualdades estruturais no trabalho.", tension: "Seu próprio registro em relação às mulheres torna a inferência incerta.", concl: "Alinhamento moderado-alto, com incerteza.", idx: 68, conf: "Baixa" },
-      B: { agree: "Renda, crédito e patrimônio para mulheres pobres combinam com sua defesa de independência econômica dos pobres.", tension: "Sem medida contra a desigualdade salarial.", concl: "Alinhamento moderado.", idx: 60, conf: "Baixa" }
+    "B": {
+     "agree": "Afirma o princípio central do seu magistério sobre a vida.",
+     "tension": "Faltam medidas concretas de apoio à mãe e à criança, que ele também pedia.",
+     "concl": "Alinhamento alto no princípio, sem medidas.",
+     "idx": 78,
+     "conf": "Alta"
     }
-  }
-},
-/* ===================== 07 ===================== */
-{
-  id: 8, title: "Educação: valores, pais e escola", short: "Educação",
-  question: "Quem decide os valores transmitidos na escola, e qual o papel da rede pública, dos pais e das alternativas privadas?",
-  A: {
-    proposal: "Expansão da escola pública em tempo integral, alfabetização na idade certa, Pé-de-Meia contra a evasão, 111 novos Institutos Federais e educação para as relações étnico-raciais.",
-    goal: "Educação como principal instrumento de mobilidade social e de redução das desigualdades.",
-    items: ["Tempo integral como “absoluta prioridade” (p. 31)", "Meta de 80% de crianças alfabetizadas na idade certa (p. 31)", "Pé-de-Meia para que nenhum jovem pobre deixe a escola por falta de renda (p. 32)", "Política Nacional de Equidade e Educação para as Relações Étnico-Raciais (p. 20)", "Expansão dos IFs e das universidades públicas (p. 33)"],
-    consequence: "Fortalece a rede pública; o papel dos pais na definição de conteúdos não é tratado.",
-    positives: ["Acesso amplo para os mais pobres", "Combate à evasão com renda"],
-    tensions: ["Não menciona o papel dos pais na formação moral"],
-    pages: "p. 20, 30–34"
-  },
-  B: {
-    proposal: "Escola “sem doutrinação político-partidária”, em que “quem decide sobre os valores que o filho recebe são os pais”, método fônico, escolas cívico-militares, voucher quando faltar vaga e financiamento por resultados.",
-    goal: "Escola que ensina a pensar, com cobrança por resultados e respeito aos valores familiares.",
-    items: ["Escola livre de doutrinação e respeito à liberdade de consciência (p. 35)", "“Quem decide sobre os valores que o filho recebe são os pais” (p. 35)", "Método fônico e Programa Acolher de reforço (p. 35)", "Ampliação das Escolas Cívico-Militares (p. 35)", "Voucher educacional onde faltar vaga pública (p. 36)", "Repasses vinculados a metas de aprendizagem (p. 35)", "Apoio à escola em tempo integral (p. 35); ensino técnico com o setor produtivo e Empréstimo Contingente à Renda no ensino superior (p. 36–37)"],
-    consequence: "Reforça o papel dos pais e a disciplina; financiamento por resultados pode penalizar redes mais pobres, embora o plano diga que não as abandonará.",
-    positives: ["Reconhece explicitamente a primazia dos pais", "Foco em aprendizagem medida"],
-    tensions: ["Pouca atenção à desigualdade racial e regional na educação"],
-    pages: "p. 34–36"
-  },
-  fig: {
-    jp2: {
-      principles: "Pais como primeiros educadores; liberdade de educação e de escolha da escola; subsidiariedade; acesso dos pobres à educação.",
-      basis: "Familiaris Consortio §36 e Carta às Famílias §16 (diretamente documentado).",
-      cit: "jp_parents",
-      A: { agree: "Universalizar o acesso e combater a evasão dos pobres atende à opção preferencial pelos pobres.", tension: "Ausência de referência aos pais como primeiros educadores.", concl: "Alinhamento parcial.", idx: 55, conf: "Média" },
-      B: { agree: "Afirma quase com as mesmas palavras a primazia dos pais na educação dos valores e a liberdade de escolha.", tension: "Ele não se pronunciou sobre escolas cívico-militares; financiamento por resultados pode prejudicar escolas pobres.", concl: "Alinhamento alto.", idx: 75, conf: "Média" }
+   },
+   "bg": {
+    "principles": "Vida humana sagrada; aborto sob demanda é errado; perdão e acolhimento para a mulher.",
+    "basis": "Respostas da BGEA sobre aborto (institucionais). Documentado.",
+    "cit": "bg_life",
+    "A": {
+     "agree": "Cuidado com a gestante.",
+     "tension": "Silêncio sobre o nascituro e fórmula que pode abrigar o aborto.",
+     "concl": "Alinhamento baixo.",
+     "idx": 42,
+     "conf": "Média"
     },
-    bg: {
-      principles: "Educação cristã, autoridade dos pais, oração na escola; ao mesmo tempo, pediu em 1952 que faculdades batistas admitissem estudantes negros.",
-      basis: "Lamentou as decisões contra a oração oficial nas escolas (1962–63); cofundou instituições de ensino. Inferência.",
-      cit: null,
-      A: { agree: "Ampliar o acesso de jovens pobres e negros à educação está em linha com seu gesto de 1952.", tension: "Não trata de valores morais nem da autoridade dos pais.", concl: "Alinhamento parcial.", idx: 52, conf: "Baixa" },
-      B: { agree: "Autoridade dos pais e disciplina estão próximas de sua visão.", tension: "Nenhuma relevante documentada.", concl: "Alinhamento moderado-alto.", idx: 65, conf: "Baixa" }
-    },
-    mlk: {
-      principles: "Educação integrada e de qualidade como direito; combate à segregação de fato; endossou a proibição da oração oficial na escola pública.",
-      basis: "Discursos sobre integração escolar; na entrevista à Playboy (1965) apoiou a decisão contra a oração oficial. Inferência para o caso brasileiro.",
-      cit: "mlk_char",
-      A: { agree: "Escola pública ampliada, cotas e educação para as relações étnico-raciais respondem à sua luta contra a segregação educacional.", tension: "Nenhuma relevante.", concl: "Alinhamento alto.", idx: 78, conf: "Média" },
-      B: { agree: "Reforço escolar e alfabetização são bons para os mais pobres.", tension: "O plano ignora a desigualdade racial; vouchers e financiamento por resultados podem aprofundar diferenças entre escolas.", concl: "Alinhamento parcial-baixo.", idx: 42, conf: "Baixa" }
+    "B": {
+     "agree": "A defesa da vida desde a concepção coincide com sua posição.",
+     "tension": "Ele tratava o tema com ênfase pastoral, mais que política.",
+     "concl": "Alinhamento alto.",
+     "idx": 75,
+     "conf": "Média"
     }
-  }
-},
-/* ===================== 08 ===================== */
-{
-  id: 9, title: "Pobreza e proteção social", short: "Pobreza",
-  question: "Programas sociais devem ser ampliados como direito permanente, ou desenhados como “porta de saída” para a autonomia?",
-  A: {
-    proposal: "Manter, aperfeiçoar e ampliar a proteção social: Bolsa Família com benefícios para crianças, valorização real do salário mínimo, SUAS fortalecido, Farmácia Popular 100% gratuita, Gás do Povo e Luz do Povo.",
-    goal: "Reduzir a desigualdade e consolidar um Estado de bem-estar social.",
-    items: ["Bolsa Família recriado e expandido (p. 12, 19)", "Política de valorização do salário mínimo (p. 19, 74)", "Fortalecimento do SUAS (p. 25)", "Gás do Povo e tarifa zero de luz até 80 kWh para o CadÚnico (p. 65–66)", "Farmácia Popular gratuita, com inclusão de exames (p. 36)"],
-    consequence: "Amplia a rede de proteção; o custo fiscal é contínuo.",
-    positives: ["Combate à fome e à pobreza extrema", "Proteção à criança"],
-    tensions: ["Pouca ênfase em trajetórias de saída do benefício"],
-    pages: "p. 12, 18–25, 65–66"
-  },
-  B: {
-    proposal: "Manter os programas sociais existentes (“não vai ter essa ajuda tirada. Ponto.”), combater fraudes e criar uma trilha de saída: prioridade do beneficiário em qualificação e primeiro emprego, retorno sem fila ao benefício se o emprego não der certo, e o programa Ganha-Ganha.",
-    goal: "Superar “a armadilha da pobreza”, não administrá-la: “depender menos do Estado amanhã”.",
-    items: ["Manutenção dos programas existentes com combate a fraudes (p. 42)", "Prioridade do beneficiário em qualificação e intermediação de emprego (p. 43)", "Retorno imediato ao benefício após o seguro-desemprego (p. 43)", "Ganha-Ganha: pontuação voluntária que vira crédito e cashback (p. 19, 46)", "Proibir o uso de recursos de programas sociais em apostas (p. 33)"],
-    consequence: "Incentiva a transição para o trabalho; não prevê ampliação de valores.",
-    positives: ["Garante que ninguém perca o benefício ao tentar trabalhar", "Valoriza o trabalho como caminho"],
-    tensions: ["Não prevê ampliação de valores nem de cobertura"],
-    pages: "p. 19, 33, 42–46"
-  },
-  fig: {
-    jp2: {
-      principles: "Opção preferencial pelos pobres e solidariedade; mas crítica ao “Estado assistencial” que gera passividade; o trabalho como realização da pessoa.",
-      basis: "Sollicitudo Rei Socialis (1987) e Centesimus Annus §48 (1991). Diretamente documentado nos princípios; aplicação concreta é inferência.",
-      cit: "jp_assist",
-      A: { agree: "A prioridade aos pobres, às crianças e ao salário mínimo real é coerente com a solidariedade e o salário justo.", tension: "A expansão contínua da assistência sem desenho de autonomia é o que ele criticou como Estado assistencial.", concl: "Alinhamento alto-moderado.", idx: 70, conf: "Média" },
-      B: { agree: "Manter os programas e ligar a proteção ao trabalho e à autonomia combina solidariedade e subsidiariedade, como em Centesimus Annus.", tension: "Não há compromisso com a ampliação da proteção nem com salário familiar.", concl: "Alinhamento moderado-alto.", idx: 64, conf: "Média" }
+   },
+   "mlk": {
+    "principles": "Sacralidade da pessoa; não deixou posição sobre o aborto.",
+    "basis": "IMPOSSÍVEL DETERMINAR: morreu em 1968, antes do debate público sobre o tema nos EUA.",
+    "cit": null,
+    "A": {
+     "agree": "—",
+     "tension": "Sem base para avaliar.",
+     "concl": "Impossível determinar: índice neutro.",
+     "idx": 50,
+     "conf": "Baixa"
     },
-    bg: {
-      principles: "Dever cristão de aliviar a pobreza; apoio à Guerra contra a Pobreza de Lyndon Johnson; ética do trabalho; desigualdade extrema como fonte de conflito.",
-      basis: "Apoio documentado aos programas de Johnson nos anos 1960; entrevista à Christianity Today (c. 1985).",
-      cit: "bg_cadill",
-      A: { agree: "Combater a fome e a pobreza extrema é compatível com seu apoio aos programas antipobreza dos anos 1960.", tension: "Ênfase menor no trabalho e na responsabilidade pessoal.", concl: "Alinhamento moderado.", idx: 62, conf: "Baixa" },
-      B: { agree: "Manter a rede de proteção e valorizar o trabalho como saída está próximo de sua ética do esforço.", tension: "Não há base documentada para avaliar o desenho da “porta de saída”.", concl: "Alinhamento moderado.", idx: 60, conf: "Baixa" }
-    },
-    mlk: {
-      principles: "Pobreza é um mal abolível; renda garantida atrelada à mediana; crítica a programas fragmentados e humilhantes; emprego pleno.",
-      basis: "Where Do We Go from Here (1967) e a Campanha dos Pobres (1968). Inferência forte.",
-      cit: "mlk_income",
-      A: { agree: "Transferência de renda ampliada, valorização do salário mínimo e gratuidade de serviços aproximam-se de sua proposta de abolir a pobreza diretamente.", tension: "Ele pediria uma renda garantida mais ampla que o Bolsa Família.", concl: "Alinhamento alto.", idx: 82, conf: "Média" },
-      B: { agree: "Emprego como saída da pobreza e retorno garantido ao benefício são ideias que ele apoiaria.", tension: "Nenhum aumento da proteção; a lógica de “depender menos do Estado” contrasta com sua renda garantida atrelada à mediana.", concl: "Alinhamento parcial.", idx: 50, conf: "Média" }
+    "B": {
+     "agree": "—",
+     "tension": "Sem base para avaliar.",
+     "concl": "Impossível determinar: índice neutro.",
+     "idx": 50,
+     "conf": "Baixa"
     }
+   }
   }
-},
-/* ===================== 09 ===================== */
-{
-  id: 10, title: "Trabalho, jornada e sindicatos", short: "Trabalho",
-  question: "Proteger o trabalhador ampliando direitos e negociação sindical, ou flexibilizar regras e reduzir o custo da contratação?",
-  A: {
-    proposal: "Fim da escala 6x1 e jornada de 40 horas sem redução salarial, fortalecimento da negociação coletiva e da representação sindical, regras para trabalhadores de plataformas e combate à “pejotização”.",
-    goal: "Trabalho “mais digno” e jornada “mais humana”.",
-    items: ["Fim da escala 6x1 e redução para 40 horas (p. 75)", "Retomar a assistência sindical nas rescisões e revisar marcos “regressivos” (p. 75)", "Negociação coletiva em vários âmbitos, inclusive no setor público (p. 76)", "Proteção a trabalhadores de aplicativos (p. 74–75)", "Lei de Igualdade Salarial com planos obrigatórios nas empresas (p. 75)"],
-    consequence: "Aumenta a proteção; empregadores alertam para aumento de custo e informalidade.",
-    positives: ["Descanso e jornada", "Proteção a trabalhadores precarizados"],
-    tensions: ["Pouco sobre o custo do emprego formal"],
-    pages: "p. 73–77"
+ },
+ {
+  "id": 4,
+  "title": "Família segundo o cristianismo",
+  "short": "Família",
+  "question": "O plano trata a família como base da sociedade, respeitando o papel dos pais, como na tradição cristã?",
+  "A": {
+   "proposal": "A família aparece sobretudo como destinatária de políticas sociais (Bolsa Família, moradia, cuidados). A Política Nacional de Cuidados define o cuidado como direito “a ser garantido pelo Estado, por meio da corresponsabilização social e entre homens e mulheres”.",
+   "goal": "Apoiar materialmente as famílias e redistribuir o trabalho de cuidado.",
+   "items": [
+    "Política Nacional de Cuidados, Cuidotecas e atendimento domiciliar a idosos (p. 22, 25–26)",
+    "Bolsa Família com benefícios para crianças (p. 19, 24)",
+    "Políticas que consideram gênero, identidade e orientação sexual (p. 23)",
+    "Nenhuma menção ao casamento ou ao papel dos pais na formação de valores"
+   ],
+   "consequence": "Forte apoio material às famílias; o Estado aparece como garantidor central do cuidado.",
+   "positives": [
+    "Renda e serviços para famílias pobres"
+   ],
+   "tensions": [
+    "Família não aparece como princípio",
+    "Papel educativo dos pais ausente"
+   ],
+   "pages": "p. 19, 22–26"
   },
-  B: {
-    proposal: "Posicionar-se “contra a República Sindical”, adotar o negociado sobre o legislado, reduzir gradualmente o custo do trabalho “sem retirar direitos” e criar contratos mais baratos para jovens de 18 a 24 anos e para desempregados acima de 50.",
-    goal: "Mais carteira assinada e menos informalidade.",
-    items: ["Contra a “República Sindical” e o retorno do imposto sindical (p. 44–45)", "Negociado sobre o legislado e jornada flexível (p. 44)", "Redução gradual do custo do trabalho (p. 43)", "Contrato de primeiro emprego com menor custo (p. 43–44)", "Aplicativos protegidos “sem os interesses de dirigentes sindicais” (p. 45)"],
-    consequence: "Pode facilitar contratações; sindicatos alertam para perda de poder de negociação dos trabalhadores.",
-    positives: ["Atenção a jovens e maiores de 50 desempregados", "Foco na formalização"],
-    tensions: ["Hostilidade explícita às entidades sindicais"],
-    pages: "p. 43–45"
+  "B": {
+   "proposal": "Família como valor inegociável e centro das políticas: “o Estado não pode assumir esse cuidado no lugar da família, mas pode dividi-lo com ela”; os pais decidem os valores transmitidos aos filhos; “fortalecer as mulheres é fortalecer a família”.",
+   "goal": "Apoiar a família sem substituí-la.",
+   "items": [
+    "Família entre os valores inegociáveis (p. 9)",
+    "Estado divide, não substitui, o cuidado familiar (p. 38)",
+    "“Quem decide sobre os valores que o filho recebe são os pais” (p. 35)",
+    "Respeita “todos os arranjos familiares” e a escolha da mulher entre o lar e o trabalho (p. 17)",
+    "Nenhuma menção ao casamento"
+   ],
+   "consequence": "Coloca a família no centro; o apoio material é menos detalhado que no Plano A.",
+   "positives": [
+    "Subsidiariedade explícita",
+    "Primazia dos pais na educação"
+   ],
+   "tensions": [
+    "Menos medidas concretas de renda para famílias pobres"
+   ],
+   "pages": "p. 9, 17, 34–38"
   },
-  fig: {
-    jp2: {
-      principles: "Prioridade do trabalho sobre o capital; salário justo; direito ao descanso; sindicatos como elemento indispensável da vida social, sem fazer política partidária.",
-      basis: "Laborem Exercens (1981) e o apoio ao Solidarność. Posição diretamente documentada.",
-      cit: "jp_unions",
-      A: { agree: "Jornada humana, descanso, negociação coletiva e proteção dos precarizados correspondem quase ponto a ponto à Laborem Exercens.", tension: "Ele advertia contra sindicatos usados para fins político-partidários.", concl: "Alinhamento muito alto.", idx: 85, conf: "Alta" },
-      B: { agree: "Criar empregos para jovens e para maiores de 50 é um dever que ele atribuía ao Estado como “empregador indireto”.", tension: "Tratar a estrutura sindical como adversária e priorizar o negociado sobre o legislado contraria sua defesa dos sindicatos como indispensáveis, embora ele também advertisse contra sindicatos que fazem política.", concl: "Alinhamento parcial-baixo.", idx: 46, conf: "Média" }
+  "fig": {
+   "jp2": {
+    "principles": "Família fundada no matrimônio como primeira célula da sociedade; pais como primeiros educadores; subsidiariedade; salário familiar e apoio às famílias pobres.",
+    "basis": "Familiaris Consortio (1981), Carta às Famílias (1994), Laborem Exercens §19. Diretamente documentado.",
+    "cit": "jp_family",
+    "A": {
+     "agree": "Apoio material às famílias pobres e às que cuidam de idosos corresponde ao seu pedido de proteção econômica da família.",
+     "tension": "A família não aparece como princípio, o papel educativo dos pais está ausente e o cuidado é definido como direito garantido pelo Estado, ainda que com “corresponsabilização social”.",
+     "concl": "Alinhamento parcial.",
+     "idx": 48,
+     "conf": "Média"
     },
-    bg: {
-      principles: "Visão não hostil aos sindicatos (sermão de 1952: o sindicalismo nasceu do avivamento wesleyano); ética do trabalho.",
-      basis: "Sermão de 1952 documentado; sem posição sobre legislação trabalhista.",
-      cit: null,
-      A: { agree: "Dignidade do trabalhador e descanso são compatíveis com sua visão.", tension: "Sem base para avaliar a regulação detalhada.", concl: "Alinhamento parcial.", idx: 58, conf: "Baixa" },
-      B: { agree: "Incentivo ao emprego e à iniciativa é compatível com sua ética do trabalho.", tension: "Hostilidade aos sindicatos destoa de sua posição de 1952.", concl: "Alinhamento parcial.", idx: 52, conf: "Baixa" }
-    },
-    mlk: {
-      principles: "Aliança estrutural entre direitos civis e movimento sindical; oposição às leis antissindicais; morreu apoiando uma greve.",
-      basis: "Discurso à AFL-CIO (1961); greve dos lixeiros de Memphis (1968). Diretamente documentado.",
-      cit: "mlk_rtw",
-      A: { agree: "Redução de jornada sem perda salarial, negociação coletiva e proteção aos precarizados repetem as bandeiras pelas quais ele lutou em Memphis.", tension: "Nenhuma relevante.", concl: "Alinhamento muito alto.", idx: 92, conf: "Alta" },
-      B: { agree: "Preocupação com o emprego do jovem.", tension: "Combater a estrutura sindical e reduzir o custo do trabalho se aproxima, por analogia, da agenda antissindical que ele chamou de “slogans falsos”.", concl: "Alinhamento muito baixo.", idx: 20, conf: "Média" }
+    "B": {
+     "agree": "Família como valor, subsidiariedade e primazia dos pais traduzem princípios centrais do seu ensino. Também prevê voucher-creche e Rede Nacional de Cuidado (p. 21, 38).",
+     "tension": "Não menciona o matrimônio e oferece menos apoio econômico concreto.",
+     "concl": "Alinhamento alto.",
+     "idx": 74,
+     "conf": "Média"
     }
-  }
-},
-/* ===================== ECON ===================== */
-{
-  id: 11, title: "Economia: impostos, Estado e mercado", short: "Economia",
-  question: "O Estado deve redistribuir renda e induzir o desenvolvimento como planejador, ou reduzir impostos e gastos e deixar o investimento ao setor privado?",
-  A: {
-    proposal: "Manter as medidas tributárias já adotadas (tributação de super-ricos, offshores e fundos exclusivos; isenção do IR até R$ 5.000; cashback na reforma do consumo) e seguir “promovendo justiça tributária”, com Estado indutor: política industrial, conteúdo local, compras públicas e Petrobras de volta à distribuição de combustíveis.",
-    goal: "Crescimento com redução de desigualdades e “neoindustrialização”, mantido o arcabouço fiscal.",
-    items: ["Medidas já adotadas: tributação do topo da renda e isenção até R$ 5.000 (p. 11, 19); para o novo mandato, “promoção de justiça tributária” e manutenção do arcabouço fiscal (p. 49)", "Nova Indústria Brasil: R$ 860 bi já disponibilizados em 2023–26; meta de “aprimorar e fortalecer a neoindustrialização” (p. 50)", "Conteúdo local, margens de preferência e compras públicas (p. 51)", "Petrobras retorna à distribuição e amplia o refino (p. 67)", "Concessões e leilões de infraestrutura continuam (p. 53)"],
-    consequence: "Desloca a carga tributária para o topo e fortalece setores estratégicos; críticos apontam risco de aumento da carga total, ineficiência e uso político de estatais.",
-    positives: ["Progressividade", "Planejamento de longo prazo"],
-    tensions: ["Nova agenda tributária pouco detalhada", "Papel empresarial do Estado ampliado"],
-    pages: "p. 10–11, 19, 47–57, 67"
-  },
-  B: {
-    proposal: "Revisar a reforma tributária para reduzir o IVA, rever os aumentos de impostos do atual governo, entregar superávits, cortar ao menos 10 ministérios e supersalários, retomar a desestatização “com critério”, aderir à OCDE e dar estabilidade de regras a investimentos, com licença ambiental concedida se o órgão não decidir no prazo.",
-    goal: "“Menos impostos, mais formalidade, mais crescimento”: 4% ao ano puxados pelo investimento privado.",
-    items: ["Redução do IVA e revisão da reforma (p. 30, 71)", "Superávits primários e regra de gasto para os três Poderes (p. 71)", "Corte de 10 ministérios, cargos e supersalários (p. 69)", "Desestatização “com critério” e Lei das Estatais fortalecida (p. 70)", "Estado “regulador e coordenador, não empresário” na estratégia de minerais críticos (p. 55)", "Licença concedida por decurso de prazo; estabilidade de regras por até 20 anos (p. 49–50)"],
-    consequence: "Reduz a carga sobre o consumo, que pesa mais sobre os pobres; o plano não trata da tributação da alta renda e a licença tácita pode enfraquecer o controle público.",
-    positives: ["Reduz impostos sobre o consumo popular", "Combate ao aparelhamento de estatais"],
-    tensions: ["Silêncio sobre a progressividade da renda", "Decisões públicas por omissão do Estado"],
-    pages: "p. 29–31, 49–56, 62–64, 69–72"
-  },
-  fig: {
-    jp2: {
-      principles: "Destino universal dos bens; propriedade legítima mas subordinada ao uso comum; economia livre dentro de uma moldura jurídica forte; subsidiariedade; rejeição tanto do coletivismo quanto do capitalismo sem regras.",
-      basis: "Laborem Exercens §14 e §17; Centesimus Annus §15, §42, §48. Princípios documentados; sem doutrina tributária técnica: aplicação por inferência.",
-      cit: "jp_prop",
-      A: { agree: "Aliviar os pobres e cobrar mais de quem tem mais expressa o destino universal dos bens; planejar o desenvolvimento para gerar emprego cabe na moldura jurídica que ele pedia.", tension: "Ampliar o papel empresarial do Estado tensiona a subsidiariedade, e a nova agenda tributária é genérica.", concl: "Alinhamento moderado.", idx: 60, conf: "Baixa" },
-      B: { agree: "Mercado com regras estáveis, combate ao aparelhamento e Estado não empresário estão próximos de Centesimus Annus; reduzir impostos sobre o consumo também alivia os pobres.", tension: "Nenhuma redistribuição a partir do topo; licença por omissão do Estado relativiza o bem comum.", concl: "Alinhamento parcial-moderado.", idx: 57, conf: "Baixa" }
+   },
+   "bg": {
+    "principles": "Lar cristão, casamento vitalício, autoridade dos pais; caridade e cuidado com os necessitados.",
+    "basis": "Pregação constante; colunas da BGEA. Inferência para políticas.",
+    "cit": null,
+    "A": {
+     "agree": "Ajuda concreta às famílias necessitadas.",
+     "tension": "Ausência da família como princípio e do papel dos pais.",
+     "concl": "Alinhamento parcial-baixo.",
+     "idx": 46,
+     "conf": "Baixa"
     },
-    bg: {
-      principles: "Preocupação com a desigualdade como fonte de conflito; simpatia implícita pela livre iniciativa; crítica ao materialismo, não aos bens.",
-      basis: "Nenhuma posição documentada sobre impostos ou política industrial; entrevista de c. 1985 sobre desigualdade. Inferência fraca.",
-      cit: "bg_cadill",
-      A: { agree: "Sua frase sobre Cadillacs e carros de boi sugere sensibilidade à desigualdade.", tension: "Um Estado empresário amplo está longe de seu horizonte de livre iniciativa.", concl: "Quase indeterminável; parcial.", idx: 50, conf: "Baixa" },
-      B: { agree: "Livre iniciativa e combate à corrupção em estatais combinam com sua visão.", tension: "Sem base para avaliar o desenho tributário.", concl: "Parcial-moderado, com incerteza alta.", idx: 55, conf: "Baixa" }
-    },
-    mlk: {
-      principles: "Distribuição mais ampla da riqueza; programas federais de grande escala; “reestruturação” da economia; simpatia por um socialismo democrático (em ambiente privado).",
-      basis: "Carta a Coretta (1952), retiro da SCLC (1966), Beyond Vietnam (1967). Aceitação de tributação progressiva: inferência forte. Não defendeu estatizações específicas.",
-      cit: "mlk_edif",
-      A: { agree: "Tributar o topo para aliviar a base e induzir emprego pelo Estado corresponde à “reestruturação” que ele pedia.", tension: "A agenda tributária do novo mandato é pouco detalhada; ele não deixou defesa de empresas estatais em particular.", concl: "Alinhamento alto-moderado.", idx: 74, conf: "Média" },
-      B: { agree: "A redução de impostos sobre o consumo beneficia os pobres.", tension: "Cortar gastos, reduzir o Estado a regulador e apostar no investimento privado como motor vão contra os programas federais amplos que ele defendia.", concl: "Alinhamento baixo.", idx: 30, conf: "Média" }
+    "B": {
+     "agree": "Família no centro e autoridade dos pais estão próximas de sua pregação.",
+     "tension": "Não menciona o casamento.",
+     "concl": "Alinhamento alto.",
+     "idx": 70,
+     "conf": "Baixa"
     }
-  }
-},
-/* ===================== 12 ===================== */
-{
-  id: 12, title: "Racismo e igualdade racial", short: "Racismo",
-  question: "O racismo deve ser enfrentado com políticas específicas (cotas, titulação quilombola, metas raciais) ou com políticas universais?",
-  A: {
-    proposal: "Combate ao racismo “no centro” da estratégia de desenvolvimento: cotas na universidade e no serviço público, titulação de territórios quilombolas, Estatuto da Igualdade Racial, prevenção da violência contra a juventude negra e atenção à mortalidade materna negra.",
-    goal: "Enfrentar a questão racial como “dimensão estruturante” das desigualdades brasileiras.",
-    items: ["Racismo como dimensão estruturante (p. 19)", "Cotas no ensino superior e no funcionalismo (p. 19–20)", "65 titulações quilombolas e continuidade do processo (p. 20)", "Juventude negra na política de segurança (p. 29)", "Mulheres negras na política de maternidade segura (p. 39)"],
-    consequence: "Mantém e amplia as ações afirmativas.",
-    positives: ["Reconhece explicitamente o racismo", "Medidas concretas e mensuráveis"],
-    tensions: ["Debate sobre critérios raciais versus socioeconômicos"],
-    pages: "p. 19–20, 29, 39"
-  },
-  B: {
-    proposal: "O plano não menciona racismo nem políticas raciais. Celebra a “miscigenação” como motivo de orgulho e dá autonomia a indígenas e quilombolas para decidir atividades produtivas em suas terras.",
-    goal: "Políticas universais e valorização da formação mestiça do país.",
-    items: ["Miscigenação e país de imigrantes como “motivos de orgulho” (p. 41)", "Autonomia produtiva para povos indígenas e quilombolas, com indenização de restrições (p. 50, 61)", "Nenhuma proposta específica contra a discriminação racial"],
-    consequence: "Sem metas raciais; as políticas atuais dependeriam de decisões futuras.",
-    positives: ["Valoriza a identidade nacional comum", "Reconhece autonomia dos povos tradicionais"],
-    tensions: ["Silêncio total sobre racismo"],
-    pages: "p. 41, 50, 61"
-  },
-  fig: {
-    jp2: {
-      principles: "Racismo é pecado e ofende a dignidade comum; defesa das culturas indígenas; pedido de perdão pelos pecados de cristãos contra povos e raças (2000).",
-      basis: "Homilia de St. Louis (1999), documento “A Igreja e o Racismo” (1988), Dia do Perdão (2000). Sem posição sobre cotas: inferência.",
-      cit: "jp_respect",
-      A: { agree: "Colocar o combate ao racismo no centro corresponde à sua condenação do racismo como mal persistente.", tension: "Não se pronunciou sobre cotas raciais.", concl: "Alinhamento alto-moderado.", idx: 74, conf: "Média" },
-      B: { agree: "A valorização da identidade comum e da autonomia dos povos tradicionais tem eco em sua defesa das culturas.", tension: "Ignorar o racismo em um país com desigualdades raciais profundas destoa de sua insistência em nomear esse pecado.", concl: "Alinhamento parcial-baixo.", idx: 45, conf: "Média" }
+   },
+   "mlk": {
+    "principles": "Família tradicional na pregação; estabilidade familiar dependente de justiça econômica, emprego e renda.",
+    "basis": "Sermões e coluna da Ebony; Where Do We Go from Here (1967). Inferência.",
+    "cit": null,
+    "A": {
+     "agree": "Renda e serviços para famílias pobres correspondem à sua ligação entre estabilidade familiar e justiça econômica.",
+     "tension": "Não trata da família como valor moral, que ele pregava.",
+     "concl": "Alinhamento moderado.",
+     "idx": 60,
+     "conf": "Baixa"
     },
-    bg: {
-      principles: "Racismo contradiz o evangelho; dessegregou suas cruzadas; foi gradualista e lamentou não ter ido a Selma.",
-      basis: "Chattanooga (1953), Nova York (1957), Durban (1973), entrevista de 2005. Documentado. Sobre ações afirmativas: sem posição.",
-      cit: "bg_white",
-      A: { agree: "Nomear o racismo e agir contra ele corresponde à sua autocrítica tardia.", tension: "Ele desconfiava de integração “forçada” por lei (1960).", concl: "Alinhamento moderado.", idx: 60, conf: "Média" },
-      B: { agree: "O ideal de unidade de todos sob o evangelho tem paralelo na valorização da miscigenação.", tension: "O silêncio sobre o racismo lembra o gradualismo que ele próprio lamentou.", concl: "Alinhamento parcial.", idx: 48, conf: "Média" }
-    },
-    mlk: {
-      principles: "Racismo como estrutura ligada à exploração econômica; medidas compensatórias (“Bill of Rights for the Disadvantaged”); objetivo final de julgamento pelo caráter.",
-      basis: "Why We Can't Wait (1964), entrevista à Playboy (1965), “I Have a Dream”. Diretamente documentado.",
-      cit: "mlk_char",
-      A: { agree: "Ações afirmativas, reparação territorial e foco na juventude negra correspondem às medidas compensatórias que ele propôs.", tension: "Ele também pedia critérios de classe que incluíssem os brancos pobres.", concl: "Alinhamento muito alto.", idx: 92, conf: "Alta" },
-      B: { agree: "A meta de uma sociedade em que a cor não importe aparece no elogio à miscigenação.", tension: "Celebrar a miscigenação sem medidas contra a desigualdade racial não corresponde às medidas compensatórias que ele propôs.", concl: "Alinhamento baixo.", idx: 30, conf: "Média" }
+    "B": {
+     "agree": "Afirma a família como base, como em sua pregação.",
+     "tension": "Menos apoio econômico às famílias pobres.",
+     "concl": "Alinhamento moderado.",
+     "idx": 58,
+     "conf": "Baixa"
     }
+   }
   }
-},
-/* ===================== 13 ===================== */
-{
-  id: 13, title: "Liberdade de expressão e plataformas digitais", short: "Expressão",
-  question: "O Estado deve regular as plataformas contra desinformação e discurso de ódio, ou desmontar estruturas que possam funcionar como censura?",
-  A: {
-    proposal: "Avançar na “regulação democrática das redes sociais e das plataformas digitais” para impedir desinformação e campanhas de ódio, com proteção digital de crianças (ECA Digital) e transparência algorítmica.",
-    goal: "Proteger a democracia e as crianças no ambiente digital, com “garantia plena da liberdade de expressão”.",
-    items: ["Regulação das plataformas contra desinformação e ódio (p. 16)", "ECA Digital e regulamentação de telas por faixa etária (p. 24)", "Centro Nacional de Transparência Algorítmica (p. 55)", "Política Nacional de Letramento Digital (p. 17)"],
-    consequence: "Cria regras para as plataformas; críticos temem que o Estado defina o que é “desinformação”.",
-    positives: ["Proteção de crianças online", "Transparência de algoritmos"],
-    tensions: ["Quem decide o que é desinformação"],
-    pages: "p. 16–17, 24, 55"
+ },
+ {
+  "id": 5,
+  "title": "Gênero, sexualidade e diversidade",
+  "short": "Gênero e diversidade",
+  "question": "O Estado deve formular políticas específicas para pessoas LGBTQIAP+ e considerar a identidade de gênero, ou ancorar regras no sexo biológico?",
+  "A": {
+   "proposal": "Planejar políticas considerando gênero, identidade e orientação sexual, atender pessoas LGBTQIAP+ “em todas as suas especificidades” e combater a violência e a discriminação contra elas.",
+   "goal": "Proteção e inclusão da população LGBTQIAP+.",
+   "items": [
+    "Políticas que levam em conta “gênero, identidade, orientação sexual” (p. 23)",
+    "Combate a crimes de ódio e à violência contra pessoas LGBTQIAP+ (p. 29)",
+    "Combate à discriminação LGBTQIAP+ no acesso ao trabalho (p. 75)"
+   ],
+   "consequence": "Amplia a proteção legal e administrativa; não detalha medidas.",
+   "positives": [
+    "Proteção contra violência"
+   ],
+   "tensions": [
+    "Adota a categoria “identidade de gênero” sem definição"
+   ],
+   "pages": "p. 23, 26, 29, 75"
   },
-  B: {
-    proposal: "“Tesouraço na Censura”: acabar com qualquer estrutura estatal que funcione como “Ministério da Verdade” e revogar os atos do atual governo considerados censura; crimes julgados pela Justiça com direito de defesa.",
-    goal: "Garantir o direito de criticar sem medo de punição pelo governo.",
-    items: ["Extinção de qualquer estrutura estatal “encarregada de vigiar, rotular ou punir o que as pessoas dizem” (p. 66)", "Revogação de atos do atual governo contra críticos (p. 66–67)", "Proteção de dados e defesa cibernética (p. 57)"],
-    consequence: "Reduz o papel do Executivo sobre conteúdo; o plano não trata da proteção de crianças contra conteúdos nocivos.",
-    positives: ["Defesa explícita do direito à crítica", "Remete crimes à Justiça"],
-    tensions: ["Silêncio sobre ódio e proteção infantil online"],
-    pages: "p. 57, 66–67"
+  "B": {
+   "proposal": "Reservar a categoria feminina no esporte, da base ao alto rendimento, a atletas do sexo feminino; afirma respeitar “todos os arranjos familiares”.",
+   "goal": "Proteger a competição feminina de “agendas ideológicas”.",
+   "items": [
+    "Categoria feminina disputada por atletas do sexo feminino (p. 40–41)",
+    "“Este Plano respeita todos os arranjos familiares” (p. 17)",
+    "Nenhuma política específica para a população LGBTQIAP+"
+   ],
+   "consequence": "Exclui atletas trans da categoria feminina; não há medidas de proteção contra violência anti-LGBT.",
+   "positives": [
+    "Critério claro para o esporte feminino",
+    "Reconhece arranjos familiares diversos"
+   ],
+   "tensions": [
+    "Silêncio sobre violência contra pessoas LGBTQIAP+"
+   ],
+   "pages": "p. 17, 40–41"
   },
-  fig: {
-    jp2: {
-      principles: "Liberdade ordenada à verdade; meios de comunicação a serviço da dignidade humana; experiência pessoal da censura comunista; proteção dos jovens contra conteúdos degradantes.",
-      basis: "Homilia de Baltimore (1995); experiência na Polônia comunista. Inferência: ele defendia tanto limites morais na mídia quanto a liberdade contra o controle estatal da verdade.",
-      cit: "jp_freedom",
-      A: { agree: "Proteger crianças e combater campanhas de ódio corresponde à responsabilidade moral da comunicação.", tension: "Um governo que define o que é “desinformação” lembra o controle da verdade que ele viveu sob o comunismo.", concl: "Alinhamento parcial.", idx: 55, conf: "Baixa" },
-      B: { agree: "Rejeitar um “Ministério da Verdade” estatal está próximo de sua experiência de resistência à censura.", tension: "Liberdade sem nenhuma responsabilidade sobre o conteúdo não é a liberdade “ordenada à verdade” que ele pregava.", concl: "Alinhamento parcial-moderado.", idx: 60, conf: "Baixa" }
+  "fig": {
+   "jp2": {
+    "principles": "Diferença sexual corporal como dado da pessoa (Teologia do Corpo); respeito e rejeição da violência contra pessoas homossexuais, com juízo moral negativo sobre os atos; oposição ao casamento entre pessoas do mesmo sexo.",
+    "basis": "Teologia do Corpo (1979–84); documentos da Congregação para a Doutrina da Fé aprovados por ele (1986, 2003). “Identidade de gênero” como política pública é tema posterior: inferência forte na doutrina, moderada nas políticas.",
+    "cit": null,
+    "A": {
+     "agree": "Combater violência e malícia contra pessoas homossexuais é algo que o documento de 1986, aprovado por ele, também pede.",
+     "tension": "Tomar a identidade de gênero como critério de política pública contraria sua antropologia da diferença sexual.",
+     "concl": "Alinhamento baixo.",
+     "idx": 35,
+     "conf": "Média"
     },
-    bg: {
-      principles: "Valorizava o direito de dissentir e a liberdade religiosa; denunciou a confusão entre liberdade e licenciosidade.",
-      basis: "Honor America Day (1970) e discurso de 1996. Inferência.",
-      cit: "bg_license",
-      A: { agree: "Limites a conteúdos nocivos e proteção infantil combinam com sua crítica à licenciosidade.", tension: "Controle estatal sobre a fala religiosa e política seria motivo de preocupação.", concl: "Alinhamento parcial.", idx: 52, conf: "Baixa" },
-      B: { agree: "A defesa do direito de discordar e criticar governos está próxima do que ele elogiou em 1970.", tension: "Nenhuma relevante documentada.", concl: "Alinhamento moderado.", idx: 62, conf: "Baixa" }
-    },
-    mlk: {
-      principles: "Defesa do direito de protestar, discordar e se reunir; foi vítima de vigilância e difamação pelo FBI; caso New York Times v. Sullivan nasceu da defesa dele.",
-      basis: "Documentado quanto à liberdade de dissenso; inferência quanto à regulação de plataformas.",
-      cit: "mlk_paper",
-      A: { agree: "Combater campanhas de ódio protege grupos que ele defendia.", tension: "Quem foi alvo do aparato do Estado desconfiaria de dar ao governo poder sobre o discurso.", concl: "Alinhamento parcial.", idx: 52, conf: "Baixa" },
-      B: { agree: "Proteger críticos do poder contra punição governamental está em linha com sua experiência.", tension: "O mesmo plano propõe 1 milhão de câmeras com reconhecimento facial (tema 01); vítima de vigilância estatal, ele provavelmente pediria salvaguardas.", concl: "Alinhamento parcial-moderado.", idx: 58, conf: "Baixa" }
+    "B": {
+     "agree": "Ancorar a categoria feminina no sexo corresponde à sua visão da diferença sexual como dado do corpo.",
+     "tension": "O plano não tem uma palavra contra a violência sofrida por pessoas LGBTQIAP+, que ele também condenava. A fórmula “respeita todos os arranjos familiares” (p. 17) não ancora a família no matrimônio, que ele defendia.",
+     "concl": "Alinhamento moderado-alto.",
+     "idx": 64,
+     "conf": "Média"
     }
-  }
-},
-/* ===================== 14 ===================== */
-{
-  id: 14, title: "Meio ambiente, terra e povos tradicionais", short: "Meio ambiente",
-  question: "Como conciliar preservação, produção e direitos dos povos indígenas: mais demarcação e controle estatal, ou mais segurança jurídica e incentivo econômico?",
-  A: {
-    proposal: "Desmatamento líquido zero até 2030, demarcação e desintrusão de terras indígenas, titulação quilombola, reforma agrária, fundos climáticos e liderança na COP30.",
-    goal: "Fazer da transformação ecológica um caminho de desenvolvimento.",
-    items: ["Desmatamento líquido zero até 2030 (p. 70)", "Demarcação e desintrusão de terras indígenas “sempre que necessárias” (p. 20)", "Reforma agrária e titulação quilombola (p. 60)", "Fundo Clima, Eco Invest e Fundo Florestas Tropicais para Sempre (p. 70–71)", "72 decretos de desapropriação por interesse social para quilombos (p. 20)", "Petrobras amplia exploração onshore e offshore e explora novas reservas (p. 67)"],
-    consequence: "Mais áreas protegidas; conflitos com produtores rurais podem aumentar.",
-    positives: ["Metas ambientais ambiciosas", "Proteção territorial dos povos indígenas"],
-    tensions: ["Insegurança percebida por produtores", "Expansão de petróleo e gás convive com as metas climáticas"],
-    pages: "p. 20, 59–60, 69–73"
-  },
-  B: {
-    proposal: "Desmatamento ilegal zero até 2029, pagamento por serviços ambientais, bioeconomia, licenciamento ágil com aprovação tácita, gás de xisto (fracking), segurança “irreversível” da propriedade, autonomia produtiva para indígenas e transparência das ONGs financiadas do exterior.",
-    goal: "“Preservar e produzir ao mesmo tempo”, tratando o produtor legal como parceiro.",
-    items: ["Desmatamento ilegal zero até 2029 (p. 58)", "Pagamento por serviços ambientais e mercado de carbono (p. 57)", "Licença concedida se o órgão não decidir no prazo (p. 49–50)", "Exploração de gás não convencional (fracking) “com responsabilidade ambiental e cumprindo a lei” (p. 52)", "Fiscalização por satélite e combate à grilagem e ao garimpo ilegal (p. 58–59)", "Propriedade com segurança “sem margem para relativizações” (p. 54)", "Transparência de ONGs com recursos internacionais (p. 59)"],
-    consequence: "Mais segurança para quem produz; ambientalistas temem afrouxamento do controle.",
-    positives: ["Remunera quem preserva", "Não criminaliza o morador da floresta"],
-    tensions: ["Licença tácita", "Propriedade tratada como absoluta"],
-    pages: "p. 49–59"
-  },
-  fig: {
-    jp2: {
-      principles: "Crise ecológica como questão moral; destino universal dos bens; propriedade não absoluta; defesa das culturas indígenas.",
-      basis: "Mensagem do Dia Mundial da Paz (1990), Laborem Exercens §14, audiência de 17 jan. 2001 (“conversão ecológica”). Documentado nos princípios.",
-      cit: "jp_eco",
-      A: { agree: "Metas ambientais e proteção territorial dos povos indígenas correspondem à sua visão da ecologia como dever moral.", tension: "A expansão da exploração de petróleo e gás pesa contra a “conversão ecológica”, como o fracking pesa contra o Plano B.", concl: "Alinhamento alto-moderado.", idx: 70, conf: "Média" },
-      B: { agree: "Remunerar a preservação e não criminalizar os pobres da floresta tem apoio em sua defesa do trabalho.", tension: "Tratar a propriedade como irreversível e aprovar licenças por omissão contraria a subordinação da propriedade ao bem comum.", concl: "Alinhamento parcial.", idx: 50, conf: "Média" }
+   },
+   "bg": {
+    "principles": "Homossexualidade como pecado, mas não “o” pecado; amor às pessoas; recusa crescente de transformar o tema em bandeira (2005).",
+    "basis": "Declarações dos anos 1990 e 2005 (documentadas). Sobre identidade de gênero não há posição: inferência fraca.",
+    "cit": "bg_hot",
+    "A": {
+     "agree": "Proteção contra violência é compatível com sua insistência no amor às pessoas.",
+     "tension": "Políticas baseadas em identidade de gênero divergem da antropologia bíblica tradicional que ele mantinha.",
+     "concl": "Alinhamento parcial-baixo.",
+     "idx": 40,
+     "conf": "Baixa"
     },
-    bg: {
-      principles: "Mordomia da criação (coluna institucional da BGEA); prioridade espiritual.",
-      basis: "Coluna “My Answer” sem data, tratada como posição institucional. Inferência fraca.",
-      cit: "bg_steward",
-      A: { agree: "O cuidado com a criação aparece nas metas ambientais.", tension: "Ele não tinha agenda ambiental política.", concl: "Alinhamento parcial.", idx: 58, conf: "Baixa" },
-      B: { agree: "Preservação remunerada também é mordomia.", tension: "Sem base para avaliar o licenciamento.", concl: "Alinhamento parcial.", idx: 55, conf: "Baixa" }
-    },
-    mlk: {
-      principles: "Interdependência; justiça para os mais vulneráveis; terra e moradia para os pobres.",
-      basis: "Quase sem declarações ecológicas: inferência fraca, enquadrada como justiça para os pobres.",
-      cit: "mlk_mutual",
-      A: { agree: "Reforma agrária, quilombolas e proteção dos povos indígenas respondem à lógica de justiça para os marginalizados.", tension: "Nenhuma documentada.", concl: "Alinhamento moderado-alto.", idx: 70, conf: "Baixa" },
-      B: { agree: "Não criminalizar o pequeno morador da floresta.", tension: "Prioridade ao investimento e à propriedade sobre os povos tradicionais.", concl: "Alinhamento parcial-baixo.", idx: 42, conf: "Baixa" }
+    "B": {
+     "agree": "O critério do sexo biológico está mais próximo de sua visão tradicional.",
+     "tension": "Ele evitava fazer desses temas instrumento de mobilização política.",
+     "concl": "Alinhamento moderado-alto.",
+     "idx": 62,
+     "conf": "Baixa"
     }
-  }
-},
-/* ===================== 15 ===================== */
-{
-  id: 15, title: "Política externa, paz e alianças", short: "Política externa",
-  question: "O Brasil deve priorizar o multilateralismo, o Sul Global e a autonomia, ou o pragmatismo comercial e a reaproximação com parceiros ocidentais?",
-  A: {
-    proposal: "Política externa “cada vez mais independente, ativo e comprometido com a integração regional” e “universalista” (p. 80–81): reforma da ONU e do FMI, BRICS e Sul Global, América do Sul como “zona de paz”, Aliança Global contra a Fome e oposição a “alinhamentos automáticos”.",
-    goal: "Autonomia estratégica e uma ordem internacional “mais justa”.",
-    items: ["Princípios constitucionais: não intervenção, paz, direitos humanos (p. 79)", "Reforma do Conselho de Segurança e da arquitetura financeira (p. 81)", "Aproximação com BRICS e Sul Global (p. 81)", "Aliança Global contra a Fome e a Pobreza (p. 81)", "Fortalecimento da Base Industrial de Defesa (p. 78)"],
-    consequence: "Diversifica parcerias; críticos apontam proximidade com regimes autoritários.",
-    positives: ["Combate global à fome", "Multilateralismo"],
-    tensions: ["Pouco sobre democracia e direitos humanos em países parceiros"],
-    pages: "p. 77–83"
-  },
-  B: {
-    proposal: "Diplomacia “profissional, não ideológica”: reaproximação com Estados Unidos, Israel e Argentina, adesão à OCDE, abertura comercial e crítica às relações do atual governo com Venezuela e Irã.",
-    goal: "Interesse comercial do produtor e do trabalhador brasileiro.",
-    items: ["Reaproximação com EUA, Israel e Argentina (p. 62)", "Crítica a Maduro e ao regime iraniano (p. 61–62)", "Adesão à OCDE e fim gradual do IOF câmbio (p. 63)", "Negociar com todos, “da China à União Europeia” (p. 62)"],
-    consequence: "Aproxima o Brasil do eixo ocidental; menor ênfase no Sul Global.",
-    positives: ["Firmeza diante de ditaduras", "Abertura comercial"],
-    tensions: ["Nada sobre fome global, ONU ou paz"],
-    pages: "p. 61–64"
-  },
-  fig: {
-    jp2: {
-      principles: "ONU como “família das nações”; solidariedade com os países pobres e alívio da dívida; firmeza contra totalitarismos; patriotismo sem nacionalismo; “não à guerra”.",
-      basis: "Discurso à ONU (1995), Tertio Millennio Adveniente §51 (dívida), oposição ao comunismo e à guerra do Iraque (2003). Documentado nos princípios.",
-      cit: "jp_patriot",
-      A: { agree: "Multilateralismo, combate global à fome e reforma das instituições financeiras estão próximos de sua defesa dos países pobres.", tension: "Ele não aceitaria tratar ditaduras com neutralidade em nome da não intervenção.", concl: "Alinhamento moderado-alto.", idx: 66, conf: "Média" },
-      B: { agree: "Firmeza diante de regimes autoritários lembra sua resistência ao totalitarismo.", tension: "Silêncio sobre paz, fome global e ONU.", concl: "Alinhamento parcial-moderado.", idx: 58, conf: "Média" }
+   },
+   "mlk": {
+    "principles": "Dignidade universal e igualdade civil; em 1958, porém, tratou a homossexualidade como “problema” a ser tratado por psiquiatra.",
+    "basis": "Coluna da Ebony (jan. 1958). Sobre identidade de gênero: IMPOSSÍVEL DETERMINAR. Sobre antidiscriminação: inferência moderada a partir do seu universalismo.",
+    "cit": "mlk_injust",
+    "A": {
+     "agree": "Combater discriminação e violência aplica o princípio de igualdade que ele defendeu para outros grupos.",
+     "tension": "Sua visão de 1958 sobre homossexualidade não era a do plano; não se sabe como ela teria evoluído.",
+     "concl": "Alinhamento moderado, com incerteza alta.",
+     "idx": 58,
+     "conf": "Baixa"
     },
-    bg: {
-      principles: "Apoio histórico a Israel; anticomunismo inicial; depois, pregação em países comunistas e defesa do desarmamento; o Reino de Deus não se confunde com uma nação.",
-      basis: "Declarações de 1973, 1979 e 1982 (documentadas). Inferência para alianças atuais.",
-      cit: "bg_kingdom",
-      A: { agree: "Ênfase em paz e combate à fome aproxima-se do Graham tardio.", tension: "A aproximação com o BRICS (que inclui regimes que ele criticou) destoa de seu anticomunismo inicial.", concl: "Alinhamento parcial.", idx: 50, conf: "Baixa" },
-      B: { agree: "Reaproximação com Israel e com os Estados Unidos corresponde às suas afinidades históricas.", tension: "Ele próprio advertiu contra confundir o Reino de Deus com alinhamentos nacionais.", concl: "Alinhamento moderado-alto.", idx: 64, conf: "Baixa" }
-    },
-    mlk: {
-      principles: "Internacionalismo (“casa mundial”), anticolonialismo, antimilitarismo, segurança de Israel com paz para os árabes.",
-      basis: "Beyond Vietnam (1967), entrevista à Rabbinical Assembly (1968). Inferência moderada.",
-      cit: "mlk_injust",
-      A: { agree: "Sul Global, combate à fome e zona de paz respondem a seu internacionalismo anticolonial.", tension: "O fortalecimento da indústria de defesa contrasta com seu antimilitarismo.", concl: "Alinhamento alto-moderado.", idx: 72, conf: "Baixa" },
-      B: { agree: "A segurança de Israel era um ponto que ele afirmou.", tension: "Política externa centrada em comércio, sem pobreza global nem paz, está longe de sua “revolução de valores”.", concl: "Alinhamento parcial-baixo.", idx: 45, conf: "Baixa" }
+    "B": {
+     "agree": "Nenhum elemento documentado permite afirmar acordo.",
+     "tension": "A ausência de proteção contra discriminação contrasta com seu universalismo.",
+     "concl": "Impossível determinar com segurança: índice neutro.",
+     "idx": 50,
+     "conf": "Baixa"
     }
+   }
   }
-}
+ },
+ {
+  "id": 6,
+  "title": "Proteção às mulheres e autonomia feminina",
+  "short": "Mulheres",
+  "question": "Como proteger as mulheres da violência e ampliar sua autonomia: combatendo o machismo e a desigualdade salarial como estruturas, ou com proteção, renda e patrimônio em nome da mulher dentro da família?",
+  "A": {
+   "proposal": "Pacto de Enfrentamento ao Feminicídio como guia central, rede de proteção ampliada (Casas da Mulher Brasileira, Salas Lilás, monitoramento de agressores), combate ao “machismo, sexismo e feminicídio” e igualdade salarial com planos de ação obrigatórios nas empresas.",
+   "goal": "Reduzir a violência e promover a igualdade de oportunidades entre mulheres e homens, inclusive mudando padrões culturais.",
+   "items": [
+    "Pacto contra o Feminicídio mantido como guia central (p. 21)",
+    "30 Casas da Mulher Brasileira, 15 Centros de Referência, Salas Lilás, kits de monitoramento de agressores (p. 21)",
+    "Combate ao “machismo, o sexismo e o feminicídio” e mudança cultural no respeito às meninas e mulheres (p. 21)",
+    "Lei de Igualdade Salarial com planos de ação obrigatórios nas empresas (p. 75)",
+    "Crédito e qualificação para mulheres; Cuidotecas para liberar tempo (p. 21–22, 26)"
+   ],
+   "consequence": "Fortalece a rede pública de proteção e impõe obrigações às empresas.",
+   "positives": [
+    "Rede de proteção já em execução",
+    "Igualdade salarial com metas"
+   ],
+   "tensions": [
+    "A família quase não aparece como espaço de proteção"
+   ],
+   "pages": "p. 21–22, 26, 75"
+  },
+  "B": {
+   "proposal": "“Brasil por Elas”: Central da Mulher física e em aplicativo, assistente virtual ClarIA, internet gratuita, denúncia com avaliação de risco, tornozeleira para agressores, orientação financeira, crédito, escritura da casa no nome da mulher e creche; respeita “a liberdade de cada mulher decidir o próprio caminho, seja no cuidado do lar, seja no mercado de trabalho”.",
+   "goal": "“Fortalecer as mulheres é fortalecer a família”: proteção, renda e patrimônio próprios.",
+   "items": [
+    "Central da Mulher e aplicativo com acolhimento, orientação jurídica e psicológica (p. 17–18)",
+    "Tornozeleira para agressores sob medida protetiva e avaliação nacional de risco (p. 14, 18–19)",
+    "Orientação financeira e crédito para independência da mulher (p. 19–20)",
+    "Escritura da casa própria no nome da mulher; mais casas de acolhimento (p. 20)",
+    "Escola Brasil por Elas: capacitação gratuita (p. 20)",
+    "Liberdade de escolher entre o lar e o mercado de trabalho (p. 17)"
+   ],
+   "consequence": "Programa amplo, centrado em autonomia econômica e tecnologia; depende de execução em parceria com estados e municípios.",
+   "positives": [
+    "Autonomia econômica e patrimonial da mulher",
+    "Monitoramento de agressores"
+   ],
+   "tensions": [
+    "Nada sobre desigualdade salarial entre homens e mulheres"
+   ],
+   "pages": "p. 14, 17–22"
+  },
+  "fig": {
+   "jp2": {
+    "principles": "Igual dignidade da mulher; igual salário e acesso à vida pública; condenação da violência sexual; valorização da maternidade e do trabalho no lar, sem penalizar a mulher que se dedica aos filhos.",
+    "basis": "Carta às Mulheres (1995), Mulieris Dignitatem (1988), Familiaris Consortio §23 e Laborem Exercens §19. Diretamente documentado nos princípios.",
+    "cit": null,
+    "A": {
+     "agree": "Proteção contra a violência e igualdade salarial correspondem ao que ele pediu na Carta às Mulheres.",
+     "tension": "A linguagem de mudança cultural contra o “machismo” não valoriza a maternidade e o trabalho no lar, que ele também defendia.",
+     "concl": "Alinhamento alto-moderado.",
+     "idx": 72,
+     "conf": "Média"
+    },
+    "B": {
+     "agree": "Proteção, patrimônio da mulher e reconhecimento explícito da escolha pelo cuidado do lar unem igual dignidade e valorização da família.",
+     "tension": "Não trata da igualdade salarial, que ele defendeu.",
+     "concl": "Alinhamento alto.",
+     "idx": 76,
+     "conf": "Média"
+    }
+   },
+   "bg": {
+    "principles": "Fidelidade e casamento vitalício, mas sem obrigação de permanecer em relação abusiva; abertura prática a mulheres pregando (sua filha Anne).",
+    "basis": "Coluna da BGEA sobre divórcio com exceção explícita de abuso (documentada como institucional); declarações de 1997 sobre Anne Graham Lotz. Inferência para políticas.",
+    "cit": null,
+    "A": {
+     "agree": "Rede de proteção e casas de acolhimento respondem à sua posição de que ninguém deve ficar em situação de risco de vida.",
+     "tension": "Nenhuma medida em conflito com sua visão; o plano não usa a linguagem de família.",
+     "concl": "Alinhamento moderado.",
+     "idx": 62,
+     "conf": "Baixa"
+    },
+    "B": {
+     "agree": "Proteção da mulher dentro de uma visão que valoriza a família é próxima de sua pregação.",
+     "tension": "Nenhuma relevante documentada.",
+     "concl": "Alinhamento moderado-alto.",
+     "idx": 68,
+     "conf": "Baixa"
+    }
+   },
+   "mlk": {
+    "principles": "Dignidade universal e justiça econômica; sua própria prática foi criticada por sexismo dentro do movimento (Ella Baker).",
+    "basis": "Quase sem declarações específicas sobre direitos das mulheres; inferência a partir do universalismo e da agenda econômica. Registrado o limite histórico de sua prática.",
+    "cit": null,
+    "A": {
+     "agree": "Igualdade salarial imposta às empresas segue sua lógica de enfrentar desigualdades estruturais no trabalho.",
+     "tension": "Seu próprio registro em relação às mulheres torna a inferência incerta.",
+     "concl": "Alinhamento moderado-alto, com incerteza.",
+     "idx": 68,
+     "conf": "Baixa"
+    },
+    "B": {
+     "agree": "Renda, crédito e patrimônio para mulheres pobres combinam com sua defesa de independência econômica dos pobres.",
+     "tension": "Sem medida contra a desigualdade salarial.",
+     "concl": "Alinhamento moderado.",
+     "idx": 60,
+     "conf": "Baixa"
+    }
+   }
+  }
+ },
+ {
+  "id": 7,
+  "title": "Educação: valores, pais e escola",
+  "short": "Educação",
+  "question": "Quem decide os valores transmitidos na escola, e qual o papel da rede pública, dos pais e das alternativas privadas?",
+  "A": {
+   "proposal": "Expansão da escola pública em tempo integral, alfabetização na idade certa, Pé-de-Meia contra a evasão, 111 novos Institutos Federais e educação para as relações étnico-raciais.",
+   "goal": "Educação como principal instrumento de mobilidade social e de redução das desigualdades.",
+   "items": [
+    "Tempo integral como “absoluta prioridade” (p. 31)",
+    "Meta de 80% de crianças alfabetizadas na idade certa (p. 31)",
+    "Pé-de-Meia para que nenhum jovem pobre deixe a escola por falta de renda (p. 32)",
+    "Política Nacional de Equidade e Educação para as Relações Étnico-Raciais (p. 20)",
+    "Expansão dos IFs e das universidades públicas (p. 33)"
+   ],
+   "consequence": "Fortalece a rede pública; o papel dos pais na definição de conteúdos não é tratado.",
+   "positives": [
+    "Acesso amplo para os mais pobres",
+    "Combate à evasão com renda"
+   ],
+   "tensions": [
+    "Não menciona o papel dos pais na formação moral"
+   ],
+   "pages": "p. 20, 30–34"
+  },
+  "B": {
+   "proposal": "Escola “livre de doutrinação político-partidária”, em que “quem decide sobre os valores que o filho recebe são os pais”, método fônico, escolas cívico-militares, voucher quando faltar vaga e financiamento por resultados.",
+   "goal": "Escola que ensina a pensar, com cobrança por resultados e respeito aos valores familiares.",
+   "items": [
+    "Escola livre de doutrinação e respeito à liberdade de consciência (p. 35)",
+    "“Quem decide sobre os valores que o filho recebe são os pais” (p. 35)",
+    "Método fônico e Programa Acolher de reforço (p. 35)",
+    "Ampliação das Escolas Cívico-Militares (p. 35)",
+    "Voucher educacional onde faltar vaga pública (p. 36)",
+    "Repasses vinculados a metas de aprendizagem (p. 35)",
+    "Apoio à escola em tempo integral (p. 35); ensino técnico com o setor produtivo e Empréstimo Contingente à Renda no ensino superior (p. 36–37)"
+   ],
+   "consequence": "Reforça o papel dos pais e a disciplina; financiamento por resultados pode penalizar redes mais pobres, embora o plano diga que não as abandonará.",
+   "positives": [
+    "Reconhece explicitamente a primazia dos pais",
+    "Foco em aprendizagem medida"
+   ],
+   "tensions": [
+    "Pouca atenção à desigualdade racial e regional na educação"
+   ],
+   "pages": "p. 34–36"
+  },
+  "fig": {
+   "jp2": {
+    "principles": "Pais como primeiros educadores; liberdade de educação e de escolha da escola; subsidiariedade; acesso dos pobres à educação.",
+    "basis": "Familiaris Consortio §36 e Carta às Famílias §16 (diretamente documentado).",
+    "cit": "jp_parents",
+    "A": {
+     "agree": "Universalizar o acesso e combater a evasão dos pobres atende à opção preferencial pelos pobres.",
+     "tension": "Ausência de referência aos pais como primeiros educadores.",
+     "concl": "Alinhamento parcial.",
+     "idx": 55,
+     "conf": "Média"
+    },
+    "B": {
+     "agree": "Afirma quase com as mesmas palavras a primazia dos pais na educação dos valores e a liberdade de escolha.",
+     "tension": "Ele não se pronunciou sobre escolas cívico-militares; financiamento por resultados pode prejudicar escolas pobres.",
+     "concl": "Alinhamento alto.",
+     "idx": 75,
+     "conf": "Média"
+    }
+   },
+   "bg": {
+    "principles": "Educação cristã, autoridade dos pais, oração na escola; ao mesmo tempo, pediu em 1952 que faculdades batistas admitissem estudantes negros.",
+    "basis": "Lamentou as decisões contra a oração oficial nas escolas (1962–63); cofundou instituições de ensino. Inferência.",
+    "cit": null,
+    "A": {
+     "agree": "Ampliar o acesso de jovens pobres e negros à educação está em linha com seu gesto de 1952.",
+     "tension": "Não trata de valores morais nem da autoridade dos pais.",
+     "concl": "Alinhamento parcial.",
+     "idx": 52,
+     "conf": "Baixa"
+    },
+    "B": {
+     "agree": "Autoridade dos pais e disciplina estão próximas de sua visão.",
+     "tension": "Nenhuma relevante documentada.",
+     "concl": "Alinhamento moderado-alto.",
+     "idx": 65,
+     "conf": "Baixa"
+    }
+   },
+   "mlk": {
+    "principles": "Educação integrada e de qualidade como direito; combate à segregação de fato; endossou a proibição da oração oficial na escola pública.",
+    "basis": "Discursos sobre integração escolar; na entrevista à Playboy (1965) apoiou a decisão contra a oração oficial. Inferência para o caso brasileiro.",
+    "cit": "mlk_char",
+    "A": {
+     "agree": "Escola pública ampliada, cotas e educação para as relações étnico-raciais respondem à sua luta contra a segregação educacional.",
+     "tension": "Nenhuma relevante.",
+     "concl": "Alinhamento alto.",
+     "idx": 78,
+     "conf": "Média"
+    },
+    "B": {
+     "agree": "Reforço escolar e alfabetização são bons para os mais pobres.",
+     "tension": "O plano não trata da desigualdade racial na educação.",
+     "concl": "Alinhamento parcial-baixo.",
+     "idx": 48,
+     "conf": "Baixa"
+    }
+   }
+  }
+ },
+ {
+  "id": 8,
+  "title": "Liberdade religiosa",
+  "short": "Liberdade religiosa",
+  "question": "O plano protege a liberdade de crer, praticar e expressar a fé?",
+  "A": {
+   "proposal": "O plano não trata da liberdade religiosa como tema próprio. Inclui a crença entre os critérios de não discriminação e fala em “amplo respeito às liberdades e aos direitos humanos”.",
+   "goal": "Garantir que ninguém seja discriminado por crença.",
+   "items": [
+    "Não discriminação por “crença” (p. 26)",
+    "“Amplo respeito às liberdades e aos direitos humanos” (p. 26)",
+    "Nenhuma medida específica sobre liberdade religiosa"
+   ],
+   "consequence": "Proteção genérica; a liberdade religiosa não aparece como prioridade.",
+   "positives": [
+    "Inclui a crença na não discriminação"
+   ],
+   "tensions": [
+    "Tema ausente como política"
+   ],
+   "pages": "p. 26"
+  },
+  "B": {
+   "proposal": "Declara a liberdade religiosa como valor inegociável e cita a fé entre os valores do governo; defende escola que respeite a liberdade de consciência e o papel das famílias.",
+   "goal": "Afirmar a liberdade religiosa como princípio.",
+   "items": [
+    "Liberdade religiosa entre os valores inegociáveis (p. 9)",
+    "“A vida, a liberdade, a família, a propriedade, a democracia e a fé” (p. 74)",
+    "Escola que respeita “a liberdade de consciência e o papel das famílias” (p. 35)",
+    "Nenhuma medida específica sobre liberdade religiosa"
+   ],
+   "consequence": "Afirmação de princípio, sem medidas concretas.",
+   "positives": [
+    "Nomeia a liberdade religiosa como valor"
+   ],
+   "tensions": [
+    "Princípio sem política correspondente"
+   ],
+   "pages": "p. 9, 35, 74"
+  },
+  "fig": {
+   "jp2": {
+    "principles": "Liberdade religiosa como direito fundamental, “fonte e síntese” dos direitos humanos; ninguém pode ser coagido em matéria de fé.",
+    "basis": "Discurso à ONU (1979, §20), Redemptor Hominis §17, Dignitatis Humanae (Vaticano II, com participação dele). Diretamente documentado.",
+    "cit": null,
+    "A": {
+     "agree": "A não discriminação por crença é uma parte do que ele defendia.",
+     "tension": "Não reconhece a liberdade religiosa como direito próprio e central.",
+     "concl": "Alinhamento parcial.",
+     "idx": 50,
+     "conf": "Média"
+    },
+    "B": {
+     "agree": "Nomeia a liberdade religiosa como valor fundamental, como ele fazia.",
+     "tension": "Sem medidas concretas de proteção.",
+     "concl": "Alinhamento alto.",
+     "idx": 66,
+     "conf": "Média"
+    }
+   },
+   "bg": {
+    "principles": "Defesa constante da liberdade religiosa, inclusive de minorias; aceitação da separação institucional entre Igreja e Estado.",
+    "basis": "Defesa de cristãos sob regimes comunistas; declaração sobre Key 73 (1973). Documentado.",
+    "cit": null,
+    "A": {
+     "agree": "A não discriminação por crença protege minorias religiosas, que ele também defendia.",
+     "tension": "O tema não aparece como prioridade.",
+     "concl": "Alinhamento parcial.",
+     "idx": 52,
+     "conf": "Média"
+    },
+    "B": {
+     "agree": "Afirmar a liberdade religiosa como valor está próximo de sua defesa constante.",
+     "tension": "Sem medidas concretas.",
+     "concl": "Alinhamento alto-moderado.",
+     "idx": 64,
+     "conf": "Média"
+    }
+   },
+   "mlk": {
+    "principles": "Liberdade de consciência e de religião; separação entre Igreja e Estado; a Igreja como consciência do Estado, não como seu instrumento.",
+    "basis": "Defendeu a decisão contra a oração oficial nas escolas (entrevista à Playboy, 1965). Inferência moderada.",
+    "cit": null,
+    "A": {
+     "agree": "A não discriminação por crença corresponde à sua defesa da igualdade.",
+     "tension": "Não trata da liberdade religiosa em si.",
+     "concl": "Alinhamento moderado.",
+     "idx": 56,
+     "conf": "Baixa"
+    },
+    "B": {
+     "agree": "Afirma a liberdade religiosa.",
+     "tension": "Incluir a “fé” entre os valores de governo tensiona sua defesa da separação entre Igreja e Estado.",
+     "concl": "Alinhamento moderado.",
+     "idx": 56,
+     "conf": "Baixa"
+    }
+   }
+  }
+ },
+ {
+  "id": 9,
+  "title": "Liberdade de expressão",
+  "short": "Expressão",
+  "question": "Como o plano trata o direito de opinar, criticar o governo e discordar?",
+  "A": {
+   "proposal": "Afirma que “nenhuma democracia sobrevive sem […] a garantia plena da liberdade de expressão” e, no mesmo parágrafo, propõe a regulação das redes para impedir desinformação e campanhas de ódio.",
+   "goal": "Proteger o debate democrático contra desinformação e ódio.",
+   "items": [
+    "Garantia plena da liberdade de expressão como condição da democracia (p. 16)",
+    "Regulação das redes contra desinformação e ódio (p. 16)",
+    "Liberdade de opinião para fortalecer o debate democrático (p. 16)"
+   ],
+   "consequence": "Críticos temem que o Estado passe a definir o que é desinformação.",
+   "positives": [
+    "Afirma a liberdade de expressão"
+   ],
+   "tensions": [
+    "Quem define o que é desinformação"
+   ],
+   "pages": "p. 16"
+  },
+  "B": {
+   "proposal": "“Tesouraço na Censura”: acabar com qualquer estrutura estatal “encarregada de vigiar, rotular ou punir o que as pessoas dizem”, revogar atos do atual governo contra críticos e remeter crimes à Justiça, com direito de defesa.",
+   "goal": "Garantir o direito de criticar o governo sem punição.",
+   "items": [
+    "Extinção de estruturas que funcionem como “Ministério da Verdade” (p. 66)",
+    "Revogação de atos contra críticos (p. 66–67)",
+    "“Crime se combate na Justiça, com regras claras e direito de defesa” (p. 67)"
+   ],
+   "consequence": "Reduz o poder do Executivo sobre o discurso; o plano não trata de discurso de ódio.",
+   "positives": [
+    "Defesa explícita do direito à crítica"
+   ],
+   "tensions": [
+    "Silêncio sobre discurso de ódio"
+   ],
+   "pages": "p. 66–67"
+  },
+  "fig": {
+   "jp2": {
+    "principles": "Liberdade ordenada à verdade; experiência pessoal da censura comunista; responsabilidade moral de quem comunica.",
+    "basis": "Homilia de Baltimore (1995); experiência na Polônia comunista. Inferência.",
+    "cit": "jp_freedom",
+    "A": {
+     "agree": "Afirma a liberdade de expressão e se preocupa com mentiras e ódio, o que tem eco na responsabilidade moral da comunicação.",
+     "tension": "Um governo que define o que é desinformação lembra o controle da verdade que ele viveu sob o comunismo.",
+     "concl": "Alinhamento parcial.",
+     "idx": 50,
+     "conf": "Baixa"
+    },
+    "B": {
+     "agree": "Rejeitar um “Ministério da Verdade” estatal está próximo de sua resistência à censura.",
+     "tension": "Liberdade sem nenhuma responsabilidade sobre o conteúdo não é a liberdade “ordenada à verdade” que ele pregava.",
+     "concl": "Alinhamento moderado-alto.",
+     "idx": 64,
+     "conf": "Baixa"
+    }
+   },
+   "bg": {
+    "principles": "Valorizava o direito de dissentir; criticava a confusão entre liberdade e licenciosidade.",
+    "basis": "Honor America Day (1970); discurso de 1996. Inferência.",
+    "cit": "bg_license",
+    "A": {
+     "agree": "Combater o ódio combina com sua crítica à licenciosidade.",
+     "tension": "Controle estatal sobre a fala religiosa e política seria motivo de preocupação.",
+     "concl": "Alinhamento parcial.",
+     "idx": 50,
+     "conf": "Baixa"
+    },
+    "B": {
+     "agree": "A defesa do direito de discordar está próxima do que ele elogiou em 1970.",
+     "tension": "Não trata do limite entre liberdade e licenciosidade, que ele mesmo traçou (1996).",
+     "concl": "Alinhamento moderado-alto.",
+     "idx": 60,
+     "conf": "Baixa"
+    }
+   },
+   "mlk": {
+    "principles": "Direito de protestar, discordar e se reunir; foi alvo de vigilância e difamação pelo FBI; o caso New York Times v. Sullivan nasceu da defesa dele.",
+    "basis": "Documentado quanto ao dissenso; inferência quanto ao desenho atual.",
+    "cit": "mlk_paper",
+    "A": {
+     "agree": "Combater campanhas de ódio protege grupos que ele defendia.",
+     "tension": "Quem foi alvo do aparato do Estado desconfiaria de dar ao governo poder sobre o discurso.",
+     "concl": "Alinhamento parcial.",
+     "idx": 48,
+     "conf": "Baixa"
+    },
+    "B": {
+     "agree": "Proteger críticos do poder contra punição governamental está em linha com sua experiência.",
+     "tension": "Silêncio sobre discurso de ódio contra minorias.",
+     "concl": "Alinhamento moderado.",
+     "idx": 60,
+     "conf": "Baixa"
+    }
+   }
+  }
+ },
+ {
+  "id": 10,
+  "title": "Pobreza e proteção social",
+  "short": "Pobreza",
+  "question": "Programas sociais devem ser ampliados como direito permanente, ou desenhados como “porta de saída” para a autonomia?",
+  "A": {
+   "proposal": "Manter, aperfeiçoar e ampliar a proteção social: Bolsa Família com benefícios para crianças, valorização real do salário mínimo, SUAS fortalecido, Farmácia Popular 100% gratuita, Gás do Povo e Luz do Povo.",
+   "goal": "Reduzir a desigualdade e consolidar um Estado de bem-estar social.",
+   "items": [
+    "Bolsa Família recriado e expandido (p. 12, 19)",
+    "Política de valorização do salário mínimo (p. 19, 74)",
+    "Fortalecimento do SUAS (p. 25)",
+    "Gás do Povo e Luz do Povo citados como realizações (p. 65–66); compromisso geral de “manter, aperfeiçoar e ampliar as políticas de proteção social” (p. 18)",
+    "Farmácia Popular gratuita, com inclusão de exames (p. 36)"
+   ],
+   "consequence": "Amplia a rede de proteção; o custo fiscal é contínuo.",
+   "positives": [
+    "Combate à fome e à pobreza extrema",
+    "Proteção à criança"
+   ],
+   "tensions": [
+    "Pouca ênfase em trajetórias de saída do benefício"
+   ],
+   "pages": "p. 12, 18–25, 65–66"
+  },
+  "B": {
+   "proposal": "Manter os programas sociais existentes (“não vai ter essa ajuda tirada. Ponto.”), combater fraudes e criar uma trilha de saída: prioridade do beneficiário em qualificação e primeiro emprego, retorno sem fila ao benefício se o emprego não der certo, e o programa Ganha-Ganha.",
+   "goal": "Superar “a armadilha da pobreza”, não administrá-la: “depender menos do Estado amanhã”.",
+   "items": [
+    "Manutenção dos programas existentes com combate a fraudes (p. 42)",
+    "Prioridade do beneficiário em qualificação e intermediação de emprego (p. 43)",
+    "Retorno imediato ao benefício após o seguro-desemprego (p. 43)",
+    "Ganha-Ganha: pontuação voluntária que vira crédito e cashback (p. 19, 46)",
+    "Proibir o uso de recursos de programas sociais em apostas (p. 33)"
+   ],
+   "consequence": "Incentiva a transição para o trabalho; não prevê ampliação de valores.",
+   "positives": [
+    "Garante que ninguém perca o benefício ao tentar trabalhar",
+    "Valoriza o trabalho como caminho"
+   ],
+   "tensions": [
+    "Não prevê ampliação de valores nem de cobertura"
+   ],
+   "pages": "p. 19, 33, 42–46"
+  },
+  "fig": {
+   "jp2": {
+    "principles": "Opção preferencial pelos pobres e solidariedade; mas crítica ao “Estado assistencial” que gera passividade; o trabalho como realização da pessoa.",
+    "basis": "Sollicitudo Rei Socialis (1987) e Centesimus Annus §48 (1991). Diretamente documentado nos princípios; aplicação concreta é inferência.",
+    "cit": "jp_assist",
+    "A": {
+     "agree": "A prioridade aos pobres, às crianças e ao salário mínimo real é coerente com a solidariedade e o salário justo.",
+     "tension": "A expansão contínua da assistência sem desenho de autonomia é o que ele criticou como Estado assistencial.",
+     "concl": "Alinhamento alto-moderado.",
+     "idx": 70,
+     "conf": "Média"
+    },
+    "B": {
+     "agree": "Manter os programas e ligar a proteção ao trabalho e à autonomia combina solidariedade e subsidiariedade, como em Centesimus Annus.",
+     "tension": "Não há compromisso com a ampliação da proteção nem com salário familiar.",
+     "concl": "Alinhamento moderado-alto.",
+     "idx": 64,
+     "conf": "Média"
+    }
+   },
+   "bg": {
+    "principles": "Dever cristão de aliviar a pobreza; apoio à Guerra contra a Pobreza de Lyndon Johnson; ética do trabalho; desigualdade extrema como fonte de conflito.",
+    "basis": "Apoio documentado aos programas de Johnson nos anos 1960; entrevista à Christianity Today (c. 1985).",
+    "cit": "bg_cadill",
+    "A": {
+     "agree": "Combater a fome e a pobreza extrema é compatível com seu apoio aos programas antipobreza dos anos 1960.",
+     "tension": "Ênfase menor no trabalho e na responsabilidade pessoal.",
+     "concl": "Alinhamento moderado.",
+     "idx": 62,
+     "conf": "Baixa"
+    },
+    "B": {
+     "agree": "Manter a rede de proteção e valorizar o trabalho como saída está próximo de sua ética do esforço.",
+     "tension": "Não há base documentada para avaliar o desenho da “porta de saída”.",
+     "concl": "Alinhamento moderado.",
+     "idx": 60,
+     "conf": "Baixa"
+    }
+   },
+   "mlk": {
+    "principles": "Pobreza é um mal abolível; renda garantida atrelada à mediana; crítica a programas fragmentados e humilhantes; emprego pleno.",
+    "basis": "Where Do We Go from Here (1967) e a Campanha dos Pobres (1968). Inferência forte.",
+    "cit": "mlk_income",
+    "A": {
+     "agree": "Transferência de renda ampliada, valorização do salário mínimo e gratuidade de serviços aproximam-se de sua proposta de abolir a pobreza diretamente.",
+     "tension": "Ele pediria uma renda garantida mais ampla que o Bolsa Família.",
+     "concl": "Alinhamento alto.",
+     "idx": 82,
+     "conf": "Média"
+    },
+    "B": {
+     "agree": "Emprego como saída da pobreza e retorno garantido ao benefício são ideias que ele apoiaria.",
+     "tension": "Nenhum aumento da proteção; a lógica de “depender menos do Estado” contrasta com sua renda garantida atrelada à mediana.",
+     "concl": "Alinhamento parcial.",
+     "idx": 50,
+     "conf": "Média"
+    }
+   }
+  }
+ },
+ {
+  "id": 11,
+  "title": "Economia: Estado e livre mercado",
+  "short": "Economia",
+  "question": "Qual o papel do Estado e do mercado na economia?",
+  "A": {
+   "proposal": "Estado indutor do desenvolvimento: planejamento, política industrial, bancos e empresas públicas como instrumentos, tributação progressiva e manutenção do arcabouço fiscal, com concessões ao setor privado.",
+   "goal": "Crescimento com redução das desigualdades e “neoindustrialização”.",
+   "items": [
+    "Política industrial Nova Indústria Brasil e conteúdo local (p. 50–51)",
+    "Petrobras amplia refino e volta à distribuição (p. 67)",
+    "Medidas tributárias progressivas já adotadas e promessa de “justiça tributária” (p. 11, 19, 49)",
+    "Concessões e leilões de infraestrutura (p. 53)"
+   ],
+   "consequence": "Fortalece setores estratégicos; críticos apontam risco de ineficiência e de uso político de estatais.",
+   "positives": [
+    "Planejamento de longo prazo",
+    "Progressividade"
+   ],
+   "tensions": [
+    "Papel empresarial do Estado ampliado"
+   ],
+   "pages": "p. 10–11, 47–57, 67"
+  },
+  "B": {
+   "proposal": "Economia de mercado: Estado “regulador e coordenador, não empresário”, menos impostos, equilíbrio fiscal com superávits, desestatização caso a caso, abertura comercial e adesão à OCDE, segurança jurídica para o investimento privado.",
+   "goal": "“Menos impostos, mais formalidade, mais crescimento”: 4% ao ano.",
+   "items": [
+    "Estado regulador, não empresário (p. 55)",
+    "Redução de impostos e revisão da reforma tributária (p. 30, 71)",
+    "Superávits e regra de gasto (p. 71)",
+    "Desestatização “com critério” e abertura comercial (p. 63, 70)",
+    "Segurança jurídica e regras estáveis (p. 49–50)"
+   ],
+   "consequence": "Atrai investimento privado; o plano não trata da tributação da alta renda.",
+   "positives": [
+    "Disciplina fiscal",
+    "Previsibilidade para investir"
+   ],
+   "tensions": [
+    "Pouca atenção à redistribuição"
+   ],
+   "pages": "p. 29–31, 49–56, 62–64, 69–72"
+  },
+  "fig": {
+   "jp2": {
+    "principles": "Reconhece o papel “fundamental e positivo” da empresa, do mercado e da propriedade, dentro de uma moldura jurídica forte; rejeita coletivismo e capitalismo sem regras; destino universal dos bens; subsidiariedade.",
+    "basis": "Centesimus Annus §34, §42 e §48 (1991); Laborem Exercens §14. Documentado nos princípios.",
+    "cit": "jp_market",
+    "A": {
+     "agree": "Atenção à desigualdade e ao emprego corresponde ao destino universal dos bens.",
+     "tension": "Ampliar o papel empresarial do Estado tensiona a subsidiariedade e o papel positivo da empresa privada.",
+     "concl": "Alinhamento parcial.",
+     "idx": 55,
+     "conf": "Média"
+    },
+    "B": {
+     "agree": "Mercado com regras estáveis e Estado não empresário estão próximos de Centesimus Annus.",
+     "tension": "Pouca atenção às necessidades que o mercado não atende, que ele dizia ser dever de justiça suprir.",
+     "concl": "Alinhamento moderado-alto.",
+     "idx": 62,
+     "conf": "Média"
+    }
+   },
+   "bg": {
+    "principles": "Simpatia pela livre iniciativa; anticomunismo; crítica ao materialismo, não aos bens; preocupação com a desigualdade extrema.",
+    "basis": "Escassa reflexão econômica sistemática; entrevista de c. 1985. Inferência fraca.",
+    "cit": "bg_cadill",
+    "A": {
+     "agree": "Sensibilidade à desigualdade.",
+     "tension": "Um Estado empresário amplo está longe de seu horizonte de livre iniciativa.",
+     "concl": "Alinhamento parcial-baixo.",
+     "idx": 48,
+     "conf": "Baixa"
+    },
+    "B": {
+     "agree": "Livre iniciativa e responsabilidade fiscal combinam com sua visão.",
+     "tension": "Pouca atenção à desigualdade.",
+     "concl": "Alinhamento moderado.",
+     "idx": 56,
+     "conf": "Baixa"
+    }
+   },
+   "mlk": {
+    "principles": "Crítica ao capitalismo de concentração; “reestruturação” da economia; distribuição mais ampla da riqueza; programas públicos de grande escala.",
+    "basis": "Carta a Coretta (1952), Beyond Vietnam e discurso à SCLC (1967). Documentado nos princípios.",
+    "cit": "mlk_edif",
+    "A": {
+     "agree": "Indução estatal e progressividade correspondem à “reestruturação” que ele pedia.",
+     "tension": "Não deixou defesa de empresas estatais em particular.",
+     "concl": "Alinhamento alto-moderado.",
+     "idx": 72,
+     "conf": "Média"
+    },
+    "B": {
+     "agree": "Disciplina fiscal e menos impostos sobre o consumo podem beneficiar os pobres.",
+     "tension": "Uma economia guiada pelo mercado, com Estado reduzido, é o oposto da reestruturação que ele defendia.",
+     "concl": "Alinhamento baixo.",
+     "idx": 30,
+     "conf": "Média"
+    }
+   }
+  }
+ },
+ {
+  "id": 12,
+  "title": "Corrupção e integridade",
+  "short": "Corrupção",
+  "question": "Como cada plano pretende prevenir e punir a corrupção?",
+  "A": {
+   "proposal": "Aprofundar o Plano de Integridade e Combate à Corrupção 2025–2027, responsabilizar “corruptos e corruptores, inclusive os do andar de cima”, ampliar a transparência com dados abertos e inteligência artificial, propor que o sistema de emendas parlamentares “seja debatido com a sociedade” e barrar candidaturas ligadas ao crime organizado.",
+   "goal": "Prevenção, investigação e responsabilização, “com pleno respeito à independência das instituições”.",
+   "items": [
+    "Plano de Integridade e Combate à Corrupção (p. 18)",
+    "Portal da Transparência com dados abertos e IA; Ouvidoria e consultas públicas (p. 18)",
+    "Crítica às emendas impositivas e ao orçamento secreto; debate com a sociedade (p. 15–16)",
+    "Barrar candidaturas ligadas ao crime organizado (p. 27)"
+   ],
+   "consequence": "Fortalece órgãos de controle e a participação social; depende da independência das instituições.",
+   "positives": [
+    "Transparência",
+    "Responsabilização do topo"
+   ],
+   "tensions": [
+    "Pouco sobre nomeações em estatais"
+   ],
+   "pages": "p. 15–18, 27"
+  },
+  "B": {
+   "proposal": "Prevenir a corrupção pela organização do Estado: Lei das Estatais fortalecida, dirigentes escolhidos por competência e recrutamento de mercado, fundos de pensão blindados de indicações políticas, transparência das emendas, avaliação de cada gasto e pacote antifraude na Previdência.",
+   "goal": "“Comando técnico no lugar do apadrinhamento”.",
+   "items": [
+    "Lei das Estatais fortalecida e recrutamento técnico (p. 69–70)",
+    "Fundos de pensão protegidos de indicação política (p. 70)",
+    "Transparência e rastreabilidade das emendas (p. 69)",
+    "Pacote antifraude no INSS (p. 72–73)",
+    "Fim da reeleição para presidente (p. 66)"
+   ],
+   "consequence": "Reduz o espaço para nomeações políticas; depende de aprovação legislativa em parte.",
+   "positives": [
+    "Mérito nas nomeações",
+    "Proteção dos aposentados contra fraudes"
+   ],
+   "tensions": [
+    "Pouco sobre responsabilização penal de corruptores privados"
+   ],
+   "pages": "p. 66, 69–73"
+  },
+  "fig": {
+   "jp2": {
+    "principles": "Bem comum; democracia que precisa de valores; serviço público como serviço, não como apropriação; “estruturas de pecado”.",
+    "basis": "Centesimus Annus §46; Sollicitudo Rei Socialis. Sem declaração específica sobre desenho anticorrupção: inferência.",
+    "cit": "jp_democ",
+    "A": {
+     "agree": "Transparência e responsabilização dos poderosos servem ao bem comum.",
+     "tension": "Nenhuma relevante.",
+     "concl": "Alinhamento moderado-alto.",
+     "idx": 62,
+     "conf": "Baixa"
+    },
+    "B": {
+     "agree": "Nomeações por competência e proteção dos aposentados servem ao bem comum.",
+     "tension": "Nenhuma relevante.",
+     "concl": "Alinhamento moderado-alto.",
+     "idx": 62,
+     "conf": "Baixa"
+    }
+   },
+   "bg": {
+    "principles": "Integridade pessoal e institucional (Manifesto de Modesto, 1948): prestação de contas, honestidade financeira, evitar conflitos de interesse.",
+    "basis": "Manifesto de Modesto (documentado). Aplicação ao Estado: inferência.",
+    "cit": null,
+    "A": {
+     "agree": "Transparência e prestação de contas correspondem à ética de Modesto.",
+     "tension": "Nenhuma relevante.",
+     "concl": "Alinhamento moderado.",
+     "idx": 60,
+     "conf": "Baixa"
+    },
+    "B": {
+     "agree": "Regras contra apadrinhamento e conflito de interesse correspondem à ética de Modesto.",
+     "tension": "Nenhuma relevante.",
+     "concl": "Alinhamento moderado.",
+     "idx": 60,
+     "conf": "Baixa"
+    }
+   },
+   "mlk": {
+    "principles": "Democracia participativa; “seja fiel ao que você escreveu no papel”; desconfiança do poder sem controle.",
+    "basis": "Pouca base específica sobre corrupção: inferência fraca.",
+    "cit": null,
+    "A": {
+     "agree": "Participação social no controle e responsabilização do topo combinam com sua defesa da democracia participativa.",
+     "tension": "Nenhuma relevante.",
+     "concl": "Alinhamento moderado.",
+     "idx": 58,
+     "conf": "Baixa"
+    },
+    "B": {
+     "agree": "Proteger aposentados contra fraudes protege os vulneráveis.",
+     "tension": "Foco em gestão técnica, sem participação popular.",
+     "concl": "Alinhamento parcial.",
+     "idx": 54,
+     "conf": "Baixa"
+    }
+   }
+  }
+ },
+ {
+  "id": 13,
+  "title": "Racismo e igualdade racial",
+  "short": "Racismo",
+  "question": "O racismo deve ser enfrentado com políticas específicas (cotas, titulação quilombola, metas raciais) ou com políticas universais?",
+  "A": {
+   "proposal": "Combate ao racismo “no centro” da estratégia de desenvolvimento: cotas na universidade e no serviço público, titulação de territórios quilombolas, Estatuto da Igualdade Racial, prevenção da violência contra a juventude negra e atenção à mortalidade materna negra.",
+   "goal": "Enfrentar a questão racial como “dimensão estruturante” das desigualdades brasileiras.",
+   "items": [
+    "Racismo como dimensão estruturante (p. 19)",
+    "Cotas no ensino superior e no funcionalismo (p. 19–20)",
+    "65 titulações quilombolas e continuidade do processo (p. 20)",
+    "Juventude negra na política de segurança (p. 29)",
+    "Mulheres negras na política de maternidade segura (p. 39)"
+   ],
+   "consequence": "Mantém e amplia as ações afirmativas.",
+   "positives": [
+    "Reconhece explicitamente o racismo",
+    "Medidas concretas e mensuráveis"
+   ],
+   "tensions": [
+    "Debate sobre critérios raciais versus socioeconômicos"
+   ],
+   "pages": "p. 19–20, 29, 39"
+  },
+  "B": {
+   "proposal": "O plano não menciona racismo nem políticas raciais. Celebra a “miscigenação” como motivo de orgulho e dá autonomia a indígenas e quilombolas para decidir atividades produtivas em suas terras.",
+   "goal": "Políticas universais e valorização da formação mestiça do país.",
+   "items": [
+    "Miscigenação e país de imigrantes como “motivos de orgulho” (p. 41)",
+    "Autonomia produtiva para povos indígenas e quilombolas, com indenização de restrições (p. 50, 61)",
+    "Nenhuma proposta específica contra a discriminação racial"
+   ],
+   "consequence": "Sem metas raciais; as políticas atuais dependeriam de decisões futuras.",
+   "positives": [
+    "Valoriza a identidade nacional comum",
+    "Reconhece autonomia dos povos tradicionais"
+   ],
+   "tensions": [
+    "Silêncio total sobre racismo"
+   ],
+   "pages": "p. 41, 50, 61"
+  },
+  "fig": {
+   "jp2": {
+    "principles": "Racismo é pecado e ofende a dignidade comum; defesa das culturas indígenas; pedido de perdão pelos pecados de cristãos contra povos e raças (2000).",
+    "basis": "Homilia de St. Louis (1999), documento “A Igreja e o Racismo” (1988), Dia do Perdão (2000). Sem posição sobre cotas: inferência.",
+    "cit": "jp_respect",
+    "A": {
+     "agree": "Colocar o combate ao racismo no centro corresponde à sua condenação do racismo como mal persistente.",
+     "tension": "Não se pronunciou sobre cotas raciais.",
+     "concl": "Alinhamento alto-moderado.",
+     "idx": 74,
+     "conf": "Média"
+    },
+    "B": {
+     "agree": "A valorização da identidade comum e da autonomia dos povos tradicionais tem eco em sua defesa das culturas.",
+     "tension": "Ignorar o racismo em um país com desigualdades raciais profundas destoa de sua insistência em nomear esse pecado.",
+     "concl": "Alinhamento parcial-baixo.",
+     "idx": 45,
+     "conf": "Média"
+    }
+   },
+   "bg": {
+    "principles": "Racismo contradiz o evangelho; dessegregou suas cruzadas; foi gradualista e lamentou não ter ido a Selma.",
+    "basis": "Chattanooga (1953), Nova York (1957), Durban (1973), entrevista de 2005. Documentado. Sobre ações afirmativas: sem posição.",
+    "cit": "bg_white",
+    "A": {
+     "agree": "Nomear o racismo e agir contra ele corresponde à sua autocrítica tardia.",
+     "tension": "Ele desconfiava de integração “forçada” por lei (1960).",
+     "concl": "Alinhamento moderado.",
+     "idx": 60,
+     "conf": "Média"
+    },
+    "B": {
+     "agree": "O ideal de unidade de todos sob o evangelho tem paralelo na valorização da miscigenação.",
+     "tension": "O silêncio sobre o racismo lembra o gradualismo que ele próprio lamentou.",
+     "concl": "Alinhamento parcial.",
+     "idx": 48,
+     "conf": "Média"
+    }
+   },
+   "mlk": {
+    "principles": "Racismo como estrutura ligada à exploração econômica; medidas compensatórias (“Bill of Rights for the Disadvantaged”); objetivo final de julgamento pelo caráter.",
+    "basis": "Why We Can't Wait (1964), entrevista à Playboy (1965), “I Have a Dream”. Diretamente documentado.",
+    "cit": "mlk_char",
+    "A": {
+     "agree": "Ações afirmativas, reparação territorial e foco na juventude negra correspondem às medidas compensatórias que ele propôs.",
+     "tension": "Ele também pedia critérios de classe que incluíssem os brancos pobres.",
+     "concl": "Alinhamento muito alto.",
+     "idx": 92,
+     "conf": "Alta"
+    },
+    "B": {
+     "agree": "A meta de uma sociedade em que a cor não importe aparece no elogio à miscigenação.",
+     "tension": "Celebrar a miscigenação sem medidas contra a desigualdade racial não corresponde às medidas compensatórias que ele propôs.",
+     "concl": "Alinhamento baixo.",
+     "idx": 38,
+     "conf": "Média"
+    }
+   }
+  }
+ },
+ {
+  "id": 14,
+  "title": "Meio ambiente",
+  "short": "Meio ambiente",
+  "question": "Qual o equilíbrio de cada plano entre preservar a natureza e produzir?",
+  "A": {
+   "proposal": "Transformação ecológica como eixo do desenvolvimento: desmatamento líquido zero até 2030, metas climáticas, fundos verdes, áreas protegidas e terras indígenas, ao lado da expansão de petróleo e gás.",
+   "goal": "Fazer da sustentabilidade “um caminho para desenvolver o país”.",
+   "items": [
+    "Desmatamento líquido zero até 2030 e cumprimento da meta climática (p. 70–71)",
+    "Fundo Clima, Fundo Amazônia e Fundo Florestas Tropicais (p. 70–71)",
+    "Demarcação de terras indígenas e unidades de conservação (p. 20, 70)",
+    "Expansão da exploração de petróleo e gás pela Petrobras (p. 67)"
+   ],
+   "consequence": "Mais proteção ambiental; produtores rurais apontam insegurança jurídica.",
+   "positives": [
+    "Metas ambientais ambiciosas"
+   ],
+   "tensions": [
+    "Petróleo e gás convivem com as metas climáticas"
+   ],
+   "pages": "p. 20, 63–73"
+  },
+  "B": {
+   "proposal": "“Preservar e produzir ao mesmo tempo”: desmatamento ilegal zero até 2029, pagamento a quem preserva, bioeconomia e mercado de carbono, fiscalização por satélite contra grilagem e garimpo ilegal, licenciamento ágil e exploração de gás não convencional.",
+   "goal": "Tratar o meio ambiente como “ativo estratégico, não como obstáculo ao desenvolvimento”.",
+   "items": [
+    "Desmatamento ilegal zero até 2029 (p. 58)",
+    "Pagamento por serviços ambientais e bioeconomia (p. 57)",
+    "Fiscalização contra grilagem, garimpo e crime ambiental (p. 58–59)",
+    "Licenciamento ágil, com aprovação se o órgão não decidir no prazo (p. 49–50)",
+    "Gás não convencional “com responsabilidade ambiental” (p. 52)"
+   ],
+   "consequence": "Mais segurança para quem produz; ambientalistas temem afrouxamento do controle.",
+   "positives": [
+    "Remunera quem preserva",
+    "Combate ao crime ambiental"
+   ],
+   "tensions": [
+    "Licença por omissão do Estado"
+   ],
+   "pages": "p. 49–59"
+  },
+  "fig": {
+   "jp2": {
+    "principles": "A crise ecológica é uma questão moral; destino universal dos bens; o trabalho humano também transforma a natureza legitimamente.",
+    "basis": "Mensagem para o Dia Mundial da Paz (1990); audiência de 17 jan. 2001 (“conversão ecológica”). Documentado nos princípios.",
+    "cit": "jp_eco",
+    "A": {
+     "agree": "Metas ambientais claras correspondem à ecologia como dever moral.",
+     "tension": "A expansão de petróleo e gás pesa contra a “conversão ecológica”.",
+     "concl": "Alinhamento moderado-alto.",
+     "idx": 66,
+     "conf": "Média"
+    },
+    "B": {
+     "agree": "Remunerar a preservação e combater o crime ambiental unem ecologia e trabalho.",
+     "tension": "A licença concedida por omissão relativiza o controle do bem comum.",
+     "concl": "Alinhamento moderado.",
+     "idx": 58,
+     "conf": "Média"
+    }
+   },
+   "bg": {
+    "principles": "Mordomia da criação: o ser humano como administrador do mundo que pertence a Deus.",
+    "basis": "Coluna institucional da BGEA, sem data. Inferência fraca.",
+    "cit": "bg_steward",
+    "A": {
+     "agree": "O cuidado com a criação aparece nas metas.",
+     "tension": "Ele não tinha agenda ambiental política.",
+     "concl": "Alinhamento parcial-moderado.",
+     "idx": 56,
+     "conf": "Baixa"
+    },
+    "B": {
+     "agree": "Preservação com produção também é mordomia.",
+     "tension": "Sem base para avaliar o licenciamento.",
+     "concl": "Alinhamento parcial-moderado.",
+     "idx": 56,
+     "conf": "Baixa"
+    }
+   },
+   "mlk": {
+    "principles": "Interdependência; justiça para os mais vulneráveis.",
+    "basis": "Quase sem declarações ecológicas: inferência fraca.",
+    "cit": "mlk_mutual",
+    "A": {
+     "agree": "A proteção de povos indígenas e comunidades tradicionais responde à justiça para os marginalizados.",
+     "tension": "Nenhuma documentada.",
+     "concl": "Alinhamento moderado.",
+     "idx": 62,
+     "conf": "Baixa"
+    },
+    "B": {
+     "agree": "Não criminalizar o pequeno morador da floresta.",
+     "tension": "Sem compromisso de demarcação de terras dos povos tradicionais.",
+     "concl": "Alinhamento parcial.",
+     "idx": 52,
+     "conf": "Baixa"
+    }
+   }
+  }
+ },
+ {
+  "id": 15,
+  "title": "Política externa",
+  "short": "Política externa",
+  "question": "Qual a orientação geral de cada plano nas relações internacionais?",
+  "A": {
+   "proposal": "Política externa autônoma e multilateral: soberania, integração sul-americana, aproximação com o Sul Global e o BRICS, reforma da ONU e das instituições financeiras, combate global à fome e defesa da paz.",
+   "goal": "Autonomia estratégica e uma ordem internacional “mais justa”.",
+   "items": [
+    "Não intervenção, paz e direitos humanos como princípios (p. 79)",
+    "BRICS, Sul Global e integração regional (p. 80–81)",
+    "Reforma da ONU e das instituições financeiras (p. 81)",
+    "Aliança Global contra a Fome e a Pobreza (p. 81)"
+   ],
+   "consequence": "Diversifica parcerias; críticos apontam proximidade com regimes autoritários.",
+   "positives": [
+    "Multilateralismo e combate à fome"
+   ],
+   "tensions": [
+    "Pouco sobre democracia em países parceiros"
+   ],
+   "pages": "p. 77–83"
+  },
+  "B": {
+   "proposal": "Diplomacia “profissional, não ideológica”, guiada pelo comércio: reaproximação com Estados Unidos, Israel e Argentina, negociação com todos os mercados, adesão à OCDE e crítica a regimes como Venezuela e Irã.",
+   "goal": "Interesse comercial do produtor e do trabalhador brasileiro.",
+   "items": [
+    "Diplomacia pragmática e técnica (p. 61–62)",
+    "Reaproximação com EUA, Israel e Argentina (p. 62)",
+    "Adesão à OCDE e abertura comercial (p. 63)",
+    "Crítica à política externa do atual governo (Venezuela, Irã) (p. 61–62)"
+   ],
+   "consequence": "Aproxima o Brasil do eixo ocidental; menor ênfase no Sul Global.",
+   "positives": [
+    "Abertura comercial",
+    "Relações com parceiros tradicionais"
+   ],
+   "tensions": [
+    "Pouco sobre paz, fome global e ONU"
+   ],
+   "pages": "p. 61–64"
+  },
+  "fig": {
+   "jp2": {
+    "principles": "ONU como “família das nações”; solidariedade com os países pobres; firmeza contra totalitarismos; patriotismo sem nacionalismo; paz.",
+    "basis": "Discurso à ONU (1995); Tertio Millennio Adveniente §51; oposição ao comunismo e à guerra do Iraque. Documentado nos princípios.",
+    "cit": "jp_patriot",
+    "A": {
+     "agree": "Multilateralismo, combate à fome e defesa da paz estão próximos de sua visão.",
+     "tension": "Ele não aceitaria neutralidade diante de ditaduras.",
+     "concl": "Alinhamento moderado-alto.",
+     "idx": 62,
+     "conf": "Média"
+    },
+    "B": {
+     "agree": "Abertura e relações com parceiros tradicionais; firmeza diante de ditaduras aparece só como crítica ao atual governo.",
+     "tension": "Pouco sobre paz, fome global e ONU.",
+     "concl": "Alinhamento moderado.",
+     "idx": 54,
+     "conf": "Média"
+    }
+   },
+   "bg": {
+    "principles": "Apoio histórico a Israel; anticomunismo inicial; depois, pregação em países comunistas e defesa do desarmamento; o Reino de Deus não se confunde com uma nação.",
+    "basis": "Declarações de 1973, 1979 e 1982 (documentadas). Inferência para alianças atuais.",
+    "cit": "bg_kingdom",
+    "A": {
+     "agree": "Ênfase em paz e combate à fome aproxima-se do Graham tardio.",
+     "tension": "O plano não diz como a aproximação com o BRICS se concilia com a defesa dos direitos humanos.",
+     "concl": "Alinhamento parcial.",
+     "idx": 54,
+     "conf": "Baixa"
+    },
+    "B": {
+     "agree": "Reaproximação com Israel e com os Estados Unidos corresponde às suas afinidades.",
+     "tension": "Ele advertiu contra confundir o Reino de Deus com alinhamentos nacionais.",
+     "concl": "Alinhamento moderado-alto.",
+     "idx": 64,
+     "conf": "Baixa"
+    }
+   },
+   "mlk": {
+    "principles": "Internacionalismo (“casa mundial”), anticolonialismo, antimilitarismo, segurança de Israel com paz para os árabes.",
+    "basis": "Beyond Vietnam (1967); entrevista à Rabbinical Assembly (1968). Inferência moderada.",
+    "cit": "mlk_injust",
+    "A": {
+     "agree": "Sul Global, combate à fome e paz respondem a seu internacionalismo anticolonial.",
+     "tension": "O plano não diz como a aproximação com o BRICS se concilia com a defesa dos direitos humanos.",
+     "concl": "Alinhamento moderado-alto.",
+     "idx": 68,
+     "conf": "Baixa"
+    },
+    "B": {
+     "agree": "A segurança de Israel era um ponto que ele afirmou.",
+     "tension": "Política centrada em comércio, sem pobreza global nem paz.",
+     "concl": "Alinhamento parcial-baixo.",
+     "idx": 45,
+     "conf": "Baixa"
+    }
+   }
+  }
+ }
 ];
 
 /* ---------------------------------------------------------------------
