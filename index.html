@@ -276,6 +276,22 @@ p .lab{margin-right:4px}
 .spair{display:grid;grid-template-columns:minmax(0,1fr) 56px;gap:8px;align-items:center;font:500 .78rem var(--mono)}
 .synth{flex-direction:column;align-items:stretch}
 
+
+/* ---------- coerência ---------- */
+.cohsum{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:16px}
+.cohcard{border:1px solid var(--rule);border-top:3px solid var(--c);background:var(--card);padding:12px 14px;display:flex;flex-direction:column;gap:8px}
+.cohcard h3{font-size:1.05rem}
+.stack{display:flex;height:14px;border:1px solid var(--rule);overflow:hidden}
+.stack span{display:block;height:100%}
+.cohleg{display:flex;flex-wrap:wrap;gap:6px 14px;font:500 .75rem var(--mono)}
+.coh td{vertical-align:top;font-size:.86rem;line-height:1.45;min-width:220px}
+.coh td:first-child{min-width:130px;font-weight:600}
+.badge{display:inline-flex;gap:6px;align-items:center;font:600 .72rem var(--mono);letter-spacing:.04em;text-transform:uppercase;margin-bottom:4px}
+.badge i{font-style:normal;font-size:1rem}
+.coh details{margin-top:4px}
+.coh summary{cursor:pointer;font:500 .7rem var(--mono);letter-spacing:.08em;text-transform:uppercase;color:var(--petrol)}
+.coh .src{font-size:.78rem;color:var(--ink-2);margin-top:4px}
+
 /* ---------- abertura: tríptico sem cortes ---------- */
 .trip{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:10px;align-items:end}
 .trip figure{margin:0;display:flex;flex-direction:column;gap:8px;opacity:1}
@@ -301,7 +317,7 @@ p .lab{margin-right:4px}
   .figprofile .photo{max-width:300px}
 }
 @media (max-width:620px){
-  .cols2,.result,.facts,.pn,.frow{grid-template-columns:minmax(0,1fr)}
+  .cols2,.result,.facts,.pn,.frow,.cohsum{grid-template-columns:minmax(0,1fr)}
   .scale{grid-template-columns:minmax(0,1fr)}
   .scale div{border-right:0;border-bottom:1px solid var(--rule)}
   .chapnav{display:none}
@@ -503,6 +519,16 @@ p .lab{margin-right:4px}
         <li>Muitos índices têm confiança baixa, sobretudo para Billy Graham e para temas posteriores a 1968 no caso de King. Diferenças de poucos pontos estão dentro da incerteza da análise.</li>
       </ul>
     </div>
+  </div>
+</section>
+
+<section class="slide" data-chapter="5" data-title="Coerência: plano × governo anterior">
+  <div class="wrap">
+    <div><span class="eyebrow">Capítulo 05 · Levantamento complementar</span><h2 class="h2">Coerência: o que cada lado propõe e o que fez no governo</h2>
+      <p class="muted" style="margin-top:6px;max-width:95ch">Para os mesmos 15 temas, a proposta de cada plano foi comparada com o que fez o último governo do mesmo campo. O Plano A se apresenta como continuidade do governo Lula (2023–2026). O Plano B se apresenta como continuidade do governo Jair Bolsonaro (2019–2022), embora o candidato seja outro (p. 9). Base: reportagens e dados oficiais com data, listados em cada linha.</p></div>
+    <div class="cohsum" id="cohSummary"></div>
+    <div class="tablewrap"><table class="coh" id="cohTable"></table></div>
+    <div class="notice"><strong>Como ler</strong>Coerência mede só se o governo agiu na direção do que o plano propõe hoje; não mede se a política foi boa ou ruim. Este levantamento é jornalístico e separado dos índices dos personagens. Os períodos são diferentes: o governo Bolsonaro atravessou a pandemia (2020–2021) e o governo Lula ainda está em curso. ● coerente · ◐ parcialmente coerente · ○ pouco coerente · – sem histórico comparável.</div>
   </div>
 </section>
 
@@ -2240,7 +2266,937 @@ const SOURCES = {
   ]
 };
 
-if (typeof module !== "undefined") module.exports = { CANDIDATES, FIGURES, QUOTES, THEMES, SOURCES };
+
+/* ---------------------------------------------------------------------
+   COERÊNCIA: o que cada plano propõe × o que o governo do mesmo campo fez
+   (levantamento jornalístico separado; não usa os índices dos personagens)
+   ------------------------------------------------------------------- */
+const COHERENCE = {
+ "A": {
+  "governo": "Luiz Inácio Lula da Silva (2023–2026)",
+  "temas": [
+   {
+    "id": 1,
+    "proposta": "Segurança integrada entre os entes federativos, com SUSP constitucionalizado, asfixia financeira de facções, prevenção e controle de armas.",
+    "historico": "Em 2023, decretos restringiram o acesso a armas, e os novos registros de CAC caíram 79,4% entre 2022 e 2024. O governo enviou a PEC da Segurança em abril de 2025: a Câmara aprovou o texto em março de 2026, e em setembro de 2026 ele seguia sem votação no plenário do Senado. Em março de 2026, Lula sancionou com vetos a Lei Antifacção, proposta pelo Ministério da Justiça e endurecida pelo relator; as mortes violentas intencionais caíram 8,2% em 2025, mas as mortes por intervenção policial subiram 5,4%.",
+    "avaliacao": "Coerente",
+    "justificativa": "As principais ações (PEC do SUSP, Lei Antifacção e controle de armas) seguem o plano e as mortes violentas caíram, embora a PEC não tenha sido promulgada e as mortes por intervenção policial tenham subido em 2025.",
+    "fontes": [
+     {
+      "veiculo": "Congresso em Foco",
+      "titulo": "PEC da Segurança emperra no Senado 50 dias após aprovação na Câmara",
+      "data": "2026-04-23",
+      "url": "https://www.congressoemfoco.com.br/noticia/118276/pec-da-seguranca-emperra-no-senado-50-dias-apos-aprovacao-na-camara"
+     },
+     {
+      "veiculo": "Poder360",
+      "titulo": "Lula sanciona PL Antifacção com vetos; entenda como ficou",
+      "data": "2026-03-24",
+      "url": "https://www.poder360.com.br/brasil/lula-sanciona-pl-antifaccao-com-veto-e-sem-alcolumbre-no-planalto/"
+     },
+     {
+      "veiculo": "Congresso em Foco",
+      "titulo": "Mortes violentas chegam ao menor patamar em 14 anos",
+      "data": "2026-07-23",
+      "url": "https://www.congressoemfoco.com.br/noticia/120720/mortes-violentas-chegam-ao-menor-patamar-em-14-anos-veja-mapa"
+     },
+     {
+      "veiculo": "Poder360",
+      "titulo": "Concessões para CACs caem 79,4% desde fim do governo Bolsonaro",
+      "data": "2025-07-24",
+      "url": "https://www.poder360.com.br/brasil/concessoes-para-cacs-caem-79-desde-fim-do-governo-bolsonaro/"
+     }
+    ]
+   },
+   {
+    "id": 2,
+    "proposta": "O plano não trata da maioridade penal (mantém, por omissão, os 18 anos) e aposta na prevenção e na permanência escolar dos jovens.",
+    "historico": "Em fevereiro e março de 2026, o Ministério da Justiça e os partidos da base pressionaram o relator a retirar da PEC da Segurança a redução da maioridade para 16 anos. O ponto saiu do texto antes da votação na Câmara. Em junho de 2026, a CCJ da Câmara aprovou uma PEC própria de redução; segundo a imprensa, o Planalto via o tema como desgastante e Lula se opõe historicamente à mudança.",
+    "avaliacao": "Coerente",
+    "justificativa": "O governo agiu para manter a idade penal em 18 anos, em linha com a omissão do plano, que preserva a regra atual.",
+    "fontes": [
+     {
+      "veiculo": "Diario de Pernambuco (Estadão Conteúdo)",
+      "titulo": "Câmara vai votar PEC da Segurança Pública sem redução da maioridade penal",
+      "data": "2026-03-04",
+      "url": "https://www.diariodepernambuco.com.br/politica/2026/03/11709107-camara-vai-votar-pec-da-seguranca-publica-sem-reducao-da-maioridade-penal.html"
+     },
+     {
+      "veiculo": "Diario de Pernambuco (Estadão Conteúdo)",
+      "titulo": "PEC da Segurança: Mendonça Filho mantém redução da maioridade penal apesar de apelo do governo Lula",
+      "data": "2026-03-02",
+      "url": "https://www.diariodepernambuco.com.br/politica/2026/03/11708897-pec-da-seguranca-mendonca-filho-mantem-reducao-da-maioridade-penal-apesar-de-apelo-do-governo-lula.html"
+     },
+     {
+      "veiculo": "CNN Brasil",
+      "titulo": "Time de Lula teme desgaste em discutir maioridade penal",
+      "data": "2026-06-11",
+      "url": "https://www.cnnbrasil.com.br/politica/time-de-lula-teme-desgaste-em-discutir-maioridade-penal/"
+     }
+    ]
+   },
+   {
+    "id": 3,
+    "proposta": "O plano não menciona o aborto nem o nascituro; promete garantir direitos sexuais e reprodutivos e maternidade segura.",
+    "historico": "Em janeiro de 2023, o Brasil deixou o Consenso de Genebra, aliança internacional contrária ao aborto, alegando que o texto limitava os direitos sexuais e reprodutivos. Em 2024, Lula disse ser pessoalmente contra o aborto e classificou de 'insanidade' o PL 1904, que equiparava o aborto após 22 semanas a homicídio; em fevereiro do mesmo ano, o Ministério da Saúde suspendeu um dia após a publicação uma nota técnica que retirava o limite de semanas no aborto legal. Em setembro de 2024, o governo lançou a Rede Alyne, com meta de reduzir a mortalidade materna em 25% até 2027.",
+    "avaliacao": "Coerente",
+    "justificativa": "O governo defendeu os 'direitos reprodutivos' sem propor mudar a lei penal e investiu na maternidade segura, o que corresponde ao que o plano diz e ao que ele omite.",
+    "fontes": [
+     {
+      "veiculo": "Diário do Nordeste",
+      "titulo": "Brasil deixa Consenso de Genebra, aliança internacional antiaborto",
+      "data": "2023-01-17",
+      "url": "https://diariodonordeste.verdesmares.com.br/ultima-hora/pais/brasil-deixa-consenso-de-genebra-alianca-internacional-antiaborto-1.3324893"
+     },
+     {
+      "veiculo": "Poder360",
+      "titulo": "Saúde volta atrás e suspende nota técnica sobre aborto",
+      "data": "2024-02-29",
+      "url": "https://www.poder360.com.br/saude/saude-volta-atras-e-suspende-nota-tecnica-sobre-aborto/"
+     },
+     {
+      "veiculo": "Poder360",
+      "titulo": "'E se a filha dele fosse estuprada', diz Lula sobre autor do PL 'antiaborto'",
+      "data": "2024-06-18",
+      "url": "https://www.poder360.com.br/governo/e-se-a-filha-dele-fosse-estuprada-diz-lula-sobre-autor-do-pl-antiaborto/"
+     },
+     {
+      "veiculo": "O Povo (Agência Brasil)",
+      "titulo": "Estratégia do governo quer reduzir mortalidade materna em 25% até 2027",
+      "data": "2024-09-12",
+      "url": "https://www.opovo.com.br/noticias/saude/2024/09/12/amp/estrategia-do-governo-quer-reduzir-mortalidade-materna-em-25-ate-2027.html"
+     }
+    ]
+   },
+   {
+    "id": 4,
+    "proposta": "A família aparece como destinatária de políticas sociais (Bolsa Família, cuidados, moradia), com redistribuição do cuidado entre o Estado e entre homens e mulheres.",
+    "historico": "Em março de 2023, o novo Bolsa Família criou um adicional de R$ 150 por criança de até 6 anos e de R$ 50 por gestante e por filho de 7 a 17 anos. Em dezembro de 2024, Lula sancionou a Lei 15.069, que institui a Política Nacional de Cuidados com corresponsabilidade entre Estado, famílias e setor privado. Em 2023, ao deixar o Consenso de Genebra, o governo afirmou que o acordo adotava um conceito limitativo de família.",
+    "avaliacao": "Coerente",
+    "justificativa": "O governo apoiou materialmente as famílias e institucionalizou a política de cuidados, como o plano propõe.",
+    "fontes": [
+     {
+      "veiculo": "Poder360",
+      "titulo": "Entenda as regras do novo Bolsa Família proposto por Lula",
+      "data": "2023-03-02",
+      "url": "https://www.poder360.com.br/governo/entenda-as-regras-do-novo-bolsa-familia-proposto-por-lula/"
+     },
+     {
+      "veiculo": "Agência Senado",
+      "titulo": "Sancionada lei que institui a Política Nacional de Cuidados",
+      "data": "2024-12-26",
+      "url": "https://www12.senado.leg.br/noticias/materias/2024/12/26/sanciona-lei-que-institui-a-politica-nacional-de-cuidados"
+     },
+     {
+      "veiculo": "Diário do Nordeste",
+      "titulo": "Brasil deixa Consenso de Genebra, aliança internacional antiaborto",
+      "data": "2023-01-17",
+      "url": "https://diariodonordeste.verdesmares.com.br/ultima-hora/pais/brasil-deixa-consenso-de-genebra-alianca-internacional-antiaborto-1.3324893"
+     }
+    ]
+   },
+   {
+    "id": 5,
+    "proposta": "Políticas que consideram gênero, identidade e orientação sexual, além do combate à violência e à discriminação contra pessoas LGBTQIAP+.",
+    "historico": "Em abril de 2023, um decreto criou o Conselho Nacional dos Direitos das Pessoas LGBTQIA+, recriando um colegiado extinto em 2019. Segundo o Grupo Gay da Bahia, as mortes violentas de pessoas LGBT+ caíram de 291 em 2024 para 257 em 2025, cerca de 12% a menos. Não foram localizadas leis federais específicas sobre o tema aprovadas no período.",
+    "avaliacao": "Coerente",
+    "justificativa": "As ações administrativas foram na direção proposta, embora o histórico seja sobretudo institucional e com pouca produção legislativa.",
+    "fontes": [
+     {
+      "veiculo": "Jornal de Brasília (Folhapress)",
+      "titulo": "Governo Lula cria Conselho Nacional dos Direitos das Pessoas LGBTQIA+",
+      "data": "2023-04-07",
+      "url": "https://jornaldebrasilia.com.br/noticias/politica-e-poder/governo-lula-cria-conselho-nacional-dos-direitos-das-pessoas-lgbtqia/"
+     },
+     {
+      "veiculo": "Correio Braziliense",
+      "titulo": "Levantamento mapeia mortes de pessoas LGBT no Brasil: 'iceberg de ódio'",
+      "data": "2026-01-18",
+      "url": "https://www.correiobraziliense.com.br/brasil/2026/01/7335680-levantamento-mapeia-mortes-de-pessoas-lgbt-no-brasil-iceberg-de-odio.html"
+     }
+    ]
+   },
+   {
+    "id": 6,
+    "proposta": "Pacto contra o Feminicídio como eixo central, rede de proteção ampliada e igualdade salarial com planos de ação obrigatórios nas empresas.",
+    "historico": "Em julho de 2023, Lula sancionou a lei de igualdade salarial entre homens e mulheres; em agosto do mesmo ano, lançou o Pacto Nacional de Prevenção aos Feminicídios. Ainda assim, o Anuário de Segurança Pública registrou 1.571 feminicídios em 2025, alta de 4% sobre 2024 e quarto recorde anual seguido.",
+    "avaliacao": "Parcialmente coerente",
+    "justificativa": "As medidas foram na direção proposta, mas o principal indicador do objetivo (feminicídios) piorou a cada ano do mandato.",
+    "fontes": [
+     {
+      "veiculo": "SBT News",
+      "titulo": "Lula sanciona lei que assegura igualdade salarial entre mulheres e homens",
+      "data": "2023-07-03",
+      "url": "https://sbtnews.sbt.com.br/noticia/governo/251906-lula-sanciona-lei-que-assegura-igualdade-salarial-entre-mulheres-e-homens"
+     },
+     {
+      "veiculo": "Gazeta SP (Agência Brasil)",
+      "titulo": "Lula cria pacto nacional de prevenção a feminicídios",
+      "data": "2023-08-16",
+      "url": "https://www.gazetasp.com.br/brasil/lula-cria-pacto-nacional-de-prevencao-a-feminicidios/1127814/"
+     },
+     {
+      "veiculo": "TNH1 (CNN Brasil)",
+      "titulo": "Brasil bate recorde de feminicídios pelo quarto ano seguido",
+      "data": "2026-07-23",
+      "url": "https://www.tnh1.com.br/noticia/nid/brasil-bate-recorde-de-feminicidios-pelo-quarto-ano-seguido/"
+     }
+    ]
+   },
+   {
+    "id": 7,
+    "proposta": "Escola em tempo integral como prioridade, alfabetização na idade certa, Pé-de-Meia contra a evasão e expansão dos Institutos Federais.",
+    "historico": "Em julho de 2023, Lula sancionou o Programa Escola em Tempo Integral, com meta de 3,2 milhões de matrículas até 2026; em março de 2024, anunciou 100 novos campi de IFs. Segundo o MEC, a taxa de crianças alfabetizadas subiu de 56% (2023) para 66% (2025), acima da meta de 64%. Em janeiro de 2025, o TCU bloqueou R$ 6 bilhões do Pé-de-Meia por uso de recursos de fundo fora do Orçamento.",
+    "avaliacao": "Coerente",
+    "justificativa": "Os programas centrais do plano foram criados ou ampliados e o indicador de alfabetização melhorou; o questionamento do TCU tratou do financiamento, não da direção da política.",
+    "fontes": [
+     {
+      "veiculo": "Metrópoles",
+      "titulo": "Lula sanciona lei que cria Programa Escola em Tempo Integral",
+      "data": "2023-07-31",
+      "url": "https://www.metropoles.com/brasil/lula-sanciona-lei-que-cria-programa-escola-em-tempo-integral"
+     },
+     {
+      "veiculo": "Jornal de Brasília (Folhapress)",
+      "titulo": "MEC divulga que Brasil chegou a 66% de crianças alfabetizadas em 2025",
+      "data": "2026-03-23",
+      "url": "https://jornaldebrasilia.com.br/noticias/brasil/mec-divulga-que-brasil-chegou-a-66-de-criancas-alfabetizadas-em-2025/"
+     },
+     {
+      "veiculo": "Poder360",
+      "titulo": "Entenda por que decisão do TCU inviabiliza Pé-de-Meia",
+      "data": "2025-01-25",
+      "url": "https://www.poder360.com.br/poder-educacao/entenda-por-que-decisao-do-tcu-inviabiliza-pe-de-meia/"
+     },
+     {
+      "veiculo": "SBT News",
+      "titulo": "Governo Lula anuncia criação de 100 novos institutos federais",
+      "data": "2024-03-12",
+      "url": "https://sbtnews.sbt.com.br/noticia/politica/governo-lula-anuncia-criacao-de-100-novos-institutos-federais"
+     }
+    ]
+   },
+   {
+    "id": 8,
+    "proposta": "O plano não trata a liberdade religiosa como tema próprio; inclui a crença entre os critérios de não discriminação.",
+    "historico": "Em janeiro de 2023, Lula sancionou a Lei 14.532, que pune com 2 a 5 anos quem impede ou usa violência contra práticas religiosas. Em janeiro de 2024, a Receita Federal revogou um ato de 2022 que isentava de tributação certos pagamentos a ministros religiosos, e a Frente Parlamentar Evangélica reagiu. Em maio de 2026, a federação PT-PCdoB-PV orientou voto contra a PEC que amplia a imunidade tributária de templos.",
+    "avaliacao": "Coerente",
+    "justificativa": "O histórico se limita à proteção genérica contra a discriminação religiosa, como no plano; as disputas tributárias com igrejas não contrariam nenhuma proposta do texto.",
+    "fontes": [
+     {
+      "veiculo": "Extra Classe",
+      "titulo": "Lei 14.532, sancionada por Lula, criminaliza o ataque ou fechamento de templos religiosos",
+      "data": "2023-01-27",
+      "url": "https://www.extraclasse.org.br/?p=88285"
+     },
+     {
+      "veiculo": "Poder360",
+      "titulo": "Bancada evangélica quer convocar Haddad por isenção a religiosos",
+      "data": "2024-02-05",
+      "url": "https://www.poder360.com.br/congresso/bancada-evangelica-quer-convocar-haddad-por-isencao-a-religiosos/"
+     },
+     {
+      "veiculo": "Congresso em Foco",
+      "titulo": "Câmara aprova PEC que garante imunidade tributária às igrejas",
+      "data": "2026-05-28",
+      "url": "https://www.congressoemfoco.com.br/noticia/119271/camara-aprova-pec-que-garante-imunidade-tributaria-as-igrejas"
+     }
+    ]
+   },
+   {
+    "id": 9,
+    "proposta": "Afirma a garantia plena da liberdade de expressão e, ao mesmo tempo, propõe regular as redes contra a desinformação e o ódio.",
+    "historico": "Em janeiro de 2023, a AGU criou a Procuradoria Nacional de Defesa da Democracia para combater a desinformação; especialistas apontaram conceitos vagos e risco de censura. Em maio de 2023, em meio à defesa do PL das Fake News pelo governo, a Senacon, do Ministério da Justiça, mandou o Google marcar como publicidade seu conteúdo contra o projeto e divulgar argumentos favoráveis, sob multa de R$ 1 milhão por hora. Em setembro de 2025, Lula sancionou o ECA Digital (Lei 15.211), que impõe deveres às plataformas na proteção de menores.",
+    "avaliacao": "Parcialmente coerente",
+    "justificativa": "O governo buscou a regulação das redes que o plano propõe, mas usou órgãos do Executivo para pressionar o discurso de uma plataforma contrária ao projeto, em tensão com a garantia plena da liberdade de expressão.",
+    "fontes": [
+     {
+      "veiculo": "Poder360",
+      "titulo": "Críticas à Procuradoria da Democracia são válidas, dizem especialistas",
+      "data": "2023-01-07",
+      "url": "https://www.poder360.com.br/justica/criticas-a-procuradoria-da-democracia-sao-validas-dizem-especialistas/"
+     },
+     {
+      "veiculo": "Agência Brasil",
+      "titulo": "Governo exige que Google também divulgue argumentos a favor do PL 2630",
+      "data": "2023-05-02",
+      "url": "https://agenciabrasil.ebc.com.br/politica/noticia/2023-05/governo-exige-que-google-tambem-divulgue-argumentos-favor-do-pl-2630"
+     },
+     {
+      "veiculo": "Jornal Opção",
+      "titulo": "Lula sanciona lei contra adultização de crianças nas redes",
+      "data": "2025-09-18",
+      "url": "https://www.jornalopcao.com.br/ultimas-noticias/lula-sanciona-lei-contra-adultizacao-de-criancas-nas-redes-746657/"
+     }
+    ]
+   },
+   {
+    "id": 10,
+    "proposta": "Manter, aperfeiçoar e ampliar a proteção social: Bolsa Família, valorização real do salário mínimo, SUAS, Farmácia Popular e Gás do Povo.",
+    "historico": "Em 2023, o Bolsa Família foi recriado com piso de R$ 600 e adicionais por criança. Segundo o IBGE, a pobreza caiu de 27,3% para 23,1% entre 2023 e 2024, o menor nível da série, e em 2025 a FAO retirou o Brasil do Mapa da Fome. Em dezembro de 2024, o Congresso aprovou projeto do próprio governo que limitou o ganho real do salário mínimo a 2,5% ao ano e restringiu o cálculo de renda do BPC.",
+    "avaliacao": "Coerente",
+    "justificativa": "As principais ações e os indicadores de pobreza seguiram a direção proposta; o teto ao reajuste do mínimo e a restrição ao BPC foram uma limitação, mas não uma inversão.",
+    "fontes": [
+     {
+      "veiculo": "Metrópoles",
+      "titulo": "IBGE: mais de 8,6 milhões deixam pobreza em melhor número desde 2012",
+      "data": "2025-12-03",
+      "url": "https://www.metropoles.com/brasil/ibge-mais-de-86-milhoes-deixam-pobreza-em-melhor-numero-desde-2012"
+     },
+     {
+      "veiculo": "O Povo",
+      "titulo": "Brasil sai do mapa da fome após três anos",
+      "data": "2025-07-28",
+      "url": "https://www.opovo.com.br/noticias/brasil/2025/07/28/brasil-sai-do-mapa-da-fome-anuncia-onu.html"
+     },
+     {
+      "veiculo": "Congresso em Foco",
+      "titulo": "Senado aprova projeto que altera BPC e reajuste do salário mínimo; texto vai à sanção",
+      "data": "2024-12-20",
+      "url": "https://congressoemfoco.com.br/noticia/5564/senado-aprova-projeto-que-altera-bpc-e-reajuste-do-salario-minimo-texto-vai-a-sancao"
+     }
+    ]
+   },
+   {
+    "id": 11,
+    "proposta": "Estado indutor do desenvolvimento com política industrial, bancos e empresas públicas, tributação progressiva e manutenção do arcabouço fiscal.",
+    "historico": "Em janeiro de 2024, o governo lançou a Nova Indústria Brasil, com R$ 300 bilhões até 2026, a maior parte vinda do BNDES. Em novembro de 2025, Lula sancionou a isenção de IR até R$ 5 mil, compensada por um imposto mínimo de até 10% sobre rendas acima de R$ 600 mil anuais. No campo fiscal, a dívida bruta subiu para 78,7% do PIB em 2025, cerca de 7 pontos desde o início do mandato, e a meta de 2025 só foi cumprida com exclusões autorizadas (sem elas, o déficit seria de 0,48% do PIB).",
+    "avaliacao": "Parcialmente coerente",
+    "justificativa": "A política industrial e a tributação progressiva seguem o plano, mas o resultado fiscal (dívida em alta e meta cumprida com exclusões) tensiona o compromisso de responsabilidade fiscal.",
+    "fontes": [
+     {
+      "veiculo": "Poder360",
+      "titulo": "BNDES não usará recursos da União em política industrial, diz diretor",
+      "data": "2024-01-24",
+      "url": "https://www.poder360.com.br/economia/bndes-nao-usara-recursos-da-uniao-em-politica-industrial-diz-diretor/"
+     },
+     {
+      "veiculo": "O Povo",
+      "titulo": "Lula sanciona isenção do IR para quem ganha até R$ 5 mil; entenda o que muda",
+      "data": "2025-11-26",
+      "url": "https://www.opovo.com.br/noticias/economia/2025/11/26/lula-sanciona-isencao-do-ir-para-quem-ganha-ate-rs-5-mil.html"
+     },
+     {
+      "veiculo": "Bem Paraná",
+      "titulo": "Dívida pública bruta do Brasil sobe e fecha 2025 em 78,7% do PIB, mostra BC",
+      "data": "2026-01-30",
+      "url": "https://www.bemparana.com.br/noticias/economia/divida-publica-bruta-do-brasil-sobe-e-fecha-2025-em-787-do-pib-mostra-bc/"
+     },
+     {
+      "veiculo": "SBT News",
+      "titulo": "Haddad estima déficit primário do governo central de 2025 em 0,1% do PIB, com meta cumprida",
+      "data": "2026-01-13",
+      "url": "https://sbtnews.sbt.com.br/noticia/economia/haddad-estima-deficit-primario-do-governo-central-de-2025-em-0-1-do-pib-com-meta-cumprida"
+     }
+    ]
+   },
+   {
+    "id": 12,
+    "proposta": "Aprofundar o Plano de Integridade 2025–2027, responsabilizar corruptos, ampliar a transparência e rever o sistema de emendas parlamentares.",
+    "historico": "Em dezembro de 2024, a CGU lançou o Plano de Integridade e Combate à Corrupção 2025–2027, com 260 ações; em abril de 2025, CGU e PF deflagraram a operação contra descontos indevidos no INSS (cerca de R$ 6,3 bilhões entre 2019 e 2024), que levou à saída do ministro da Previdência. O ministro Juscelino Filho permaneceu no cargo por cerca de 10 meses após ser indiciado pela PF e só saiu em abril de 2025, depois da denúncia da PGR. Segundo a Transparência Internacional, o Brasil teve em 2024 a pior nota da série (34) e o governo manteve barganhas baseadas na 'farra das emendas'.",
+    "avaliacao": "Parcialmente coerente",
+    "justificativa": "Houve iniciativas de integridade e investigação, mas a demora em afastar um ministro indiciado e a negociação de emendas contrastam com o que o plano propõe.",
+    "fontes": [
+     {
+      "veiculo": "Gazeta do Povo",
+      "titulo": "Governo Lula lança plano inédito de combate à corrupção",
+      "data": "2024-12-13",
+      "url": "https://www.gazetadopovo.com.br/republica/governo-lula-lanca-plano-inedito-de-combate-a-corrupcao/"
+     },
+     {
+      "veiculo": "Congresso em Foco",
+      "titulo": "Crise no INSS: entenda escândalo que derrubou ministro da Previdência",
+      "data": "2025-05-05",
+      "url": "https://www.congressoemfoco.com.br/noticia/108221/crise-no-inss-entenda-escandalo-que-derrubou-ministro-da-previdencia"
+     },
+     {
+      "veiculo": "Poder360",
+      "titulo": "Denunciado pela PGR, Juscelino Filho pede demissão do governo",
+      "data": "2025-04-08",
+      "url": "https://www.poder360.com.br/poder-governo/denunciado-pela-pgr-juscelino-filho-vai-pedir-demissao-do-governo/"
+     },
+     {
+      "veiculo": "InfoMoney (Agência O Globo)",
+      "titulo": "Brasil repete pior posição em índice de corrupção da Transparência Internacional",
+      "data": "2026-02-10",
+      "url": "https://www.infomoney.com.br/politica/brasil-repete-pior-posicao-em-indice-de-corrupcao-da-transparencia-internacional/"
+     }
+    ]
+   },
+   {
+    "id": 13,
+    "proposta": "Combate ao racismo no centro da estratégia: cotas na universidade e no serviço público, titulação quilombola e atenção à mortalidade materna negra.",
+    "historico": "Em novembro de 2023, Lula sancionou a revisão da Lei de Cotas no ensino federal (Lei 14.723), que incluiu quilombolas. Em junho de 2025, sancionou a ampliação de 20% para 30% das cotas raciais em concursos federais. Até junho de 2026, o governo havia entregue 74 títulos quilombolas, e a Rede Alyne (2024) fixou meta de reduzir em 50% a mortalidade materna de mulheres negras.",
+    "avaliacao": "Coerente",
+    "justificativa": "As principais medidas do plano já foram adotadas ou ampliadas pelo governo.",
+    "fontes": [
+     {
+      "veiculo": "Agência Senado",
+      "titulo": "Sancionada ampliação da Lei de Cotas",
+      "data": "2023-11-14",
+      "url": "https://www12.senado.leg.br/noticias/materias/2023/11/14/sancionada-ampliacao-da-lei-de-cotas"
+     },
+     {
+      "veiculo": "Poder360",
+      "titulo": "Lula sanciona aumento de cotas para 30% em concursos federais",
+      "data": "2025-06-03",
+      "url": "https://www.poder360.com.br/poder-governo/lula-sanciona-aumento-de-cotas-para-30-em-concursos-federais/"
+     },
+     {
+      "veiculo": "Diario de Pernambuco (Agência Brasil)",
+      "titulo": "Lula entrega 18 novos títulos de territórios quilombolas",
+      "data": "2026-06-12",
+      "url": "https://www.diariodepernambuco.com.br/politica/2026/06/11716391-lula-entrega-18-novos-titulos-de-territorios-quilombolas.html"
+     }
+    ]
+   },
+   {
+    "id": 14,
+    "proposta": "Transformação ecológica, com desmatamento líquido zero até 2030 e áreas protegidas, ao lado da expansão de petróleo e gás pela Petrobras.",
+    "historico": "Segundo o PRODES/Inpe, o desmatamento na Amazônia foi de 5.796 km² entre agosto de 2024 e julho de 2025, cerca de metade do registrado em 2022; no Cerrado, subiu 3% em 2023 (11.011 km²) e caiu nos dois anos seguintes, até 7.235 km². Em agosto de 2025, Lula sancionou a nova lei de licenciamento com 63 vetos, e em novembro o Congresso derrubou a maior parte deles contra a orientação do governo. Em outubro de 2025, o Ibama autorizou a Petrobras a perfurar na Foz do Amazonas, e Lula defendeu a exploração da Margem Equatorial.",
+    "avaliacao": "Coerente",
+    "justificativa": "O desmatamento caiu (no Cerrado, após alta em 2023) e o governo apoiou a exploração de petróleo, ambos previstos no plano; a flexibilização do licenciamento veio do Congresso, contra os vetos do governo.",
+    "fontes": [
+     {
+      "veiculo": "Olhar Digital",
+      "titulo": "Área desmatada na Amazônia é a menor em 11 anos, diz INPE",
+      "data": "2025-10-30",
+      "url": "https://olhardigital.com.br/2025/10/30/ciencia-e-espaco/area-desmatada-na-amazonia-e-a-menor-em-11-anos-diz-inpe/"
+     },
+     {
+      "veiculo": "Agência Brasil",
+      "titulo": "Desmatamento do Cerrado cresce 3% em um ano; área atinge 11 mil km²",
+      "data": "2023-11-28",
+      "url": "https://agenciabrasil.ebc.com.br/geral/noticia/2023-11/desmatamento-do-cerrado-cresce-3-em-um-ano-area-atinge-11-mil-km2"
+     },
+     {
+      "veiculo": "Jornal do Brasil",
+      "titulo": "Amazônia e Cerrado registram queda de 11% no desmatamento",
+      "data": "2025-10-30",
+      "url": "https://www.jb.com.br/brasil/meio-ambiente/2025/10/1057439-amazonia-e-cerrado-registram-queda-de-11-no-desmatamento.html"
+     },
+     {
+      "veiculo": "Agência Câmara",
+      "titulo": "Lula sanciona novo licenciamento ambiental com 63 vetos",
+      "data": "2025-08-08",
+      "url": "https://www.camara.leg.br/noticias/1186832-lula-sanciona-novo-licenciamento-ambiental-com-63-vetos"
+     },
+     {
+      "veiculo": "Agência Pública",
+      "titulo": "Congresso derruba 56 vetos de licenciamento ambiental após COP30",
+      "data": "2025-11-27",
+      "url": "https://apublica.org/2025/11/congresso-derruba-56-vetos-de-licenciamento-ambiental-apos-cop30/"
+     },
+     {
+      "veiculo": "Poder360",
+      "titulo": "Às vésperas da COP30, Lula defende perfuração na Foz do Amazonas",
+      "data": "2025-10-24",
+      "url": "https://www.poder360.com.br/poder-governo/as-vesperas-da-cop30-lula-defende-perfuracao-na-foz-do-amazonas/"
+     }
+    ]
+   },
+   {
+    "id": 15,
+    "proposta": "Política externa autônoma e multilateral: BRICS, Sul Global, reforma da ONU, combate global à fome, paz e direitos humanos.",
+    "historico": "Em novembro de 2024, no G20 do Rio, o Brasil lançou a Aliança Global contra a Fome e a Pobreza, com adesão de 82 países; em julho de 2025, sediou a cúpula do BRICS, cuja declaração defendeu a reforma do Conselho de Segurança. Em maio de 2023, Lula recebeu Maduro com honras de chefe de Estado e chamou de 'narrativa' as acusações ao regime, o que os presidentes do Chile e do Uruguai criticaram; em junho, disse que o conceito de democracia 'é relativo'. Em 2024, o governo não reconheceu a vitória declarada de Maduro.",
+    "avaliacao": "Parcialmente coerente",
+    "justificativa": "O multilateralismo, o BRICS e o combate global à fome seguem o plano, mas a defesa do regime venezuelano em 2023 contrariou a prevalência dos direitos humanos que o plano afirma.",
+    "fontes": [
+     {
+      "veiculo": "Poder360",
+      "titulo": "Para Lula, Venezuela não ser uma democracia é 'narrativa'",
+      "data": "2023-05-30",
+      "url": "https://www.poder360.com.br/governo/para-lula-venezuela-nao-ser-uma-democracia-e-narrativa/"
+     },
+     {
+      "veiculo": "InfoMoney (Agência Brasil)",
+      "titulo": "Aliança Global contra a Fome e a Pobreza tem adesão de 82 países, incluindo Argentina",
+      "data": "2024-11-18",
+      "url": "https://www.infomoney.com.br/?p=2673000"
+     },
+     {
+      "veiculo": "Poder360",
+      "titulo": "Brics voltam a defender Brasil no Conselho de Segurança da ONU",
+      "data": "2025-07-06",
+      "url": "https://www.poder360.com.br/poder-internacional/brics-voltam-a-defender-brasil-no-conselho-de-seguranca-da-onu/"
+     },
+     {
+      "veiculo": "Correio Braziliense",
+      "titulo": "Lula sobre Venezuela: 'Conceito de democracia é relativo para você e para mim'",
+      "data": "2023-06-29",
+      "url": "https://www.correiobraziliense.com.br/politica/2023/06/5105586-lula-sobre-venezuela-conceito-de-democracia-e-relativo-para-voce-e-para-mim.html"
+     },
+     {
+      "veiculo": "Jornal do Comércio (Agência Estado)",
+      "titulo": "Lula diz que não romperá relação com Venezuela, mas reitera que não reconhece vitória de Maduro",
+      "data": "2024-09-06",
+      "url": "https://www.jornaldocomercio.com/internacional/2024/09/1170434-lula-diz-que-nao-rompera-relacao-com-venezuela-mas-reitera-que-nao-reconhece-vitoria-de-maduro.html"
+     }
+    ]
+   }
+  ]
+ },
+ "B": {
+  "governo": "Jair Bolsonaro (2019–2022)",
+  "temas": [
+   {
+    "id": 1,
+    "proposta": "Tratar a segurança como prioridade máxima, com endurecimento penal, facções tratadas como narcoterroristas, Forças Armadas nas fronteiras e investimento federal dobrado.",
+    "historico": "Em 2019 o governo enviou o pacote anticrime; a Lei 13.964/2019 elevou a pena máxima de cumprimento para 40 anos, mas o Congresso retirou o excludente de ilicitude pedido pelo Executivo. No mesmo ano, Bolsonaro defendeu projeto que ampliava a tipificação de terrorismo. As mortes violentas intencionais caíram para 47.508 em 2022 (-2,4% ante 2021), enquanto o gasto da União com segurança cresceu só 1,6% entre 2019 e 2022, segundo o Fórum Brasileiro de Segurança Pública.",
+    "avaliacao": "Parcialmente coerente",
+    "justificativa": "A linha de endurecimento penal e combate ao crime organizado coincide com a proposta, mas o gasto federal ficou praticamente estável, em contraste com a promessa de dobrar o investimento.",
+    "fontes": [
+     {
+      "veiculo": "Agência Senado",
+      "titulo": "Pacote anticrime é sancionado com vetos",
+      "data": "2019-12-26",
+      "url": "https://www12.senado.leg.br/noticias/materias/2019/12/26/pacote-anticrime-e-sancionado-com-vetos"
+     },
+     {
+      "veiculo": "Agência Brasil",
+      "titulo": "Mortes violentas intencionais no país caem 2,4% em 2022",
+      "data": "2023-07-20",
+      "url": "https://agenciabrasil.ebc.com.br/direitos-humanos/noticia/2023-07/mortes-violentas-intencionais-no-pais-caem-24-em-2022"
+     },
+     {
+      "veiculo": "Fórum Brasileiro de Segurança Pública",
+      "titulo": "Anuário 2023: proporção de gastos com segurança pública cai na maioria dos estados e na União",
+      "data": "2023-07-20",
+      "url": "https://forumseguranca.org.br/wp-content/uploads/2023/08/anuario-2023-texto-12-apesar-de-crescimento-das-despesas-proporcao-de-gastos-com-seguranca-publica-cai-na-maioria-dos-estados-e-na-uniao.pdf"
+     },
+     {
+      "veiculo": "Congresso em Foco",
+      "titulo": "Em meio a ataques no Ceará, Bolsonaro defende lei antiterrorista",
+      "data": "2019-01-12",
+      "url": "https://congressoemfoco.com.br/governo/em-meio-a-ataques-no-ceara-bolsonaro-defende-lei-antiterrorista-vetada-por-dilma-e-temida-por-movimentos-sociais"
+     }
+    ]
+   },
+   {
+    "id": 2,
+    "proposta": "Apoiar a redução da maioridade penal para 16 anos e punir maiores de 14 anos por crimes graves.",
+    "historico": "Em agosto de 2019, Bolsonaro pediu publicamente ao presidente do Senado que pautasse a PEC 115/2015, já aprovada pela Câmara, que reduz a maioridade para 16 anos em crimes graves, e disse preferir uma redução geral; em dezembro de 2020, a Secretaria Nacional de Juventude, do Ministério da Mulher, da Família e dos Direitos Humanos, divulgou nota de apoio à PEC 32/2019, que reduz a idade penal. A PEC 115 teve audiências na CCJ do Senado em 2019 e foi arquivada sem votação em 22/12/2022, ao fim da legislatura; não se localizou proposta própria do Executivo sobre o tema.",
+    "avaliacao": "Coerente",
+    "justificativa": "O presidente e um órgão do governo apoiaram publicamente a redução, na mesma direção da proposta, ainda que sem resultado legislativo.",
+    "fontes": [
+     {
+      "veiculo": "Poder360",
+      "titulo": "Ao lado de Moro, Bolsonaro defende votação da PEC da maioridade penal",
+      "data": "2019-08-08",
+      "url": "https://www.poder360.com.br/governo/ao-lado-de-moro-bolsonaro-defende-votacao-da-pec-da-maioridade-penal/"
+     },
+     {
+      "veiculo": "CartaCapital",
+      "titulo": "Gestores de Juventude do Nordeste se posicionam contra a redução da maioridade penal",
+      "data": "2020-12-18",
+      "url": "https://www.cartacapital.com.br/carta-capital/gestores-de-juventude-do-nordeste-se-posicionam-contra-a-reducao-da-maioridade-penal/"
+     },
+     {
+      "veiculo": "Senado Federal",
+      "titulo": "PEC 115/2015 – tramitação",
+      "data": "2022-12-22",
+      "url": "https://www25.senado.leg.br/web/atividade/materias/-/materia/122817"
+     }
+    ]
+   },
+   {
+    "id": 3,
+    "proposta": "Afirmar o respeito à vida desde a concepção como valor inegociável do governo.",
+    "historico": "Em outubro de 2020, o Brasil assinou com EUA, Hungria e outros países a Declaração de Consenso de Genebra, contrária a reconhecer o aborto como direito. Em 2020, o Ministério da Saúde passou a exigir que médicos notificassem a polícia em casos de aborto legal (norma revogada em 2023). Em julho de 2021, Bolsonaro enviou ao Congresso projeto criando o Dia do Nascituro.",
+    "avaliacao": "Coerente",
+    "justificativa": "As principais ações do governo no tema foram na mesma direção da proteção à vida intrauterina declarada no plano.",
+    "fontes": [
+     {
+      "veiculo": "Metrópoles",
+      "titulo": "Brasil assina declaração internacional contra o aborto e a favor da família",
+      "data": "2020-10-23",
+      "url": "https://www.metropoles.com/brasil/brasil-assina-declaracao-internacional-contra-o-aborto-e-a-favor-da-familia"
+     },
+     {
+      "veiculo": "Poder360",
+      "titulo": "Saúde revoga norma de aviso à polícia em caso de aborto legal",
+      "data": "2023-01-16",
+      "url": "https://www.poder360.com.br/saude/saude-revoga-norma-de-aviso-a-policia-em-caso-de-aborto-legal/"
+     },
+     {
+      "veiculo": "Poder360",
+      "titulo": "Bolsonaro assina projetos que criam Dia do Nascituro e Dia da Paternidade",
+      "data": "2021-07-21",
+      "url": "https://www.poder360.com.br/governo/bolsonaro-assina-projetos-que-criam-dia-do-nascituro-e-dia-da-paternidade/"
+     }
+    ]
+   },
+   {
+    "id": 4,
+    "proposta": "Colocar a família no centro das políticas públicas, com o Estado apoiando sem substituir os pais, que decidem os valores dos filhos.",
+    "historico": "Em 2019 o governo criou o Ministério da Mulher, da Família e dos Direitos Humanos, com secretaria dedicada à família; a ministra disse que a família seria considerada em todas as políticas e que todas as configurações familiares seriam respeitadas. Em abril de 2019, enviou projeto para regulamentar a educação domiciliar. Em 2021, o Auxílio Brasil criou benefícios por criança (R$ 130 na primeira infância); em 2020, porém, Bolsonaro vetou projeto que priorizava mães chefes de família na cota dupla do auxílio emergencial, alegando falta de estimativa de custo.",
+    "avaliacao": "Coerente",
+    "justificativa": "A estrutura de governo e os principais projetos seguiram a centralidade da família e a primazia dos pais, com contradição pontual no veto de 2020.",
+    "fontes": [
+     {
+      "veiculo": "Poder360",
+      "titulo": "Estado é laico, mas sou terrivelmente cristã, diz Damares ao assumir ministério",
+      "data": "2019-01-02",
+      "url": "https://www.poder360.com.br/governo/estado-e-laico-mas-sou-profundamente-crista-diz-damares-ao-assumir-ministerio/"
+     },
+     {
+      "veiculo": "Agência Brasil",
+      "titulo": "Bolsonaro assina projeto de lei sobre educação domiciliar",
+      "data": "2019-04-11",
+      "url": "https://agenciabrasil.ebc.com.br/educacao/noticia/2019-04/bolsonaro-assina-projeto-de-lei-sobre-educacao-domiciliar"
+     },
+     {
+      "veiculo": "Agência Senado",
+      "titulo": "Programa Auxílio Brasil será analisado pelo Senado",
+      "data": "2021-11-25",
+      "url": "https://www12.senado.leg.br/noticias/materias/2021/11/25/programa-auxilio-brasil-sera-analisado-pelo-senado"
+     },
+     {
+      "veiculo": "Money Times",
+      "titulo": "Bolsonaro nega prioridade a mulher chefe de família no auxílio emergencial",
+      "data": "2020-07-29",
+      "url": "https://www.moneytimes.com.br/bolsonaro-nega-prioridade-a-mulher-chefe-de-familia-no-auxilio-emergencial/"
+     }
+    ]
+   },
+   {
+    "id": 5,
+    "proposta": "Reservar a categoria feminina no esporte a atletas do sexo feminino e afirmar respeito a todos os arranjos familiares.",
+    "historico": "Não foi localizada medida federal de 2019–2022 sobre atletas trans em competições; em janeiro de 2020, Bolsonaro apenas perguntou a seguidores, em rede social, a opinião deles sobre mulheres trans no esporte feminino. Em 2019, criticou a decisão do STF que equiparou homofobia a racismo e anunciou ter pedido ao MEC projeto contra a chamada ideologia de gênero no ensino fundamental, temas que o plano não aborda.",
+    "avaliacao": "Sem histórico comparável",
+    "justificativa": "Não houve ação de governo sobre o ponto central do plano (categoria feminina no esporte), e uma enquete em rede social não constitui histórico.",
+    "fontes": [
+     {
+      "veiculo": "Congresso em Foco",
+      "titulo": "Bolsonaro questiona usuários sobre mulheres trans em esportes femininos",
+      "data": "2020-01-13",
+      "url": "https://congressoemfoco.com.br/esporte/bolsonaro-questiona-usuarios-sobre-mulheres-trans-em-esportes-femininos"
+     },
+     {
+      "veiculo": "Agência Brasil",
+      "titulo": "Bolsonaro critica decisão do STF de criminalizar homofobia",
+      "data": "2019-06-14",
+      "url": "https://agenciabrasil.ebc.com.br/politica/noticia/2019-06/bolsonaro-critica-decisao-do-stf-de-criminalizar-homofobia"
+     },
+     {
+      "veiculo": "O Estado de S. Paulo (via Senado)",
+      "titulo": "Bolsonaro pede projeto contra ideologia de gênero no ensino fundamental",
+      "data": "2019-09-04",
+      "url": "https://www2.senado.leg.br/jspui/bitstream/id/566425/1/noticia.html"
+     }
+    ]
+   },
+   {
+    "id": 6,
+    "proposta": "Programa “Brasil por Elas”: rede de acolhimento, monitoramento de agressores, autonomia econômica e patrimonial da mulher.",
+    "historico": "Bolsonaro sancionou sem vetos a Lei 13.827/2019, que permite a delegado ou policial afastar o agressor do lar, e a Lei 14.188/2021, que criou o programa Sinal Vermelho e o crime de violência psicológica. Por outro lado, a verba do ministério para enfrentamento da violência contra a mulher caiu de R$ 132,5 milhões (2020) para R$ 43,2 milhões (2022), e a Casa da Mulher Brasileira executou R$ 1 milhão de R$ 21,8 milhões autorizados em 2021, segundo o Inesc. Em 2021, o presidente vetou a distribuição gratuita de absorventes, veto derrubado pelo Congresso em 2022.",
+    "avaliacao": "Parcialmente coerente",
+    "justificativa": "Houve leis de proteção na mesma direção da proposta, mas o orçamento e a execução da rede de acolhimento diminuíram no período.",
+    "fontes": [
+     {
+      "veiculo": "Senado Federal",
+      "titulo": "Publicada lei que facilita medidas de proteção às mulheres",
+      "data": "2019-05-14",
+      "url": "https://www12.senado.leg.br/institucional/procuradoria/comum/publicada-lei-que-facilita-medidas-de-protecao-as-mulheres"
+     },
+     {
+      "veiculo": "Agência Senado",
+      "titulo": "Lei cria programa Sinal Vermelho e institui crime de violência psicológica contra mulher",
+      "data": "2021-07-29",
+      "url": "https://www12.senado.leg.br/noticias/materias/2021/07/29/lei-cria-programa-sinal-vermelho-e-institui-crime-de-violencia-psicologica-contra-mulher"
+     },
+     {
+      "veiculo": "Correio Braziliense",
+      "titulo": "Governo federal corta R$ 89 mi da verba de combate à violência contra mulher",
+      "data": "2022-03-09",
+      "url": "https://www.correiobraziliense.com.br/brasil/2022/03/4991561-governo-federal-corta-rs-89-mi-da-verba-de-combate-a-violencia-contra-mulher.html"
+     },
+     {
+      "veiculo": "Agência Câmara",
+      "titulo": "Congresso derruba veto à distribuição gratuita de absorventes",
+      "data": "2022-03-10",
+      "url": "https://www.camara.leg.br/noticias/857388-congresso-derruba-veto-a-distribuicao-gratuita-de-absorventes/"
+     }
+    ]
+   },
+   {
+    "id": 7,
+    "proposta": "Escola sem doutrinação, primazia dos pais nos valores, método fônico, escolas cívico-militares e financiamento por resultados.",
+    "historico": "Em 2019 o governo instituiu a Política Nacional de Alfabetização (Decreto 9.765), que adota a instrução fônica sistemática, criou o Programa Nacional das Escolas Cívico-Militares (Decreto 10.004) e enviou projeto de educação domiciliar. Os resultados de aprendizagem pioraram: o Saeb 2021 mostrou que alunos do 2º ano sem ler nem escrever palavras isoladas passaram de 15,5% (2019) para 33,8%, queda que especialistas atribuem sobretudo ao fechamento de escolas na pandemia.",
+    "avaliacao": "Coerente",
+    "justificativa": "As medidas centrais do plano (método fônico, cívico-militares, papel dos pais) foram adotadas pelo governo, embora a aprendizagem tenha caído no contexto da pandemia.",
+    "fontes": [
+     {
+      "veiculo": "Planalto",
+      "titulo": "Decreto nº 9.765, de 11 de abril de 2019 – Política Nacional de Alfabetização",
+      "data": "2019-04-11",
+      "url": "https://planalto.gov.br/ccivil_03/_ato2019-2022/2019/decreto/D9765impressao.htm"
+     },
+     {
+      "veiculo": "Poder360",
+      "titulo": "Governo Lula decide encerrar programa de escolas cívico-militares",
+      "data": "2023-07-12",
+      "url": "https://www.poder360.com.br/anuncios-do-governo/governo-lula-decide-encerrar-programa-de-escola-civico-militares/"
+     },
+     {
+      "veiculo": "O Globo (via Senado)",
+      "titulo": "Saeb 2021: aprendizagem cai e analfabetismo no 2º ano dobra",
+      "data": "2022-09-17",
+      "url": "https://www2.senado.leg.br/jspui/bitstream/id/656660/1/noticia.html"
+     }
+    ]
+   },
+   {
+    "id": 8,
+    "proposta": "Afirmar a liberdade religiosa e a fé como valores inegociáveis do governo.",
+    "historico": "Em março de 2020, decreto presidencial incluiu atividades religiosas entre os serviços essenciais na pandemia, observadas as normas do Ministério da Saúde. Em 2019 Bolsonaro prometeu um ministro “terrivelmente evangélico” para o STF e indicou André Mendonça, aprovado pelo Senado em dezembro de 2021. Em 2020 vetou o perdão de dívidas tributárias de igrejas por razões fiscais, mas sugeriu ao Congresso derrubar o veto.",
+    "avaliacao": "Coerente",
+    "justificativa": "As ações do governo foram na direção de proteger e valorizar a atividade religiosa, como propõe o plano.",
+    "fontes": [
+     {
+      "veiculo": "Poder360",
+      "titulo": "Bolsonaro inclui atividades religiosas como essenciais na pandemia da covid-19",
+      "data": "2020-03-26",
+      "url": "https://www.poder360.com.br/governo/bolsonaro-inclui-atividades-religiosas-como-essenciais-na-pandemia-da-covid-19/"
+     },
+     {
+      "veiculo": "Migalhas",
+      "titulo": "Senado aprova indicação de André Mendonça ao STF",
+      "data": "2021-12-01",
+      "url": "https://www.migalhas.com.br/quentes/355919/senado-aprova-indicacao-de-andre-mendonca-ao-stf"
+     },
+     {
+      "veiculo": "Jornal Opção",
+      "titulo": "Bolsonaro veta perdão de dívidas das igrejas, mas sugere que Congresso derrube sua decisão",
+      "data": "2020-09-14",
+      "url": "https://www.jornalopcao.com.br/ultimas-noticias/bolsonaro-veta-perdao-de-dividas-das-igrejas-mas-sugere-que-congresso-derrube-sua-decisao-282745/"
+     }
+    ]
+   },
+   {
+    "id": 9,
+    "proposta": "Extinguir estruturas estatais que vigiem ou punam o que as pessoas dizem e garantir o direito de criticar o governo.",
+    "historico": "Em 2021 o governo editou a MP 1.068, que limitava a remoção de conteúdo por redes sociais (devolvida pelo Senado), e vetou o crime de comunicação enganosa em massa na lei que revogou a LSN. Em sentido oposto, a PF abriu 77 inquéritos por crimes contra a segurança nacional em 2019–2020, ante 20 em 2015–2016, parte deles a pedido do ministro da Justiça contra críticos do presidente. Em 2020 o STF suspendeu, por 9 a 1, dossiê do Ministério da Justiça sobre 579 servidores identificados como antifascistas.",
+    "avaliacao": "Parcialmente coerente",
+    "justificativa": "O governo agiu contra a moderação de conteúdo e a criminalização de desinformação, mas também usou o aparato estatal para investigar e monitorar críticos.",
+    "fontes": [
+     {
+      "veiculo": "InfoMoney",
+      "titulo": "Pacheco devolve a Bolsonaro MP que limitava a remoção de conteúdo nas redes sociais",
+      "data": "2021-09-14",
+      "url": "https://www.infomoney.com.br/politica/pacheco-devolve-a-bolsonaro-medida-provisoria-que-limitava-a-remocao-de-conteudo-nas-redes-sociais/"
+     },
+     {
+      "veiculo": "Diário do Nordeste",
+      "titulo": "Jair Bolsonaro veta itens do projeto que revoga Lei de Segurança Nacional",
+      "data": "2021-09-02",
+      "url": "https://diariodonordeste.verdesmares.com.br/pontopoder/jair-bolsonaro-veta-itens-do-projeto-que-revoga-lei-de-seguranca-nacional-1.3130704"
+     },
+     {
+      "veiculo": "Estadão Conteúdo (via IstoÉ Dinheiro)",
+      "titulo": "Inquéritos por segurança nacional crescem 285%",
+      "data": "2021-03-19",
+      "url": "https://istoedinheiro.com.br/inqueritos-por-seguranca-nacional-crescem-285"
+     },
+     {
+      "veiculo": "Migalhas",
+      "titulo": "STF proíbe dossiê contra antifascistas em Ministério da Justiça",
+      "data": "2020-08-20",
+      "url": "https://www.migalhas.com.br/quentes/332276/stf-proibe-dossie-contra-antifascistas-em-ministerio-da-justica"
+     }
+    ]
+   },
+   {
+    "id": 10,
+    "proposta": "Manter os programas sociais, combater fraudes e criar trilha de saída para o emprego com retorno sem fila ao benefício.",
+    "historico": "O Auxílio Brasil (2021) criou a regra de emancipação: a família que supera a renda-limite segue recebendo por 24 meses e pode voltar com prioridade e sem fila, além do Auxílio Inclusão Produtiva para quem conseguisse emprego formal. Em contrapartida, a fila do Bolsa Família chegou a cerca de 1 milhão de famílias no fim de 2019 e de novo em setembro de 2020. Pelo IBGE, a extrema pobreza foi de 9% em 2021 e caiu para 5,9% em 2022, ano em que o benefício subiu para R$ 600.",
+    "avaliacao": "Coerente",
+    "justificativa": "O desenho adotado em 2021 antecipa a trilha de saída proposta, com a ressalva da fila de acesso registrada em 2019–2020.",
+    "fontes": [
+     {
+      "veiculo": "O Povo",
+      "titulo": "Presidente edita decreto que regulamenta o Auxílio Brasil",
+      "data": "2021-11-09",
+      "url": "https://www.opovo.com.br/noticias/economia/2021/11/09/presidente-edita-decreto-que-regulamenta-o-auxilio-brasil.html"
+     },
+     {
+      "veiculo": "A Gazeta (com dados da Folha)",
+      "titulo": "Após redução do auxílio, fila do Bolsa Família volta a ter 1 milhão",
+      "data": "2020-12-04",
+      "url": "https://www.agazeta.com.br/economia/apos-reducao-do-auxilio-fila-do-bolsa-familia-volta-ter-1-milhao-1220"
+     },
+     {
+      "veiculo": "Poder360",
+      "titulo": "Percentual de pessoas em situação de pobreza cai para 31,6% em 2022",
+      "data": "2023-12-06",
+      "url": "https://www.poder360.com.br/brasil/percentual-de-pessoas-em-situacao-de-pobreza-cai-para-316-em-2022/"
+     }
+    ]
+   },
+   {
+    "id": 11,
+    "proposta": "Economia de mercado com Estado regulador, menos impostos, superávits, regra de gasto, desestatização e segurança jurídica.",
+    "historico": "O governo aprovou a Lei de Liberdade Econômica (2019), arrecadou R$ 304,2 bilhões com privatizações e venda de participações até meados de 2022, incluindo a Eletrobras, e fechou 2022 com superávit primário de R$ 54,1 bilhões, o primeiro desde 2013. Em contraste, em 2022, ano eleitoral, foi promulgada a PEC que liberou cerca de R$ 41 bilhões fora do teto de gastos para ampliar benefícios como o Auxílio Brasil, e a Petrobras chegou ao quarto presidente do governo em meio à pressão sobre preços de combustíveis.",
+    "avaliacao": "Parcialmente coerente",
+    "justificativa": "A orientação pró-mercado e a desestatização seguiram a proposta, mas houve gastos fora da regra fiscal e interferência em estatal, contrários à previsibilidade defendida.",
+    "fontes": [
+     {
+      "veiculo": "Poder360",
+      "titulo": "Bolsonaro arrecada R$ 304,2 bilhões com privatizações",
+      "data": "2022-07-17",
+      "url": "https://www.poder360.com.br/economia/bolsonaro-arrecada-r-3042-bilhoes-com-privatizacoes"
+     },
+     {
+      "veiculo": "Poder360",
+      "titulo": "Governo fecha 2022 com superávit de R$ 54 bi, o 1º em 9 anos",
+      "data": "2023-01-27",
+      "url": "https://www.poder360.com.br/economia/governo-fecha-2022-com-superavit-de-r-54-bi-o-maior-em-9-anos/"
+     },
+     {
+      "veiculo": "O Povo",
+      "titulo": "PEC Kamikaze é aprovada e vai à promulgação",
+      "data": "2022-07-14",
+      "url": "https://mais.opovo.com.br/jornal/politica/2022/07/14/pec-kamikaze-e-aprovada-e-vai-a-promulgacao.html"
+     },
+     {
+      "veiculo": "Mercado & Consumo",
+      "titulo": "Se tiver que trocar cinco vezes, troco, diz Bolsonaro sobre presidência da Petrobras",
+      "data": "2022-07-13",
+      "url": "https://mercadoeconsumo.com.br/13/07/2022/economia/se-tiver-que-trocar-cinco-vezes-troco-diz-bolsonaro-sobre-presidencia-da-petrobras/"
+     }
+    ]
+   },
+   {
+    "id": 12,
+    "proposta": "Prevenir a corrupção com comando técnico nas estatais, transparência das emendas e pacote antifraude na Previdência.",
+    "historico": "Em 2019 o governo editou a MP 871, convertida em lei, com pente-fino em benefícios do INSS e economia estimada de R$ 9,8 bilhões no primeiro ano. Em sentido oposto, a partir do Orçamento de 2020 as emendas de relator (RP9) cresceram sem painel público de indicações, o chamado orçamento secreto revelado pelo Estadão em 2021 e declarado inconstitucional pelo STF em dezembro de 2022. Em 2022 Bolsonaro chegou ao quarto presidente da Petrobras em meio à pressão política sobre preços.",
+    "avaliacao": "Parcialmente coerente",
+    "justificativa": "A ação antifraude no INSS coincide com a proposta, mas a falta de transparência das emendas e as trocas políticas na Petrobras vão em sentido oposto.",
+    "fontes": [
+     {
+      "veiculo": "Poder360",
+      "titulo": "Bolsonaro sanciona lei de combate a fraudes no INSS",
+      "data": "2019-06-18",
+      "url": "https://www.poder360.com.br/economia/bolsonaro-sanciona-lei-de-combate-a-fraudes-no-inss/"
+     },
+     {
+      "veiculo": "Estado de Minas (com base no Estadão)",
+      "titulo": "Tratoraço: entenda o suposto orçamento secreto de Bolsonaro",
+      "data": "2021-05-12",
+      "url": "https://www.em.com.br/app/noticia/politica/2021/05/12/interna_politica,1266020/tratoraco-entenda-o-suposto-orcamento-secreto-de-bolsonaro-que-devera.shtml"
+     },
+     {
+      "veiculo": "Band",
+      "titulo": "STF decide que orçamento secreto é inconstitucional",
+      "data": "2022-12-19",
+      "url": "https://www.band.com.br/noticias/stf-decide-que-orcamento-secreto-e-inconstitucional-16569768"
+     },
+     {
+      "veiculo": "Mercado & Consumo",
+      "titulo": "Se tiver que trocar cinco vezes, troco, diz Bolsonaro sobre presidência da Petrobras",
+      "data": "2022-07-13",
+      "url": "https://mercadoeconsumo.com.br/13/07/2022/economia/se-tiver-que-trocar-cinco-vezes-troco-diz-bolsonaro-sobre-presidencia-da-petrobras/"
+     }
+    ]
+   },
+   {
+    "id": 13,
+    "proposta": "Valorizar a miscigenação, sem políticas raciais específicas, e dar autonomia a indígenas e quilombolas para decidir atividades produtivas em suas terras.",
+    "historico": "Em novembro de 2020, no G20, Bolsonaro descreveu o Brasil como povo miscigenado e disse que tensões raciais seriam alheias à história do país. Em fevereiro de 2020, o governo enviou o PL 191/2020, que liberava mineração, agricultura e turismo em terras indígenas, mas permitia levar a autorização ao Congresso mesmo com oposição fundamentada das comunidades.",
+    "avaliacao": "Parcialmente coerente",
+    "justificativa": "A ênfase na miscigenação e na abertura econômica das terras coincide com o plano, mas o projeto do governo não garantia às comunidades a decisão final que o plano promete.",
+    "fontes": [
+     {
+      "veiculo": "Congresso em Foco",
+      "titulo": "Ao G20, Bolsonaro diz que tensões raciais são alheias à história do Brasil",
+      "data": "2020-11-21",
+      "url": "https://congressoemfoco.com.br/governo/ao-g20-bolsonaro-diz-que-tensoes-raciais-sao-alheias-a-historia-do-brasil"
+     },
+     {
+      "veiculo": "Exame",
+      "titulo": "O que diz o projeto de lei que libera a mineração em terras indígenas",
+      "data": "2022-03-10",
+      "url": "https://exame.com/brasil/o-que-diz-o-projeto-de-lei-que-libera-a-mineracao-em-terras-indigenas/"
+     }
+    ]
+   },
+   {
+    "id": 14,
+    "proposta": "Preservar e produzir: desmatamento ilegal zero até 2029, fiscalização por satélite e pagamento a quem preserva.",
+    "historico": "Na COP26 (2021) o governo antecipou de 2030 para 2028 a meta de zerar o desmatamento ilegal. No entanto, o desmatamento na Amazônia medido pelo Inpe em 2019–2022 somou cerca de 47 mil km², ao menos 60% acima de 2015–2018, apesar de queda estimada de 11% em 2022 (11.568 km²). As multas do Ibama por crimes contra a flora caíram ao menor patamar em cerca de 20 anos (11.064 em 2020), segundo levantamento do Estadão.",
+    "avaliacao": "Pouco coerente",
+    "justificativa": "A meta de desmatamento ilegal zero foi assumida, mas o desmatamento cresceu e a fiscalização caiu enquanto a política ambiental estava sob responsabilidade do governo.",
+    "fontes": [
+     {
+      "veiculo": "Folha de Pernambuco (AFP)",
+      "titulo": "Brasil anuncia metas mais ambiciosas de redução de emissões e desmatamento",
+      "data": "2021-11-01",
+      "url": "https://www.folhape.com.br/noticias/brasil-anuncia-metas-mais-ambiciosas-de-reducao-de-emissoes-e/204146/"
+     },
+     {
+      "veiculo": "Correio Braziliense",
+      "titulo": "Desmate da Amazônia em gestão Bolsonaro equivale à área do estado do RJ",
+      "data": "2022-10-06",
+      "url": "https://www.correiobraziliense.com.br/brasil/2022/10/amp/5042569-desmate-da-amazonia-em-gestao-bolsonaro-equivale-a-area-do-estado-do-rj.html"
+     },
+     {
+      "veiculo": "SBT News",
+      "titulo": "Inpe: estimativa de desmatamento na Amazônia em 2022 reduz 11%",
+      "data": "2022-11-30",
+      "url": "https://sbtnews.sbt.com.br/noticia/brasil/231989-inpe-estimativa-de-desmatamento-na-amazonia-em-2022-reduz-11"
+     },
+     {
+      "veiculo": "Poder360",
+      "titulo": "Governo tem menor número de multas por crimes ambientais em 20 anos",
+      "data": "2021-11-08",
+      "url": "https://www.poder360.com.br/governo/governo-tem-menor-numero-de-multas-por-crimes-ambientais-em-20-anos/"
+     }
+    ]
+   },
+   {
+    "id": 15,
+    "proposta": "Diplomacia profissional e comercial, com reaproximação de EUA e Israel, adesão à OCDE e crítica a regimes como o da Venezuela.",
+    "historico": "O governo alinhou-se ao governo Trump, abriu escritório de negócios em Jerusalém (2019), reconheceu Guaidó e retirou diplomatas de Caracas (2020), anunciou a conclusão do acordo Mercosul–UE (2019) e aceitou o convite da OCDE para negociar a adesão (2022). Por outro lado, o chanceler Ernesto Araújo deixou o cargo em 2021 sob pressão do Congresso, criticado por diplomacia ideológica e atritos com a China, principal parceiro comercial.",
+    "avaliacao": "Parcialmente coerente",
+    "justificativa": "Parceiros, OCDE e posição sobre a Venezuela coincidem com o plano, mas até 2021 a condução foi amplamente criticada como ideológica, o oposto do perfil “não ideológico” proposto.",
+    "fontes": [
+     {
+      "veiculo": "Poder360",
+      "titulo": "Netanyahu cita escritório como 1º passo para transferência de embaixada",
+      "data": "2019-03-31",
+      "url": "https://www.poder360.com.br/governo/netanyahu-cita-escritorio-como-1o-passo-para-transferencia-de-embaixada/"
+     },
+     {
+      "veiculo": "Poder360 (DW)",
+      "titulo": "Brasil ordena retirada de diplomatas da Venezuela",
+      "data": "2020-03-05",
+      "url": "https://www.poder360.com.br/internacional/brasil-ordena-retirada-de-diplomatas-da-venezuela-dw/"
+     },
+     {
+      "veiculo": "Reuters (via Notícias Agrícolas)",
+      "titulo": "OCDE aprova convite para Brasil iniciar negociação de adesão",
+      "data": "2022-01-25",
+      "url": "https://www.noticiasagricolas.com.br/noticias/politica-economia/307816-ocde-aprova-convite-para-brasil-iniciar-negociacao-de-adesao-a-entidade.amp.html"
+     },
+     {
+      "veiculo": "Folhapress (via TNH1)",
+      "titulo": "Ernesto Araújo deixa comando do Itamaraty após pressão do Congresso",
+      "data": "2021-03-29",
+      "url": "https://www.tnh1.com.br/noticia/nid/ernesto-araujo-deixa-comando-do-itamaraty-apos-pressao-do-congresso/"
+     },
+     {
+      "veiculo": "Canal Rural",
+      "titulo": "Bolsonaro: acordo entre Mercosul e UE é o mais importante de todos os tempos",
+      "data": "2019-06-28",
+      "url": "https://www.canalrural.com.br/diversos/bolsonaro-acordo-entre-mercosul-e-ue-e-o-mais-importante-de-todos-os-tempos/"
+     }
+    ]
+   }
+  ]
+ }
+};
+
+if (typeof module !== "undefined") module.exports = { CANDIDATES, FIGURES, QUOTES, THEMES, SOURCES, COHERENCE };
 
 </script>
 <script>
@@ -2450,7 +3406,26 @@ buildResult();
 
 /* fontes */
 $("#sources").innerHTML=[["Fontes dos planos de governo","planos"],["Fontes sobre João Paulo II","jp2"],["Fontes sobre Billy Graham","bg"],["Fontes sobre Martin Luther King Jr.","mlk"],["Fontes complementares","extra"]].map(([h,k])=>`<section><h3>${h}</h3><ul class="clean">${SOURCES[k].map(s=>`<li>${s.u?`<a href="${esc(s.u)}" target="_blank" rel="noopener">${esc(s.t)}</a>`:esc(s.t)}</li>`).join("")}</ul></section>`).join("")+
+  `<section><h3>Levantamento de coerência (imprensa e dados oficiais)</h3><ul class="clean">${["A","B"].flatMap(c=>COHERENCE[c].temas.flatMap(t=>t.fontes)).filter((f,i,a)=>a.findIndex(x=>x.url===f.url)===i).map(f=>`<li><a href="${esc(f.url)}" target="_blank" rel="noopener">${esc(f.veiculo)} — ${esc(f.titulo)}</a> (${esc(f.data)})</li>`).join("")}</ul></section>`+
   `<section><h3>Citações utilizadas</h3><ul class="clean">${Object.values(QUOTES).filter((q,i,a)=>true).map(q=>`<li>${esc(FIGURES[q.fig].name)} — ${q.url?`<a href="${esc(q.url)}" target="_blank" rel="noopener">${esc(q.ref)}</a>`:esc(q.ref)} — ${esc(q.year)}</li>`).join("")}</ul></section>`;
+
+/* coerência: plano × governo anterior */
+(function(){
+  const ORDER=["Coerente","Parcialmente coerente","Pouco coerente","Sem histórico comparável"];
+  const SYM={"Coerente":"●","Parcialmente coerente":"◐","Pouco coerente":"○","Sem histórico comparável":"–"};
+  const SHADE={"Coerente":"var(--petrol)","Parcialmente coerente":"var(--gold)","Pouco coerente":"var(--ink-2)","Sem histórico comparável":"var(--rule)"};
+  const side=c=>COHERENCE[c];
+  $("#cohSummary").innerHTML=["A","B"].map(c=>{const cnt={};ORDER.forEach(o=>cnt[o]=0);side(c).temas.forEach(t=>cnt[t.avaliacao]++);
+    return `<div class="cohcard" style="--c:${cvar(c)}"><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><span class="chip ${c}">${CANDIDATES[c].label}</span><h3>${esc(side(c).governo)}</h3></div>
+    <div class="stack" role="img" aria-label="${ORDER.map(o=>cnt[o]+' '+o).join(', ')}">${ORDER.map(o=>cnt[o]?`<span style="width:${cnt[o]/15*100}%;background:${SHADE[o]}" title="${o}: ${cnt[o]}"></span>`:"").join("")}</div>
+    <div class="cohleg">${ORDER.map(o=>`<span>${SYM[o]} ${o}: <b>${cnt[o]}</b></span>`).join("")}</div></div>`;}).join("");
+  const cell=t=>`<div class="badge" style="color:${SHADE[t.avaliacao]==="var(--rule)"?"var(--ink-2)":SHADE[t.avaliacao]}"><i aria-hidden="true">${SYM[t.avaliacao]}</i>${esc(t.avaliacao)}</div>
+    <div>${esc(t.justificativa)}</div>
+    <details><summary>Proposta, histórico e fontes</summary><p style="margin-top:4px"><span class="lab">Proposta</span> ${esc(t.proposta)}</p><p style="margin-top:4px"><span class="lab">No governo</span> ${esc(t.historico)}</p>
+    <div class="src">${t.fontes.map(f=>`<a href="${esc(f.url)}" target="_blank" rel="noopener">${esc(f.veiculo)}</a> (${esc(f.data)})`).join(" · ")}</div></details>`;
+  $("#cohTable").innerHTML=`<thead><tr><th>Tema</th><th><span class="chip A">${CANDIDATES.A.label}</span> × governo Lula</th><th><span class="chip B">${CANDIDATES.B.label}</span> × governo Bolsonaro</th></tr></thead><tbody>${
+    THEMES.map((t,i)=>`<tr><td>${String(t.id).padStart(2,"0")} ${esc(t.short)}</td><td>${cell(side("A").temas[i])}</td><td>${cell(side("B").temas[i])}</td></tr>`).join("")}</tbody>`;
+})();
 
 /* ---------- navegação ---------- */
 const slides=[...stage.querySelectorAll(".slide")];
