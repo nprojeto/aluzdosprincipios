@@ -466,7 +466,7 @@ p .lab{margin-right:4px}
       </div>
       <div class="sheet"><h3>Os temas escolhidos</h3>
         <p>A análise se concentra em cinco temas sobre os quais a Bíblia e a tradição cristã comum a católicos e evangélicos ensinam de modo direto: a vida desde a concepção (“não matarás”), a família (Gênesis 2; Mateus 19), a sexualidade (“homem e mulher os criou”, Gênesis 1,27), a liberdade religiosa e o cuidado com os pobres (Mateus 25).</p>
-        <p class="muted" style="font-size:.88rem">Versões anteriores desta análise cobriam 15 temas, incluindo segurança, maioridade penal, mulheres, educação, liberdade de expressão, economia, corrupção, racismo, meio ambiente e política externa. Com 15 temas, a média dos três personagens ficou praticamente empatada entre os dois planos. O recorte em cinco temas muda o resultado; por isso ele é informado aqui.</p>
+        
       </div>
     </div>
     <div class="tablewrap"><table id="themeIndex"><thead><tr><th>Nº</th><th>Tema</th><th>Questão central</th></tr></thead><tbody></tbody></table></div>
@@ -532,17 +532,7 @@ p .lab{margin-right:4px}
   </div>
 </section>
 
-<section class="slide" data-chapter="5" data-title="Coerência: plano × governo anterior">
-  <div class="wrap">
-    <div><span class="eyebrow">Capítulo 05 · Levantamento complementar</span><h2 class="h2">Coerência: o que cada lado propõe e o que fez no governo</h2>
-      <p class="muted" style="margin-top:6px;max-width:95ch">Para os mesmos cinco temas, a proposta de cada plano foi comparada com o que fez o último governo do mesmo campo. O Plano A se apresenta como continuidade do governo Lula (2023–2026). O Plano B se apresenta como continuidade do governo Jair Bolsonaro (2019–2022), embora o candidato seja outro (p. 9). Base: reportagens e dados oficiais com data, listados em cada linha.</p></div>
-    <div class="cohchart" id="cohScore"></div>
-    <div class="chartbox"><div class="lab" style="margin-bottom:6px">Mapa de coerência por tema</div><div id="cohMap"></div></div>
-    <div class="cohsum" id="cohSummary"></div>
-    <div class="tablewrap"><table class="coh" id="cohTable"></table></div>
-    <div class="notice"><strong>Como ler</strong>Coerência mede só se o governo agiu na direção do que o plano propõe hoje; não mede se a política foi boa ou ruim. Este levantamento é jornalístico e separado dos índices dos personagens. Os períodos são diferentes: o governo Bolsonaro atravessou a pandemia (2020–2021) e o governo Lula ainda está em curso. ● coerente · ◐ parcialmente coerente · ○ pouco coerente · – sem histórico comparável.</div>
-  </div>
-</section>
+
 
 <!-- ======================= CAPÍTULO 08 · AVALIAÇÃO ======================= -->
 <section class="slide" data-chapter="6" data-title="O que você achou da análise?">
@@ -1751,48 +1741,7 @@ buildResult();
 
 /* fontes */
 $("#sources").innerHTML=[["Fontes dos planos de governo","planos"],["Fontes sobre João Paulo II","jp2"],["Fontes sobre Billy Graham","bg"],["Fontes sobre Martin Luther King Jr.","mlk"],["Fontes complementares","extra"]].map(([h,k])=>`<section><h3>${h}</h3><ul class="clean">${SOURCES[k].map(s=>`<li>${s.u?`<a href="${esc(s.u)}" target="_blank" rel="noopener">${esc(s.t)}</a>`:esc(s.t)}</li>`).join("")}</ul></section>`).join("")+
-  `<section><h3>Levantamento de coerência (imprensa e dados oficiais)</h3><ul class="clean">${["A","B"].flatMap(c=>COHERENCE[c].temas.flatMap(t=>t.fontes)).filter((f,i,a)=>a.findIndex(x=>x.url===f.url)===i).map(f=>`<li><a href="${esc(f.url)}" target="_blank" rel="noopener">${esc(f.veiculo)} — ${esc(f.titulo)}</a> (${esc(f.data)})</li>`).join("")}</ul></section>`+
   `<section><h3>Citações utilizadas</h3><ul class="clean">${Object.values(QUOTES).filter((q,i,a)=>true).map(q=>`<li>${esc(FIGURES[q.fig].name)} — ${q.url?`<a href="${esc(q.url)}" target="_blank" rel="noopener">${esc(q.ref)}</a>`:esc(q.ref)} — ${esc(q.year)}</li>`).join("")}</ul></section>`;
-
-/* coerência: plano × governo anterior */
-(function(){
-  const ORDER=["Coerente","Parcialmente coerente","Pouco coerente","Sem histórico comparável"];
-  const SYM={"Coerente":"●","Parcialmente coerente":"◐","Pouco coerente":"○","Sem histórico comparável":"–"};
-  const SHADE={"Coerente":"var(--petrol)","Parcialmente coerente":"var(--gold)","Pouco coerente":"var(--ink-2)","Sem histórico comparável":"var(--rule)"};
-  const side=c=>COHERENCE[c];
-  $("#cohSummary").innerHTML=["A","B"].map(c=>{const cnt={};ORDER.forEach(o=>cnt[o]=0);side(c).temas.forEach(t=>cnt[t.avaliacao]++);
-    return `<div class="cohcard" style="--c:${cvar(c)}"><div style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><span class="chip ${c}">${CANDIDATES[c].label}</span><h3>${esc(side(c).governo)}</h3></div>
-    <div class="stack" role="img" aria-label="${ORDER.map(o=>cnt[o]+' '+o).join(', ')}">${ORDER.map(o=>cnt[o]?`<span style="width:${cnt[o]/side(c).temas.length*100}%;background:${SHADE[o]}" title="${o}: ${cnt[o]}"></span>`:"").join("")}</div>
-    <div class="cohleg">${ORDER.map(o=>`<span>${SYM[o]} ${o}: <b>${cnt[o]}</b></span>`).join("")}</div></div>`;}).join("");
-  /* índice de coerência: Coerente = 1, Parcial = 0,5, Pouco = 0; "sem histórico" fica fora da conta */
-  const PTS={"Coerente":1,"Parcialmente coerente":0.5,"Pouco coerente":0};
-  const score=c=>{const v=side(c).temas.filter(t=>t.avaliacao in PTS);return {pct:v.reduce((a,t)=>a+PTS[t.avaliacao],0)/v.length*100,n:v.length};};
-  $("#cohScore").innerHTML=`<div class="lab">Índice de coerência entre o que o plano propõe e o que o governo fez</div>`+
-    ["A","B"].map(c=>{const r=score(c);return `<div class="cohrow" style="--c:${cvar(c)}"><div class="who2"><span class="chip ${c}" style="align-self:flex-start">${CANDIDATES[c].label}</span><span>${esc(side(c).governo)}</span></div>
-    <div class="bar"><i style="--w:${r.pct}%"></i></div><span class="v"><span class="count" data-to="${r.pct.toFixed(0)}">${r.pct.toFixed(0)}</span>%</span></div>`;}).join("")+
-    `<div class="cohaxis"><span></span><div><span>0%</span><span>25%</span><span>50%</span><span>75%</span><span>100%</span></div><span></span></div>
-    <p class="idxnote">Cálculo: coerente vale 1, parcialmente coerente vale 0,5 e pouco coerente vale 0; a média é feita sobre os temas com histórico comparável (${score("A").n} no governo Lula, ${score("B").n} no governo Bolsonaro).</p>`;
-  /* mapa de coerência: 15 temas × 2 governos */
-  (function(){
-    const cw=70, ch=40, left=170, top=130, w=left+THEMES.length*cw+120, h=top+2*ch+46;
-    let g=`<svg viewBox="0 0 ${w} ${h}" width="100%" style="max-width:${Math.round(w*1.25)}px;display:block" role="img" aria-label="Mapa de coerência dos temas para os dois governos">`;
-    THEMES.forEach((t,i)=>{const x=left+i*cw+cw/2; g+=`<text transform="translate(${x+4},${top-10}) rotate(-50)" font-size="11.5">${String(t.id).padStart(2,"0")} ${esc(t.short)}</text>`;});
-    ["A","B"].forEach((c,r)=>{const y=top+r*ch;
-      g+=`<text x="${left-12}" y="${y+ch/2+4}" font-size="12" text-anchor="end">${c==="A"?"A · governo Lula":"B · governo Bolsonaro"}</text>`;
-      side(c).temas.forEach((t,i)=>{const x=left+i*cw, col=SHADE[t.avaliacao];
-        g+=`<rect x="${x+3}" y="${y+3}" width="${cw-6}" height="${ch-6}" rx="2" fill="${col}" stroke="var(--rule)"><title>${esc(THEMES[i].title)} · ${esc(t.avaliacao)}</title></rect>
-            <text x="${x+cw/2}" y="${y+ch/2+5}" font-size="14" text-anchor="middle" style="fill:${t.avaliacao==="Sem histórico comparável"?"var(--ink)":"var(--paper)"}">${SYM[t.avaliacao]}</text>`;});});
-    const ly=top+2*ch+26; let lx=left;
-    ORDER.forEach(o=>{g+=`<rect x="${lx}" y="${ly-11}" width="14" height="14" fill="${SHADE[o]}" stroke="var(--rule)"/><text x="${lx+20}" y="${ly}" font-size="11.5">${o}</text>`; lx+=o.length*7+48;});
-    $("#cohMap").innerHTML=g+"</svg>";
-  })();
-  const cell=t=>`<div class="badge" style="color:${SHADE[t.avaliacao]==="var(--rule)"?"var(--ink-2)":SHADE[t.avaliacao]}"><i aria-hidden="true">${SYM[t.avaliacao]}</i>${esc(t.avaliacao)}</div>
-    <div>${esc(t.justificativa)}</div>
-    <details><summary>Proposta, histórico e fontes</summary><p style="margin-top:4px"><span class="lab">Proposta</span> ${esc(t.proposta)}</p><p style="margin-top:4px"><span class="lab">No governo</span> ${esc(t.historico)}</p>
-    <div class="src">${t.fontes.map(f=>`<a href="${esc(f.url)}" target="_blank" rel="noopener">${esc(f.veiculo)}</a> (${esc(f.data)})`).join(" · ")}</div></details>`;
-  $("#cohTable").innerHTML=`<thead><tr><th>Tema</th><th><span class="chip A">${CANDIDATES.A.label}</span> × governo Lula</th><th><span class="chip B">${CANDIDATES.B.label}</span> × governo Bolsonaro</th></tr></thead><tbody>${
-    THEMES.map((t,i)=>`<tr><td>${String(t.id).padStart(2,"0")} ${esc(t.short)}</td><td>${cell(side("A").temas[i])}</td><td>${cell(side("B").temas[i])}</td></tr>`).join("")}</tbody>`;
-})();
 
 /* ---------- navegação ---------- */
 const slides=[...stage.querySelectorAll(".slide")];
